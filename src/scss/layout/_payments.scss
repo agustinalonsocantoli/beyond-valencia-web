@@ -1,0 +1,230 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.payment {
+    background-color: rgba(0, 0, 0, .7);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+
+    &_error {
+        background-color: #FFFFFF;
+        padding: 20px;
+        width: 60%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        border-radius: 12px;
+        margin-top: 10%;
+
+        @include m.phone {
+            width: 90%;
+        }
+        @include m.tablet {
+            width: 90%;
+        }
+        @include m.desktopS {
+            width: 90%;
+        }
+
+        svg {
+            color: #DC2222;
+            font-size: 200px;
+
+            @include m.phone {
+                font-size: 150px;
+            }
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 400;
+
+            @include m.phone {
+                font-size: 25px;
+                text-align: center;
+            }
+            @include m.tablet {
+                font-size: 35px;
+            }
+            @include m.desktopS {
+                font-size: 40px;
+            }
+        }
+    }
+
+    &_loading {
+        background-color: #FFFFFF;
+        padding: 5%;
+        width: 40%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        margin-top: 10%;
+
+        @include m.phone {
+            width: 90%;
+        }
+        @include m.tablet {
+            width: 90%;
+        }
+        @include m.desktopS {
+            width: 90%;
+        }
+    }
+
+}
+
+.checkout {
+    width: 50%;
+    position: absolute;
+    padding: 50px;
+    background-color: #FFFFFF;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 5%;
+    border-radius: 20px;
+    max-height: 98vh;
+    overflow: scroll;
+
+    @include m.phone {
+        width: 95%;
+        top: 1%;
+        padding: 20px 30px;
+    }
+    @include m.tablet {
+        width: 90%;
+        top: 3%;
+        padding: 30px;
+    }
+    @include m.desktopS {
+        width: 90%;
+    }
+
+    &_email {
+        margin-bottom: 10px;
+    }
+
+    &_btn{
+        display: flex;
+        margin-top: 20px;
+
+        button {
+            margin: auto;
+            border: none;
+            background-color: rgba(0, 0, 0, .7);
+            padding: 10px;
+            border-radius: 8px;
+            width: 40%;
+            color: #FFFFFF;
+            cursor: pointer;
+            font-family: v.$poppins;
+            font-weight: 300;
+            font-size: 13px;
+
+            &:active {
+                transform: scale(0.9);
+                transition: all 200ms ease;
+            }
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 1);
+            }
+        }
+    }
+
+    .loading {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .card_img {
+        margin-bottom: 20px;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &_card {
+        padding: 5px;
+        border-radius: 8px;
+
+        -webkit-box-shadow: 2px 2px 15px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 2px 2px 15px 0px rgba(0,0,0,0.75);
+        box-shadow: 2px 2px 15px 0px rgba(0,0,0,0.75);
+    }
+
+    &_msg {
+        margin-top: 5px;
+        color: #DC2222;
+    }
+}
+
+.pay_success {
+    background-color: #FFFFFF;
+    padding: 20px;
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 12px;
+    margin-top: 10%;
+
+    @include m.phone {
+        width: 90%;
+    }
+    @include m.tablet {
+        width: 90%;
+    }
+    @include m.desktopS {
+        width: 90%;
+    }
+
+    svg {
+        color: #52DD11;
+        font-size: 200px;
+
+        @include m.phone {
+            font-size: 150px;
+        }
+    }
+
+    h1 {
+        font-size: 40px;
+        font-weight: 400;
+
+        @include m.phone {
+            font-size: 25px;
+            text-align: center;
+        }
+        @include m.tablet {
+            font-size: 35px;
+        }
+        @include m.desktopS {
+            font-size: 40px;
+        }
+    }
+}
+
+.icon_close {
+    position: absolute;
+    font-size: 30px;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}

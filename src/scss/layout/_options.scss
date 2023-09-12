@@ -1,0 +1,132 @@
+@use '../base/mixins' as m;
+
+.options {
+    display: flex;
+    height: 100vh;
+
+    @include m.phone {
+        height: auto;
+        width: 100%;
+        flex-direction: column;
+    }
+    @include m.tablet {
+        height: auto;
+        width: 100%;
+        flex-direction: column;
+    }
+    @include m.desktopS {
+        height: auto;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    &_img-box {
+        flex: 1;
+        position: relative;
+
+        h1 {
+            color: #FFFFFF;
+            font-size: 80px;
+
+            @include m.phone {
+                font-size: 35px;
+                margin-top: 0 !important;
+            }
+            @include m.tablet {
+                font-size: 60px;
+                margin-top: 0 !important;
+            }
+            @include m.desktopS {
+                font-size: 60px;
+                margin-top: 0 !important;
+            }
+        }
+
+        h1:last-child {
+            margin-top: -50px;
+        }
+
+        .title_locker {
+            position: absolute;
+            top: 40%;
+            left: 10%;
+            padding: 10px 25px;
+            background-color: rgba(0, 0, 0, .7);
+            border-radius: 12px;
+
+            @include m.phone {
+                top: 35%;
+                left: 15%;
+            }
+            @include m.tablet {
+                top: 30%;
+                left: 20%;
+            }
+            @include m.desktopS {
+                top: 30%;
+                left: 20%;
+            }
+
+        }
+
+        .title_bike {
+            position: absolute;
+            top: 40%;
+            left: 25%;
+            padding: 10px 25px;
+            background-color: rgba(0, 0, 0, .7);
+            border-radius: 12px;
+
+            @include m.phone {
+                top: 37%;
+                left: 27%;
+            }
+            @include m.tablet {
+                top: 30%;
+                left: 30%;
+            }
+            @include m.desktopS {
+                top: 30%;
+                left: 30%;
+            }
+
+        }
+    }
+
+    &_line {
+        width: 10px;
+        background-color: #000000;
+
+        @include m.phone {
+            width: 100%;
+            height: 10px;
+            margin-top: -8px;
+        }
+        @include m.tablet {
+            width: 100%;
+            height: 10px;
+            margin-top: -8px;
+        }
+        @include m.desktopS {
+            width: 100%;
+            height: 10px;
+            margin-top: -8px;
+        }
+    }
+
+    img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+
+        @include m.phone {
+            height: 50vh;
+        }
+        @include m.tablet {
+            height: 50vh;
+        }
+        @include m.desktopS {
+            height: 50vh;
+        }
+    }
+}

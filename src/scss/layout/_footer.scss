@@ -1,0 +1,193 @@
+@use '../base/mixins' as m;
+
+.footer {
+    background-color: #000000;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    padding: 4% 2%;
+
+    @include m.phone {
+        padding: 5% 2%;
+    }
+
+    h3 {
+        font-size: 15px;
+        margin-right: 7%;
+
+        @include m.phone {
+            font-size: 7px;
+            margin-right: 15%;
+        }
+        @include m.tablet {
+            margin-right: 10%;
+        }
+        @include m.desktopS {
+            margin-right: 10%;
+        }
+    }
+
+    .content {
+        display: flex;
+        justify-content: space-around;
+
+        @include m.phone {
+            flex-direction: column;
+        }
+        @include m.tablet {
+            flex-direction: column;
+        }
+        @include m.desktopS {
+            flex-direction: column;
+        }
+
+        .content_items {
+            width: 25%;
+            margin-bottom: 50px;
+
+            @include m.phone {
+                width: 100%;
+            }
+            @include m.tablet {
+                margin: 0 auto 50px auto;
+                width: 80%;
+            }
+            @include m.desktopS {
+                margin: 0 auto 50px auto;
+                width: 80%;
+            }
+
+            h3 {
+                margin-bottom: 15px;
+                font-size: 25px;
+            }
+
+            p, a {
+                font-weight: 200;
+                color: rgba(255, 255, 255, .5);
+
+                span {
+                    color: #FFFFFF;
+                }
+            }
+
+            li {
+                list-style: disc;
+                font-weight: 200;
+                color: rgba(255, 255, 255, .7);
+
+                a {
+                    font-weight: 200;
+                    color: rgba(255, 255, 255, .7);
+                }
+            }
+
+            .items-card {
+                border: 1px solid #FFFFFF;
+                padding: 10px 20px 30px 20px;
+                margin-bottom: 20px;
+
+                .social, a {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    color: #FFFFFF !important;   
+                }
+
+                .location {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+
+                    svg {
+                        font-size: 45px;
+                        color: red;
+                    }
+                }
+
+                .icons {
+                    display: flex;
+                    gap: 10px;
+                    margin-top: 30px;
+                    margin-bottom: 35px;
+
+                    .icon {
+                        border: 1px solid #FFFFFF;
+                        border-radius: 100%;
+                        padding: 10px 10px 5px 10px;
+
+                        svg {
+                            font-size: 30px;
+                        }
+                    }
+                }
+
+                .buttons {
+                    border: 1px solid #FFFFFF;
+                    text-align: center;
+                    padding: 15px;
+                    margin-bottom: 25px;
+                    border-radius: 50px;
+
+                    span {
+                        font-weight: 200;
+                        font-size: 13px;
+                        color: rgba(255, 255, 255, .7);
+                    }
+                }
+
+                .buttons:last-child {
+                    margin-bottom: 15px;
+                }
+            }
+        }
+
+        .footer_logo {
+            width: 150px;
+            margin-left: auto;
+
+            img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .information {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .methods {
+            display: flex;
+            gap: 10px;
+
+            @include m.phone {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 5px;
+            }
+
+            img {
+                object-fit: cover;
+                width: 45px;
+                height: 25px;
+                border-radius: 2px;
+
+                @include m.phone {
+                    width: 30px;
+                    height: 15px;
+                }
+                @include m.tablet {
+                    width: 35px;
+                    height: 15px;
+                }
+                @include m.desktopS {
+                    width: 35px;
+                    height: 15px;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,169 @@
+@use '../base/mixins' as m;
+
+.services {
+    background-color: #000000;
+    margin-top: -10px;
+    color: #FFFFFF;
+
+    .services_title {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding-left: 175px;
+
+        @include m.phone {
+            padding-left: 10%;
+        }
+        @include m.tablet {
+            padding-left: 10%;
+        }
+        @include m.desktopS {
+            padding-left: 10%;
+        }
+
+        h1 {
+            padding-top: 100px;
+            font-size: 60px;
+
+
+        @include m.phone {
+            font-size: 18px;
+        }
+        @include m.tablet {
+            font-size: 30px;
+        }
+        @include m.desktopS {
+            font-size: 30px;
+        }
+        }
+
+        h2 {
+            width: 25%;
+            text-align: center;
+            margin-bottom: 60px;
+            background-color: #FFFFFF;
+            color: #000000;
+            border-radius: 50px;
+            padding: 12px 0;
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+
+            @include m.phone {
+                width: 80%;
+            }
+            @include m.tablet {
+                width: 40%;
+            }
+            @include m.desktopS {
+                width: 40%;
+            }
+
+            a {
+                color: #000000;
+                padding: 12px 0;
+                font-size: 18px;
+                font-weight: 600;
+                letter-spacing: 1.5px;
+
+                @include m.phone {
+                    font-size: 15px;
+                }
+            }
+            
+        }
+    }
+
+    .services_conteiner {
+        display: flex;
+        position: relative;
+
+        @include m.phone {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+        }
+        @include m.tablet {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+        }
+        @include m.desktopS {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .services_img {
+            display: flex;
+            flex: 1;
+            min-height: 600px;
+            position: relative;
+
+            &:hover {
+                transform: scale(1.05);
+                transition: all 1000 ease-in-out;
+                
+                @include m.phone {
+                    transform: scale(1);
+                    transition: none;
+                }
+                @include m.tablet {
+                    transform: scale(1);
+                    transition: none;
+                }
+                @include m.desktopS {
+                    transform: scale(1);
+                    transition: none;
+                }
+            }
+
+            video, img {
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+                border-radius: 20px;
+            }
+
+            .img_content {
+                position: absolute;
+                bottom: 30px;
+                color: #FFFFFF;
+                z-index: 99;
+                width: 70%;
+                left: 0;
+                right: 0;
+                margin: auto;
+
+                h3 {
+                    font-size: 30px;
+                }
+
+                p {
+                    font-size: 20px;
+                    width: 93%;
+
+                    span {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        .services_img::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .4);
+            border-radius: 20px;
+        }
+    }
+
+    .bg_img {
+        height: 100px; 
+        background-color: #FFFFFF; 
+        margin-top: -50px;    
+    }
+}
+
+.swiper-button-prev, .swiper-button-next {
+    color: #FFFFFF;       
+}

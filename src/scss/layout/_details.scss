@@ -1,0 +1,227 @@
+@use '../base/mixins' as m;
+
+.details {
+
+    &_exposure {
+        padding: 0 0 10px 0;
+        background-color: #000000;
+
+        .grid-1,
+        .grid-2,
+        .grid-3,
+        .grid-4 { 
+            border: none !important;
+            border-radius: 0 !important;
+        }
+
+        img {
+            border-radius: 0 !important;
+        }
+    }
+
+    &_description {
+        display: flex;
+        gap: 100px;
+        padding: 0 5% 3% 5%;
+        margin-top: 50px;
+
+        @include m.phone {
+            flex-direction: column;
+            gap: 30px;
+        }
+        @include m.tablet {
+            flex-direction: column;
+            gap: 30px;
+        }
+        @include m.desktopS {
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .description {
+            width: 55%;
+
+            @include m.phone {
+                width: 100%;
+            }
+            @include m.tablet {
+                width: 100%;
+            }
+            @include m.desktopS {
+                width: 100%;
+            }
+            
+            h1 {
+                text-decoration: underline;
+                font-size: 50px;
+                text-align: left;
+
+            @include m.phone {
+                text-align: left;
+                font-size: 40px;
+            }
+            @include m.tablet {
+                text-align: left;
+            }
+            @include m.desktopS {
+                text-align: left;
+            }
+            }
+
+            .subtitle {
+                margin-bottom: 10px;
+                font-size: 30px;
+                text-align: left;
+            }
+
+            h3 {
+                text-decoration: underline;
+                margin-bottom: 20px;
+                font-weight: 400;
+
+                @include m.phone {
+                    font-size: 20px;
+                }
+            }
+
+            &_text {
+                font-size: 20px;
+                font-weight: 300;
+                margin-bottom: 50px;
+
+                @include m.phone {
+                    font-size: 17px;
+                }
+            }
+
+            &_slogan {
+                font-size: 20px;
+                font-weight: 200;
+                margin-bottom: 50px;
+
+                @include m.phone {
+                    font-size: 17px;
+                }
+            }
+
+
+            h3 {
+                font-size: 22px;
+                margin-bottom: 20px;
+                font-weight: 400;
+
+                @include m.phone {
+                    font-size: 20px;
+                }
+            }
+
+            .highlights {
+                margin-bottom: 50px;
+
+                li {
+                    margin-left: 30px;
+                    list-style: disc;
+                    font-size: 18px;
+                    font-weight: 300;
+
+                    @include m.phone {
+                        font-size: 15px;
+                    }
+                }
+            }
+
+            .information {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                column-gap: 50px;
+                row-gap: 20px;
+                width: 80%;
+                margin: auto;
+                margin-bottom: 50px;
+
+                @include m.phone {
+                    column-gap: 20px;
+                    row-gap: 30px;
+                    width: 95%;
+                    margin: auto;
+                    margin-bottom: 40px;
+                }
+
+                .location {
+                    width: 100%;
+
+                    @include m.phone {
+                        font-size: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        width: 95%;
+                        text-align: center;
+                    }
+
+                    svg {
+                        font-size: 75px;
+
+                        @include m.phone {
+                            margin-top: 30px;
+                            font-size: 30px;
+                        }
+                    }
+                }
+
+                p {
+                    display: flex;
+                    align-items: center;
+                    font-size: 15px;
+                    font-weight: 300;
+                    gap: 10px;
+
+                    @include m.phone {
+                        font-size: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        width: 95%;
+                        text-align: center;
+                    }
+
+                    svg {
+                        font-size: 55px;
+
+                        @include m.phone {
+                            font-size: 30px;
+                        }
+                    }
+                }
+            }
+
+            &_policy {
+
+                p {
+                    padding: 20px;
+                    margin-bottom: 20px;
+                    font-size: 12px;
+                    font-weight: 300;
+                    border: 1px solid #000000;
+
+                    @include m.phone {
+                        font-size: 10px;
+                        padding: 15px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.MuiAccordion-root {
+    box-shadow: none !important;
+    border-bottom: 1px solid #000000;
+}
+
+.MuiAccordion-root::before {
+    background: none !important;
+}
