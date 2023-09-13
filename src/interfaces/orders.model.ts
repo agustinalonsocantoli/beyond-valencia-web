@@ -1,4 +1,4 @@
-import { TypeProductEnum } from "../shared/types";
+import { TypeProductEnum } from "@/shared/utils/types/types";
 
 export interface BikesInt {
     small: number;

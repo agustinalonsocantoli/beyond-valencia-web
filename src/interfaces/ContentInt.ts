@@ -1,5 +1,4 @@
-import { TypeLanding } from "../shared/types";
-
+import { TypeLanding } from "@/shared/utils/types/types";
 
 export interface ContentInt {
     _id?: string;

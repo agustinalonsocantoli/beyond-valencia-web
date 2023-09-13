@@ -1,4 +1,4 @@
-import { TypeLanding } from "../shared/types";
+import { TypeLanding } from "@/shared/utils/types/types";
 
 export interface MultimediaInt {
     _id?: string;

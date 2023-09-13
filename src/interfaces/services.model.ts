@@ -1,4 +1,4 @@
-import { TypeLanding } from "../shared/types";
+import { TypeLanding } from "@/shared/utils/types/types";
 
 export interface DataInt {
     h1: string;
