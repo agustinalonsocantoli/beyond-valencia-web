@@ -1,3 +1,5 @@
+'use client'
+
 // interfaces
 import { ContentInt, DataInt } from "../../../interfaces/services.model"
 // Import Swiper React components
@@ -7,19 +9,17 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import Link from "next/link";
-// import { Skeleton } from "@mui/material";
 
 interface Props {
-    loading: boolean;
     sliderPage1: DataInt | undefined;
     sliderPage2?: ContentInt[];
     sliderPage3?: ContentInt[];
 }
 
 export const GroupServices = (props: Props) => {
-    const { loading, sliderPage1, sliderPage2, sliderPage3, } = props;
+    const { sliderPage1, sliderPage2, sliderPage3, } = props;
 
-    const resposive = window.innerWidth < 1920 ? true : false;
+    // const resposive = window.innerWidth < 1920 ? true : false;
 
     return (
         <div className="services">
@@ -38,11 +38,11 @@ export const GroupServices = (props: Props) => {
                 navigation
                 spaceBetween={80}
                 slidesPerView={1}
-                style={{ padding: resposive ? "15px 5%" : "15px 3%" }}
+                // style={{ padding: resposive ? "15px 5%" : "15px 3%" }}
+                style={{ padding: "15px 5%" }}
             >
                 <SwiperSlide className="services_conteiner" style={{ gap: "70px" }}>
                     {
-                    // !loading ?
                         sliderPage1?.content?.map((item: ContentInt, index: number) => (
                             <Link key={index} className="services_img" href={item?.link}>
                                 <picture>
@@ -56,17 +56,6 @@ export const GroupServices = (props: Props) => {
                                 </div>
                             </Link>
                         ))
-                        // :
-                        // sliderPage1?.content?.map((_item: ContentInt, index: number) => (
-                        //     <Skeleton
-                        //         key={index}
-                        //         className="services_img"
-                        //         sx={{ bgcolor: "rgba(255, 255, 255, .2)", borderRadius: "20px" }}
-                        //         variant="rectangular"
-                        //     >
-
-                        //     </Skeleton>
-                        // ))
                     }
                 </SwiperSlide>
 
