@@ -5,12 +5,12 @@ import { AiOutlineInstagram } from 'react-icons/ai';
 import { Whatsapp } from "@/shared/components/Custom/Whatsapp";
 import { Events } from "@/shared/components/Events/Events";
 import { Footer } from "@/shared/components/Footer/Footer";
-import { Box, Flex, Heading, Icon } from "@chakra-ui/react";
+import { Box, Flex, Heading } from "@chakra-ui/react";
 import Image from 'next/image';
 import Link from 'next/link';
 import { getStaticData } from '@/shared/middlewares/fetcher';
 import { Options } from '@/shared/components/Options/Options';
-import { GroupServices } from '@/shared/components/Services/GroupServices';
+import { Cards } from '@/shared/components/Services/Cards';
 
 export default async function Home() {
   const { data } = await getStaticData("content?landing=home")
@@ -80,8 +80,8 @@ export default async function Home() {
         />
       </div>
 
-      <GroupServices
-          sliderPage1={homeData}
+      <Cards
+          data={homeData}
         />
 
       <Events />

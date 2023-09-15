@@ -30,3 +30,10 @@ body {
 video::-webkit-media-controls {
     display: none;
 }
+
+a:focus-visible {
+    outline: none;
+    outline-offset: none;
+    border: none;
+    box-shadow: none;
+}
