@@ -1,0 +1,49 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.calendar {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.p-calendar {
+    font-family: v.$poppins !important;
+    margin: 0 !important;
+    width: 400px !important;
+    margin-bottom: 20px !important;
+    padding: 0;
+
+    @include m.phone {
+        width: 320px !important;
+    }
+
+    .p-datepicker table td > span {
+        height: 30px;
+        width: 30px;
+    }
+
+    .p-datepicker {
+        background: transparent;
+        border: none;
+
+        .p-datepicker-header {
+            background: transparent;
+            border-bottom: none;
+            padding: 0 6px;
+            font-size: 12px;
+        }
+
+        .p-datepicker table {
+            margin: 0;
+            font-size: 12px;
+
+        }
+
+        .p-highlight {
+            background: #000000 !important;
+            color: #FFFFFF !important;
+        }
+    }
+}
+

@@ -1,7 +1,4 @@
-interface MultimediaInt {
-    src: string;
-    type: string;
-}
+import { MultimediaInt } from "./MultimediaInt";
 
 interface OrdersGroupsInt {
     title: string;

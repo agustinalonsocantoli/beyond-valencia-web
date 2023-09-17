@@ -1,3 +1,5 @@
+import { MultimediaInt } from "./MultimediaInt";
+
 interface MultimediaTypes {
     src: string;
     type: string;
@@ -26,7 +28,7 @@ export interface ExperiencesInt {
     headline: string;
     description: string;
     information: string;
-    multimedia: MultimediaTypes[];
+    multimedia: MultimediaInt[];
     highlights: string[];
     details: {
         age: string;

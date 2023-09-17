@@ -20,7 +20,7 @@ interface Props {
 export const GroupServices = (props: Props) => {
     const { sliderPage1, sliderPage2, sliderPage3, } = props;
 
-    // const resposive = window.innerWidth < 1920 ? true : false;
+    const resposive = window.innerWidth < 1920 ? true : false;
 
     return (
         <div className="services">
@@ -39,8 +39,7 @@ export const GroupServices = (props: Props) => {
                 navigation
                 spaceBetween={80}
                 slidesPerView={1}
-                // style={{ padding: resposive ? "15px 5%" : "15px 3%" }}
-                style={{ padding: "15px 5%" }}
+                style={{ padding: resposive ? "15px 5%" : "15px 3%" }}
             >
                 <SwiperSlide className="services_conteiner" style={{ gap: "70px" }}>
                     {

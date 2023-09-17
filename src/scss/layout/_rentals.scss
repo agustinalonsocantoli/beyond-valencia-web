@@ -535,6 +535,8 @@
             font-family: v.$poppins;
             font-weight: 300;
             margin-bottom: 5px;
+            border: 1px solid black;
+            border-radius: 5px;
 
             @include m.phone {
                 font-size: 10px;
@@ -550,6 +552,8 @@
             font-weight: 300;
             margin-bottom: 20px;
             height: 55px;
+            border: 1px solid black;
+            border-radius: 5px;
 
             @include m.phone {
                 font-size: 10px;

@@ -1279,24 +1279,6 @@ a:focus-visible {
   position: sticky;
   background-color: #FFFBF6;
 }
-.book .Mui-selected {
-  background-color: #000000 !important;
-}
-.book .MuiDateCalendar-root {
-  font-family: "Poppins", sans-serif !important;
-  margin: 0 !important;
-  width: 400px !important;
-  margin-bottom: 20px !important;
-}
-@media (max-width: 480px) {
-  .book .MuiDateCalendar-root {
-    width: 320px !important;
-  }
-}
-.book .MuiDateCalendar-root .MuiDayCalendar-header,
-.book .MuiDateCalendar-root .MuiDayCalendar-weekContainer {
-  justify-content: space-around !important;
-}
 .book_type {
   display: flex;
   justify-content: space-between;
@@ -2945,6 +2927,8 @@ a:focus-visible {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   margin-bottom: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 @media (max-width: 480px) {
   .contents_complete-form input {
@@ -2960,6 +2944,8 @@ a:focus-visible {
   font-weight: 300;
   margin-bottom: 20px;
   height: 55px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 @media (max-width: 480px) {
   .contents_complete-form textarea {
@@ -3132,6 +3118,47 @@ a:focus-visible {
   .modal_flex .btn_cancel {
     margin: 20px auto 0 0;
   }
+}
+
+.calendar {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.p-calendar {
+  font-family: "Poppins", sans-serif !important;
+  margin: 0 !important;
+  width: 400px !important;
+  margin-bottom: 20px !important;
+  padding: 0;
+}
+@media (max-width: 480px) {
+  .p-calendar {
+    width: 320px !important;
+  }
+}
+.p-calendar .p-datepicker table td > span {
+  height: 30px;
+  width: 30px;
+}
+.p-calendar .p-datepicker {
+  background: transparent;
+  border: none;
+}
+.p-calendar .p-datepicker .p-datepicker-header {
+  background: transparent;
+  border-bottom: none;
+  padding: 0 6px;
+  font-size: 12px;
+}
+.p-calendar .p-datepicker .p-datepicker table {
+  margin: 0;
+  font-size: 12px;
+}
+.p-calendar .p-datepicker .p-highlight {
+  background: #000000 !important;
+  color: #FFFFFF !important;
 }
 
 /*# sourceMappingURL=styles.css.map */
