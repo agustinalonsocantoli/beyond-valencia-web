@@ -2,30 +2,108 @@ import lockers from '../../../../public/Options/lockers.jpg';
 import bikes from '../../../../public/Options/bikes.jpg';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
 export const Options = () => {
     return (
-        <div className="options">
-            <div className='options_img-box'>
-                <Image src={lockers} alt="img/lockers" />
+        <Flex
+            h="100vh"
+        >
+            <Box
+                flex="1"
+                position="relative"
+            >
+                <Image
+                    src={lockers}
+                    alt="img/lockers"
+                    style={{
+                        objectFit: "cover",
+                        width: "100%",
+                        height: "100%"
+                    }}
+                />
 
-                <Link href="/lockers" className='title_locker'>
-                    <h1>LOCKERS &</h1>
-                    <h1>CONSIGNAS</h1>
+                <Link
+                    style={{
+                        position: "absolute",
+                        top: "40%",
+                        left: "10%",
+                        padding: "10px 25px",
+                        background: "rgba(0, 0, 0, .7)",
+                        borderRadius: "12px"
+                    }}
+                    href="/lockers"
+                >
+                    <Text
+                        as="h1"
+                        color="#FFFFFF"
+                        fontSize="80px"
+                        fontWeight="600"
+                    >
+                        LOCKERS &
+                    </Text>
+
+                    <Text
+                        as="h1"
+                        color="#FFFFFF"
+                        fontSize="80px"
+                        fontWeight="600"
+                        mt="-50px"
+                    >
+                        CONSIGNAS
+                    </Text>
+
                 </Link>
-            </div>
+            </Box>
 
-            <div className='options_line'></div>
+            <Box w="10px" bg="#000000"/>
 
-            <div className='options_img-box'>
+            <Box
+                flex="1"
+                position="relative"
+            >
+                <Image
+                    src={bikes}
+                    alt="img/bikes"
+                    style={{
+                        objectFit: "cover",
+                        width: "100%",
+                        height: "100%"
+                    }}
+                />
 
-                <Image src={bikes} alt="img/bikes" />
+                <Link
+                    style={{
+                        position: "absolute",
+                        top: "40%",
+                        left: "25%",
+                        padding: "10px 25px",
+                        background: "rgba(0, 0, 0, .7)",
+                        borderRadius: "12px"
+                    }}
+                    href="/bikes"
+                >
+                    <Text
+                        as="h1"
+                        color="#FFFFFF"
+                        fontSize="80px"
+                        fontWeight="600"
+                    >
+                        BIKE
+                    </Text>
 
-                <Link href="/bikes" className='title_bike'>
-                    <h1>BIKE</h1>
-                    <h1>RENTAL</h1>
+                    <Text
+                        as="h1"
+                        color="#FFFFFF"
+                        fontSize="80px"
+                        fontWeight="600"
+                        mt="-50px"
+                    >
+                        RENTAL
+                    </Text>
+
                 </Link>
-            </div>
-        </div>
+            </Box>
+        </Flex>
     );
 };

@@ -23,7 +23,7 @@ export const getDynamicData = async (endpoint: string) => {
 export const getRevalidatedData = async (endpoint: string) => {
     const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_API}${endpoint}`,
-        { next: { revalidate: 10 } }
+        { next: { revalidate: 60 } }
     )
 
     const data = response.json();

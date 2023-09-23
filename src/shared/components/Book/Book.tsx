@@ -1,23 +1,18 @@
 // React
 import { useEffect, useState } from "react";
-// Calendar
-import dayjs from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-// Toast
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 // Components
 import { SelectGroup } from "./SelectGroup";
 import { ModalBook } from "../modals/ModalBook"
 // Interfaces
-import { notifyError, notifySuccess } from "../../shared/notify";
-import { ExperiencesInt } from "../../data/Api/experiences";
-import { OrdersGroupsInt, PricesInt } from "../../interfaces/books.model";
-import { DaystripsInt } from "../../data/Api/daytrips";
-import { getCode } from "../../middlewares/codes.middlewares";
-import { AxiosResponse } from "axios";
+import { ExperiencesInt } from "@/interfaces/ExperiencesInt";
+import { OrdersGroupsInt, PricesInt } from "@/interfaces/ExperiencesInt";
+import { DaystripsInt } from "@/interfaces/DaytripsInt";
+import { Calendar } from "primereact/calendar";
+import { format } from "date-fns";
+import { toastNotify } from "@/shared/utils/functions/toastNotify";
+import { StatusEnumTypes } from "@/shared/utils/types/StatusEnumTypes";
+import { useDisclosure, useToast } from "@chakra-ui/react";
+import { getDynamicData } from "@/shared/middlewares/fetcher";
 ;
 
 interface Props {
@@ -30,9 +25,10 @@ interface Props {
 }
 
 export const Book = (props: Props) => {
+    const toast = useToast();
     const dateNow: Date = new Date();
     const { setPaymentVisible, setCurrentOrder, setTotalPay, totalPay, data, scroll } = props;
-    const [date, setDate] = useState<any>(null);
+    const [date, setDate] = useState<any>(dateNow);
     const [time, setTime] = useState<string | null>(null);
     const [hoursOptions, setHoursOptions] = useState<string[]>([]);
     const [typeOrder, setTypeOrder] = useState<string | null>(null);
@@ -46,11 +42,7 @@ export const Book = (props: Props) => {
     const [prices, setPrices] = useState<PricesInt>()
 
     // Modal Book
-    const [openBook, setOpenBook] = useState<boolean>(false);
-    const onOpenBook = () => setOpenBook(true);
-    const onCloseBook = () => {
-        setOpenBook(false);
-    }
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     useEffect(() => {
         if (typeOrder) {
@@ -76,14 +68,14 @@ export const Book = (props: Props) => {
         const group = groups?.find((group: OrdersGroupsInt) => group?.type === type)
 
         setCurrentOrder({
-            date: dayjs(date.$d).format('DD/MM/YYYY'),
+            date: format(date, 'dd/MM/yy'),
             typeOrder: type,
         });
 
         setPrices(group?.prices)
         setHoursOptions(group?.deapertureTime ? group?.deapertureTime : [])
         setTypeOrder(type);
-        onOpenBook();
+        onOpen();
     }
 
     const handleSubmit = (e: any) => {
@@ -102,8 +94,8 @@ export const Book = (props: Props) => {
             infants: infants,
         }));
 
-        notifySuccess('We will proceed to the payment.');
-        onCloseBook();
+        toastNotify(toast, StatusEnumTypes.SUCCESS, 'We will proceed to the payment.');
+        onClose();
         setPaymentVisible(true);
     }
 
@@ -118,28 +110,25 @@ export const Book = (props: Props) => {
         setTotalPay(subTotal - ((subTotal * (porcent)) / 100))
         setCurrentOrder((prev: any) => ({ ...prev, discountCode: code }));
         setIsDescountAdd(true);
-        notifySuccess("Congratulations you got the discount");
+        toastNotify(toast, StatusEnumTypes.SUCCESS, "Congratulations you got the discount");
     };
 
-    const validateCode = () => {
+    const validateCode = async () => {
         if(!isDiscountAdd && codeDiscount) {
-            getCode(codeDiscount)
-            .then((response: AxiosResponse) => {
-                const codes = response?.data?.data
-                
-                if(codes?.length === 0) {
-                    notifyError("The code entered is not valid")
-                    return
-                } else {
-                    codes[0]?.state
-                    ? addedDiscount(codes[0].discount, codes[0].code)
-                    : notifyError("The code entered is inactive")
+            const { data } = await getDynamicData(`codes?code=${codeDiscount}`)
+            const codes = data?.data?.data
+            
+            if(codes?.length === 0) {
+                toastNotify(toast, StatusEnumTypes, "The code entered is not valid")
+                return
+            } else {
+                codes[0]?.state
+                ? addedDiscount(codes[0].discount, codes[0].code)
+                : toastNotify(toast, StatusEnumTypes, "The code entered is inactive")
                 }   
-            })
-            .catch(() => notifyError("The code entered is not valid"));
 
         } else {
-            notifyError("Just one code per order");
+            toastNotify(toast, StatusEnumTypes, "Just one code per order");
         }
     }
 
@@ -150,10 +139,10 @@ export const Book = (props: Props) => {
                 top: `${scroll <= 40 && (scroll - 35)}%`
             }}
         >
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <div className="calendar">
                 <h3>Choose a Date</h3>
-                <DateCalendar value={date} onChange={(value) => setDate(value)} minDate={dayjs(dateNow)} />
-            </LocalizationProvider>
+                <Calendar value={date} onChange={(e) => setDate(e.value)} inline />
+            </div>
 
             <div style={{ opacity: date === null ? "0.5" : "1" }}>
                 <SelectGroup
@@ -163,8 +152,8 @@ export const Book = (props: Props) => {
             </div>
 
             <ModalBook
-                handleClose={onCloseBook}
-                open={openBook}
+                onClose={onClose}
+                isOpen={isOpen}
                 adults={adults}
                 children={children}
                 discount={discount}
@@ -180,23 +169,10 @@ export const Book = (props: Props) => {
                 time={time}
                 setTime={setTime}
                 hours={hoursOptions}
-                date={date && dayjs(date.$d).format('DD/MM')}
+                date={date && format(date, 'dd/MM/yy')}
                 setCurrentOrder={setCurrentOrder}
                 setDate={setDate}
                 prices={prices}
-            />
-
-            <ToastContainer
-                position="top-center"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover={false}
-                theme="colored"
             />
         </div>
     );

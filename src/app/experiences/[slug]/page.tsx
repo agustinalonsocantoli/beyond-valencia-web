@@ -6,8 +6,6 @@ import { useParams } from 'next/navigation'
 // Components
 import { Navbar } from '@/shared/components/Navbar/Navbar';
 import { Exposure } from '@/shared/components/Exposure/Exposure';
-// import { Book } from "../components/book/Book";
-// import { Payments } from '../components/stripe/Payments';
 import { Footer } from '@/shared/components/Footer/Footer';
 import { Whatsapp } from '@/shared/components/Custom/Whatsapp';
 // Icons
@@ -23,17 +21,15 @@ import { BsTicket } from 'react-icons/bs';
 import { Accordion, AccordionButton, AccordionIcon, AccordionPanel, AccordionItem } from '@chakra-ui/react';
 import { getStaticData } from '@/shared/middlewares/fetcher';
 import { ExperiencesInt } from '@/interfaces/ExperiencesInt';
-// Data
-// import { ExperiencesInt } from '../data/Api/experiences';
-// import { useLocation, useParams } from 'react-router-dom';
-// import { DaystripsInt } from '../data/Api/daytrips';
+import { Payments } from '@/shared/components/stripe/Payments';
+import { Book } from '@/shared/components/Book/Book';
 
 export default function DetailsExperiences() {
     const { slug } = useParams();
-    // const [paymentVisible, setPaymentVisible] = useState<boolean>(false);
-    // const [currentOrder, setCurrentOrder] = useState<any>(null);
-    // const [totalPay, setTotalPay] = useState<number | null>(null);
-    // const [scroll, setScroll] = useState<number>(0)
+    const [paymentVisible, setPaymentVisible] = useState<boolean>(false);
+    const [currentOrder, setCurrentOrder] = useState<any>(null);
+    const [totalPay, setTotalPay] = useState<number | null>(null);
+    const [scroll, setScroll] = useState<number>(0)
     const [experience, setExperience] = useState<ExperiencesInt>()
 
     const isMobile = window.innerWidth < 1025 ? true : false;
@@ -221,27 +217,27 @@ export default function DetailsExperiences() {
                     </Accordion>
                 </div>
 
-                {/* {experience?.published &&
+                {experience?.published &&
                     <div className='book_container'>
                         <Book
                             setCurrentOrder={setCurrentOrder}
                             setPaymentVisible={setPaymentVisible}
                             setTotalPay={setTotalPay}
                             totalPay={totalPay}
-                            experience={experience}
+                            data={experience}
                             scroll={scroll}
                         />
                     </div>
-                } */}
+                }
             </div>
 
-            {/* {paymentVisible &&
+            {paymentVisible &&
                 <Payments
                     setCurrentOrder={setCurrentOrder}
                     setPaymentVisible={setPaymentVisible}
                     totalPay={totalPay}
                     description={`${currentOrder.tourName ? currentOrder.tourName : ""}, Email: ${currentOrder.email ? currentOrder.email : ""}`}
-                />} */}
+                />}
 
             <Whatsapp />
 

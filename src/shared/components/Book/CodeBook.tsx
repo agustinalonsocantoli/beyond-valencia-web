@@ -1,4 +1,4 @@
-import { PricesInt } from "../../interfaces/books.model";
+import { PricesInt } from "@/interfaces/ExperiencesInt";
 
 interface Props {
     adults: number;

@@ -8,12 +8,12 @@ import { Navbar } from "@/shared/components/Navbar/Navbar";
 import { Exposure } from "@/shared/components/Exposure/Exposure";
 // import { Services } from "../components/shared/Services";
 import { DataInt } from "../../interfaces/services.model";
-import { getStaticData } from "@/shared/middlewares/fetcher";
+import { getRevalidatedData, getStaticData } from "@/shared/middlewares/fetcher";
 
 export default async function Experiences() {
     const { data: multimediaExperiences } = await getStaticData("multimedia?landing=experiences")
-    const { data: contentExperiences } = await getStaticData("content?landing=experiences")
-    const { data: contentDaytrips } = await getStaticData("content?landing=daytrips")
+    const { data: contentExperiences } = await getRevalidatedData("content?landing=experiences")
+    const { data: contentDaytrips } = await getRevalidatedData("content?landing=daytrips")
 
     const experiencesData: DataInt = {
         h1: "Meeting point in the City",

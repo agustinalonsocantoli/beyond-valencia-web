@@ -8,15 +8,15 @@ import { Whatsapp } from "@/shared/components/Custom/Whatsapp";
 import { Options } from "@/shared/components/Options/Options";
 // import { Services } from "../components/shared/Services";
 import { DataInt } from "@/interfaces/services.model";
-import { getStaticData } from "@/shared/middlewares/fetcher";
+import { getRevalidatedData, getStaticData } from "@/shared/middlewares/fetcher";
 
 
 export default async function Daytrips() {
     // const isMobile = window.innerWidth < 1025 ? true : false;
 
     const { data: multimediaDaytrips } = await getStaticData("multimedia?landing=daytrips")
-    const { data: contentDaytrips } = await getStaticData("content?landing=daytrips")
-    const { data: contentExperiences } = await getStaticData("content?landing=experiences")
+    const { data: contentDaytrips } = await getRevalidatedData("content?landing=daytrips")
+    const { data: contentExperiences } = await getRevalidatedData("content?landing=experiences")
 
     const daytripsData: DataInt = {
         h1: "Transportation and tiquets included",

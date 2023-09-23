@@ -5,15 +5,15 @@ import { AiOutlineInstagram } from 'react-icons/ai';
 import { Whatsapp } from "@/shared/components/Custom/Whatsapp";
 import { Events } from "@/shared/components/Events/Events";
 import { Footer } from "@/shared/components/Footer/Footer";
-import { Box, Flex, Heading } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import Image from 'next/image';
 import Link from 'next/link';
-import { getStaticData } from '@/shared/middlewares/fetcher';
+import { getRevalidatedData, getStaticData } from '@/shared/middlewares/fetcher';
 import { Options } from '@/shared/components/Options/Options';
 import { Cards } from '@/shared/components/Services/Cards';
 
 export default async function Home() {
-  const { data } = await getStaticData("content?landing=home")
+  const { data } = await getRevalidatedData("content?landing=home")
 
   const homeData = {
     h1: "Easy, safe and unique... #Valencia",
@@ -27,13 +27,33 @@ export default async function Home() {
       pos="relative"
       className="home"
     >
-      <div className="home_video">
-        <div className="video_hashtag">
-          <Link href="https://www.instagram.com/beyond_valencia_/" target='_blank' rel='noopener noreferrer'>
+      <Box 
+        w="100%"
+        h="750px"
+        pos="relative"
+      >
+        <Box
+          pos="absolute"
+          left="50px"
+          top="20px"
+          zIndex="399"
+        >
+          <Link 
+            href="https://www.instagram.com/beyond_valencia_/" 
+            target='_blank' 
+            rel='noopener noreferrer'
+            style={{
+              display: "flex",
+              fontSize: "15px",
+              cursor: "pointer",
+              alignItems: "center",
+              color: "#545454"
+            }}
+          >
             #weareonfire
             <AiOutlineInstagram style={{ color: "#545454", fontSize: "20px" }} />
           </Link>
-        </div>
+        </Box>
 
         <Box
           pos="absolute"
@@ -56,7 +76,7 @@ export default async function Home() {
             />
           </Flex>
 
-          <Heading
+          <Text
             color="#FFFFFF"
             w="20%"
             m="auto"
@@ -68,7 +88,7 @@ export default async function Home() {
             letterSpacing="1px"
           >
             CURATED EXPERIENCES
-          </Heading>
+          </Text>
         </Box>
 
         <Image src={homeImg} alt="img/home"
@@ -78,7 +98,7 @@ export default async function Home() {
             objectFit: "cover"
           }}
         />
-      </div>
+      </Box>
 
       <Cards
           data={homeData}

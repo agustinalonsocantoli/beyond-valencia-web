@@ -1,9 +1,9 @@
-import { Orders } from "../shared/Orders";
+import { Orders } from "../Custom/Orders";
 
 interface Props {
     adults: number;
     setAdults: (action: number) => void;
-    children: number;
+    children: any;
     setChildren: (action: number) => void;
     infants: number;
     setInfants: (action: number) => void;
