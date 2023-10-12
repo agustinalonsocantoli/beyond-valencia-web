@@ -22,8 +22,6 @@ interface Props {
 export const Services = (props: Props) => {
     const { sliderPage1, sliderPage2, sliderPage3, } = props;
 
-    const resposive = window.innerWidth < 1920 ? true : false;
-
     return (
         <Box
             bg="#000000"
@@ -69,7 +67,7 @@ export const Services = (props: Props) => {
                 navigation
                 spaceBetween={80}
                 slidesPerView={1}
-                style={{ padding: resposive ? "15px 5%" : "15px 3%" }}
+                style={{ padding: "15px 3%" }}
             >
                 {
                     sliderPage1?.content?.map((item: ContentInt, index: number) => (

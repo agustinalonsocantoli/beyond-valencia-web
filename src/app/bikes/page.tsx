@@ -27,13 +27,12 @@ import { toastNotify } from '@/shared/utils/functions/toastNotify';
 import { StatusEnumTypes } from '@/shared/utils/types/StatusEnumTypes';
 import { Box, Button, Flex, useToast } from '@chakra-ui/react';
 import { format } from 'date-fns';
-
+import { isMobile } from 'react-device-detect';
 
 export default function Bikes() {
     const toast = useToast();
     const router = useRouter();
     const dateNow = new Date();
-    const resposive = window.innerWidth < 1024 ? true : false;
     const [page, setPage] = useState<number>(0);
     const [currentOrder, setCurrentOrder] = useState<any>(null);
     const [date, setDate] = useState<any>(dateNow);
@@ -307,7 +306,7 @@ export default function Bikes() {
                 flex="1"
             >
                 <Image 
-                    src={!resposive ? bikes : bikesMb} 
+                    src={!isMobile ? bikes : bikesMb} 
                     alt="img/bikes" 
                     loading='lazy' 
                     style={{

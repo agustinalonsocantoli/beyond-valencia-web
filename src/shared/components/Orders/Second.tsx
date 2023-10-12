@@ -1,6 +1,7 @@
 import { OrdersDataInt, ProductInt } from "@/interfaces/orders.model";
 import { Orders } from "../Custom/Orders";
 import { Box, Flex, Text } from "@chakra-ui/react";
+import { isMobile } from "react-device-detect";
 
 interface Props {
     title: string;
@@ -28,7 +29,6 @@ export const Second = (props: Props) => {
         data,
         product,
     } = props;
-    const resposive = window.innerWidth < 1024 ? true : false;
     const { s, m, n } = data;
 
     return (
@@ -162,7 +162,7 @@ export const Second = (props: Props) => {
                         direction="column"
                         fontWeight="400"
                         fontSize="15px" 
-                        w={resposive ? '55%' : '50%'}
+                        w={isMobile ? '55%' : '50%'}
                     >
                         <Text as="span">{n.description}</Text>
                         <Text as="span">{n.others}</Text>
