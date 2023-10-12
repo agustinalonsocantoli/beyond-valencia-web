@@ -4,8 +4,15 @@ import { TfiMenu } from "react-icons/tfi";
 import logo from "../../../../public/logoW.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useDisclosure } from "@chakra-ui/react";
+import { Box, Flex, Text, useDisclosure } from "@chakra-ui/react";
 import { Menu } from "./Menu";
+import { Monoton } from "next/font/google";
+
+const monoton = Monoton({
+    subsets: ['latin'],
+    display: 'swap',
+    weight: ['400']
+})
 
 interface Props {
     title: string;
@@ -17,24 +24,66 @@ export const Navbar = ({ title, subtitle }: Props) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (
-        <div className="nav">
+        <Flex
+            bg="#000000"
+            justifyContent="space-between"
+            p="10px"
+            color="#FFFFFF"
+        >
 
-            <div className="nav_flex">
-                <div className="nav_menu">
-                    <TfiMenu onClick={onOpen} />
+            <Flex
+                gap="20px"
+            >
+                <Box 
+                    position="relative"
+                    mt="38px"
+                >
+                    <TfiMenu 
+                        onClick={onOpen} 
+                        style={{
+                            fontSize: "36px",
+                            cursos: "pointer"
+                        }}
+                    />
 
-                <Menu 
-                    isOpen={isOpen}
-                    onClose={onClose}
+                    <Menu
+                        isOpen={isOpen}
+                        onClose={onClose}
+                    />
+                </Box>
+
+                <Image
+                    src={logo} alt="img/logo"
+                    onClick={() => router.push("/")}
+                    width={190}
+                    style={{
+                        objectFit: "contain",
+                        height: "100%",
+                        cursor: "pointer"
+                    }}
                 />
-                </div>
+            </Flex>
 
-                <Image src={logo} alt="img/logo" onClick={() => router.push("/")} />
-            </div>
-
-            <div className="nav_title">
-                <h1 data-text={subtitle}>{title}</h1>
-            </div>
-        </div>
+            <Box 
+                color="#262626"
+                pos="relative"
+                pr="50px"
+                className={monoton.className}
+            >
+                <Text 
+                    fontSize="100px"
+                    _after={{
+                        content: `'${subtitle}'`,
+                        fontSize: "50px",
+                        pos: "absolute",
+                        top: "40%",
+                        right: "10%",
+                        color: "rgba(255, 255, 255, .8)",
+                    }}
+                >
+                    {title}
+                </Text>
+            </Box>
+        </Flex>
     );
 }

@@ -3,6 +3,10 @@ import {
     ModalOverlay,
     ModalContent,
     ModalBody,
+    Flex,
+    Box,
+    Button,
+    Text,
 } from '@chakra-ui/react'
 import { FormBook } from '../Form/Form';
 import { CodeBook } from '../Book/CodeBook';
@@ -10,6 +14,7 @@ import { SelectQuantity } from '../Book/SelectQuantity';
 import { SelectTime } from '../Book/SelectTime';
 import { PricesInt } from '@/interfaces/ExperiencesInt';
 import { IoReturnDownBackSharp } from "react-icons/io5";
+import { isMobile } from 'react-device-detect';
 
 interface Props {
     isOpen: boolean;
@@ -69,21 +74,35 @@ export const ModalBook = ({
         onClose();
     };
 
-    const isMobile = window.innerWidth < 1025 ? true : false;
-
     return (
         <div>
             <Modal
                 isOpen={isOpen}
                 onClose={onClose}
+                closeOnEsc={false}
+                closeOnOverlayClick={false}
                 isCentered
+                size="6xl"
             >
                 <ModalOverlay />
-                <ModalContent>
+                <ModalContent
+                    bg="#FFFBF6"
+                >
                     <ModalBody>
-                        <div className="modal_book">
-                            <div className="modal_flex">
-                                <h3>Participants</h3>
+                        <Flex
+                            gap="100px"
+                            justifyContent="center"
+                            w="70%"
+                            m="3% auto"
+                            rounded="12px"
+                        >
+                            <Flex
+                                direction="column"
+                                alignItems="center"
+                                gap="10px"
+                            >
+                                <Text as="h3">Participants</Text>
+
                                 <SelectQuantity
                                     adults={adults}
                                     setAdults={setAdults}
@@ -108,17 +127,56 @@ export const ModalBook = ({
                                 />
 
                                 {!isMobile &&
-                                    <div className='btn_cancel '>
-                                        <button onClick={handleCancel}><IoReturnDownBackSharp />Back</button>
-                                    </div>
+                                    <Box
+                                        m="0 auto 0 0"
+                                    >
+                                        <Button 
+                                            onClick={handleCancel}
+                                            p="5px 20px"
+                                            h="fit-content"
+                                            fontSize="13px"
+                                            alignItems="center"
+                                            gap="7px"
+                                            display="flex"
+                                            border="none"
+                                            bg="rgba(0, 0, 0, .1)"
+                                            rounded="20px"
+                                            color="#FFF"
+                                            fontWeight="300"
+                                            _active={{ transform: "scale(0.9)", transition: "all 200ms ease" }}
+                                            _hover={{ bg: "rgba(0, 0, 0, .7)" }}
+                                        >
+                                            <IoReturnDownBackSharp />
+
+                                            Back
+                                        </Button>
+                                    </Box>
                                 }
-                            </div>
+                            </Flex>
 
-                            <div className="modal_flex">
-                                <div className="time_container">
-                                    <h3>Select Time</h3>
+                            <Flex
+                                direction="column"
+                                alignItems="center"
+                                gap="10px"
+                            >
+                                <Box
+                                    p="20px"
+                                    rounded="12px"
+                                    w="400px"
+                                >
+                                    <Text 
+                                        as="h3"
+                                        textAlign="center"
+                                        mb="20px"
+                                    >
+                                        Select Time
+                                    </Text>
 
-                                    <div className="time">
+                                    <Flex
+                                        justifyContent="center"
+                                        alignItems="center"
+                                        gap="20px"
+                                    >
                                         {hours?.map((hour: string, index: number) => (
                                             <SelectTime
                                                 time={time}
@@ -128,23 +186,43 @@ export const ModalBook = ({
                                             />
 
                                         ))}
-                                    </div>
-                                </div>
+                                    </Flex>
+                                </Box>
 
                                 <FormBook
                                     handleSubmit={handleSubmit}
                                     labelButton="BOOK AND PAY"
-                                    nameClass="book_form"
+                                    fromCall='modal'
                                 />
 
                                 {isMobile &&
-                                    <div className='btn_cancel '>
-                                        <button onClick={handleCancel}><IoReturnDownBackSharp />Back</button>
-                                    </div>
+                                    <Box
+                                        m="0 auto 0 0"
+                                    >
+                                        <Button 
+                                            onClick={handleCancel}
+                                            p="5px 20px"
+                                            h="fit-content"
+                                            fontSize="13px"
+                                            alignItems="center"
+                                            gap="7px"
+                                            display="flex"
+                                            border="none"
+                                            bg="rgba(0, 0, 0, .1)"
+                                            rounded="20px"
+                                            color="#FFF"
+                                            fontWeight="300"
+                                            _active={{ transform: "scale(0.9)", transition: "all 200ms ease" }}
+                                            _hover={{ bg: "rgba(0, 0, 0, .7)" }}
+                                        >
+                                            <IoReturnDownBackSharp />
+                                            Back
+                                        </Button>
+                                    </Box>
                                 }
 
-                            </div>
-                        </div>
+                            </Flex>
+                        </Flex>
                     </ModalBody>
                 </ModalContent>
             </Modal>

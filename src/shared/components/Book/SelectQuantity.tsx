@@ -1,3 +1,4 @@
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { Orders } from "../Custom/Orders";
 
 interface Props {
@@ -14,30 +15,75 @@ export const SelectQuantity = (props: Props) => {
     const { adults, setAdults, children, setChildren, infants, setInfants, isDisable } = props;
 
     return(
-        <div className="amount_conteiner">
-            <div className="book_amount">
-                <div>
-                    <h3>Adults</h3>
-                    <p>Age 18 - 99</p>
-                </div>
+        <Box
+            mt="20px"
+            mb="20px"
+        >
+            <Flex
+                w="350px"
+                justifyContent="space-between"
+                alignItems="center"
+                mb="10px"
+            >
+                <Box>
+                    <Text 
+                        as="h3"
+                        fontSize="18px"
+                        fontWeight="600px"
+                    >
+                        Adults
+                    </Text>
+
+                    <Text
+                        fontSize="10px"
+                        fontWeight="300px"
+                    >
+                        Age 18 - 99
+                    </Text>
+                </Box>
 
                 <Orders 
                     type={adults} 
                     setType={setAdults} 
                 />
-            </div>
+            </Flex>
 
-            <div className="book_amount">
-                <div>
-                    <h3>Children</h3>
-                    <p>Age 6 - 17</p>
-                </div>
+            <Flex
+                w="350px"
+                justifyContent="space-between"
+                alignItems="center"
+                mb="10px"
+            >
+                <Box>
+                    <Text 
+                        as="h3"
+                        fontSize="18px"
+                        fontWeight="600px"
+                    >
+                        Children
+                    </Text>
+
+                    <Text
+                        fontSize="10px"
+                        fontWeight="300px"
+                    >
+                        Age 6 - 17
+                    </Text>
+                </Box>
 
                 {isDisable
                     ?
-                    <div className="not_amount">
-                        <p>Not available</p>    
-                    </div>
+                    <Flex
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        <Text
+                            fontSize="12px"
+                            color="#C62828"
+                        >
+                            Not available
+                        </Text>    
+                    </Flex>
                     :
                     <Orders 
                         type={children} 
@@ -45,19 +91,44 @@ export const SelectQuantity = (props: Props) => {
                         isDisable={isDisable}
                     />
                 }
-            </div>
+            </Flex>
 
-            <div className="book_amount">
-                <div>
-                    <h3>Infants</h3>
-                    <p>Age 0 - 5</p>
-                </div>
+            <Flex
+                w="350px"
+                justifyContent="space-between"
+                alignItems="center"
+                mb="10px"
+            >
+                <Box>
+                    <Text 
+                        as="h3"
+                        fontSize="18px"
+                        fontWeight="600px"
+                    >
+                        Infants
+                    </Text>
+
+                    <Text
+                        fontSize="10px"
+                        fontWeight="300px"
+                    >
+                        Age 0 - 5
+                    </Text>
+                </Box>
 
                 {isDisable
                     ?
-                    <div className="not_amount">
-                        <p>Not available</p>    
-                    </div>
+                    <Flex
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        <Text
+                            fontSize="12px"
+                            color="#C62828"
+                        >
+                            Not available
+                        </Text>    
+                    </Flex>
                     :
                     <Orders 
                         type={infants} 
@@ -65,7 +136,7 @@ export const SelectQuantity = (props: Props) => {
                         isDisable={isDisable} 
                     />
                 }
-            </div>
-        </div>
+            </Flex>
+        </Box>
     );
 };

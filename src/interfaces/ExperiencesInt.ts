@@ -9,7 +9,7 @@ export interface OrdersGroupsInt {
     title: string;
     type: string;
     prices: PricesInt
-    deapertureTime: string[];
+    departureTime: string[];
 }
 
 export interface PricesInt {

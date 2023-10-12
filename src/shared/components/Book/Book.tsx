@@ -11,7 +11,7 @@ import { Calendar } from "primereact/calendar";
 import { format } from "date-fns";
 import { toastNotify } from "@/shared/utils/functions/toastNotify";
 import { StatusEnumTypes } from "@/shared/utils/types/StatusEnumTypes";
-import { useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Flex, Text, useDisclosure, useToast } from "@chakra-ui/react";
 import { getDynamicData } from "@/shared/middlewares/fetcher";
 ;
 
@@ -65,15 +65,17 @@ export const Book = (props: Props) => {
 
     const handleSelect = (type: string) => {
         const { groups } = data;
-        const group = groups?.find((group: OrdersGroupsInt) => group?.type === type)
+        const group: any = groups?.find((group: any) => group?.type === type)
+
+        const newDate = !date ? new Date() : date
 
         setCurrentOrder({
-            date: format(date, 'dd/MM/yy'),
+            date: format(newDate, 'dd/MM/yy'),
             typeOrder: type,
         });
 
         setPrices(group?.prices)
-        setHoursOptions(group?.deapertureTime ? group?.deapertureTime : [])
+        setHoursOptions(group?.departureTime ? group?.departureTime : [])
         setTypeOrder(type);
         onOpen();
     }
@@ -133,23 +135,44 @@ export const Book = (props: Props) => {
     }
 
     return (
-        <div 
-            className="book" 
-            style={{
-                top: `${scroll <= 40 && (scroll - 35)}%`
+        <Flex 
+            top={`${scroll <= 40 && (scroll + 10)}%`}
+            direction="column"
+            alignItems="center"
+            pos="relative"
+            border="1px solid rgb(221, 221, 221)"
+            rounded="12px"
+            p="24px"
+            position="sticky"
+            bg="#FFFBF6"
+            boxShadow="0px 3px 10px -5px rgba(0,0,0,0.6)"
+            __css={{
+                "WebkitBoxShadow": "0px 3px 10px -5px rgba(0,0,0,0.6)",
+                "MozBoxShadow": "0px 3px 10px -5px rgba(0,0,0,0.6)"
             }}
         >
-            <div className="calendar">
-                <h3>Choose a Date</h3>
-                <Calendar value={date} onChange={(e) => setDate(e.value)} inline />
-            </div>
+            <Flex
+                direction="column"
+            >
+                <Text
+                    as="h3"
+                    fontSize="18px"
+                    fontWeight="700"
+                >
+                    Choose a Date
+                </Text>
 
-            <div style={{ opacity: date === null ? "0.5" : "1" }}>
+                <Calendar value={date} onChange={(e) => setDate(e.value)} inline />
+            </Flex>
+
+            <Box 
+                opacity={date === null ? "0.5" : "1" }
+            >
                 <SelectGroup
                     handleSelect={handleSelect}
                     groups={data?.groups}
                 />
-            </div>
+            </Box>
 
             <ModalBook
                 onClose={onClose}
@@ -174,6 +197,6 @@ export const Book = (props: Props) => {
                 setDate={setDate}
                 prices={prices}
             />
-        </div>
+        </Flex>
     );
 }

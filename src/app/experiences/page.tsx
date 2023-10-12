@@ -9,6 +9,8 @@ import { Exposure } from "@/shared/components/Exposure/Exposure";
 // import { Services } from "../components/shared/Services";
 import { DataInt } from "../../interfaces/services.model";
 import { getRevalidatedData, getStaticData } from "@/shared/middlewares/fetcher";
+import { isMobile } from 'react-device-detect';
+import { Services } from "@/shared/components/Services/Services";
 
 export default async function Experiences() {
     const { data: multimediaExperiences } = await getStaticData("multimedia?landing=experiences")
@@ -29,18 +31,18 @@ export default async function Experiences() {
                 data={multimediaExperiences}
             />
 
-            {/* {isMobile
+            {isMobile
             ? 
                 <Services
-                    sliderPage1={dataExperiences} 
+                    sliderPage1={experiencesData} 
                     sliderPage2={contentDaytrips}
-                    loading={loadingContent}
                 />
-            : */}
+            :
             <GroupServices 
                     sliderPage1={experiencesData} 
                     sliderPage2={contentDaytrips}
                 />
+            }
 
 
             <Events />

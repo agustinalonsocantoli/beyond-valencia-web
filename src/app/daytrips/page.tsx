@@ -9,11 +9,10 @@ import { Options } from "@/shared/components/Options/Options";
 // import { Services } from "../components/shared/Services";
 import { DataInt } from "@/interfaces/services.model";
 import { getRevalidatedData, getStaticData } from "@/shared/middlewares/fetcher";
-
+import { isMobile } from 'react-device-detect';
+import { Services } from "@/shared/components/Services/Services";
 
 export default async function Daytrips() {
-    // const isMobile = window.innerWidth < 1025 ? true : false;
-
     const { data: multimediaDaytrips } = await getStaticData("multimedia?landing=daytrips")
     const { data: contentDaytrips } = await getRevalidatedData("content?landing=daytrips")
     const { data: contentExperiences } = await getRevalidatedData("content?landing=experiences")
@@ -32,18 +31,18 @@ export default async function Daytrips() {
                 data={multimediaDaytrips}
             />
 
-            {/* {isMobile
-            ? 
-                <Services 
-                    sliderPage1={dataDaytrips} 
+            {isMobile
+                ?
+                <Services
+                    sliderPage1={daytripsData}
                     sliderPage2={contentExperiences}
-                    loading={loadingContent}
                 />
-            : */}
-            <GroupServices
-                sliderPage1={daytripsData}
-                sliderPage2={contentExperiences}
-            />
+                :
+                <GroupServices
+                    sliderPage1={daytripsData}
+                    sliderPage2={contentExperiences}
+                />
+            }
 
 
             <Events />

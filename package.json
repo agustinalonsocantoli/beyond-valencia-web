@@ -27,8 +27,10 @@
     "next": "13.4.19",
     "primereact": "^9.6.2",
     "react": "18.2.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
+    "sass": "^1.69.3",
     "swiper": "^10.2.0",
     "typescript": "5.2.2",
     "yup": "^1.2.0"

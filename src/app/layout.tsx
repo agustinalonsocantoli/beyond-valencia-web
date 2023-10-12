@@ -1,7 +1,9 @@
-import '../css/styles.css'
+import '../scss/Globales.scss'
+import '../scss/Calendar.scss'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { Providers } from './providers'
+import { Box } from '@chakra-ui/react';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -24,10 +26,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="en">
       <body>
         <Providers>
-          {children}
+          <Box className={poppins.className}>
+            {children}
+          </Box>
         </Providers>
       </body>
     </html>

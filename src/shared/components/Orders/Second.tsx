@@ -1,5 +1,6 @@
 import { OrdersDataInt, ProductInt } from "@/interfaces/orders.model";
 import { Orders } from "../Custom/Orders";
+import { Box, Flex, Text } from "@chakra-ui/react";
 
 interface Props {
     title: string;
@@ -31,70 +32,154 @@ export const Second = (props: Props) => {
     const { s, m, n } = data;
 
     return (
-        <div className='contents_second'>
-            <h2>{title}</h2>
-            <h3>{subtitle}</h3>
+        <Box
+            width="70%"
+            m="auto"
+            mt="50px"
+            mb="80px"
+        >
+            <Text
+                as="h2"
+                fontSize="40px"
+                fontWeight="700"
+            >
+                {title}
+            </Text>
 
-            <div className='type_select'>
-                <div className='type_select-size'>
-                    <span>{s.name}</span>
+            <Text
+                as="h3"
+                w="50%"
+                color="#6D6D6D"
+                mb="20px"
+                fontSize="15px"
+                fontWeight="700"
+            >
+                {subtitle}
+            </Text>
+
+            <Flex
+                direction="column"
+            >
+                <Flex
+                    justifyContent="space-between"
+                    alignItems="center"
+                    border="1px solid #000000"
+                    rounded="20px"
+                    p="10px 15px 10px 70px"
+                    color="#000"
+                    fontWeight="700"
+                    fontSize="17px"
+                    mt="10px"
+                >
+                    <Text as="span">{s.name}</Text>
                     <Orders type={small} setType={setSmall} />
-                </div>
+                </Flex>
 
-                <div className='type_select-info'>
-                    <div>
-                        <span>{s.description}</span>
-                        <span>{s.others}</span>
-                    </div>
+                <Flex
+                    justifyContent="space-between"
+                    mr="5%"
+                    p="10px 15px 10px 70px"
+                    mb="10px"
+                >
+                    <Flex
+                        direction="column"
+                        fontWeight="400"
+                        fontSize="15px"
+                    >
+                        <Text as="span">{s.description}</Text>
+                        <Text as="span">{s.others}</Text>
+                    </Flex>
 
-                    <span>
-                        <span>Price per item {product?.price?.small}€</span>
-                    </span>
-                </div>
-            </div>
+                    <Text as="span">
+                        <Text as="span">Price per item {product?.price?.small}€</Text>
+                    </Text>
+                </Flex>
+            </Flex>
 
-            <div className='type_select'>
-                <div className='type_select-size'>
-                    <span>{m.name}</span>
+            <Flex
+                direction="column"
+            >
+                <Flex
+                    justifyContent="space-between"
+                    alignItems="center"
+                    border="1px solid #000000"
+                    rounded="20px"
+                    p="10px 15px 10px 70px"
+                    color="#000"
+                    fontWeight="700"
+                    fontSize="17px"
+                    mt="10px"
+                >
+                    <Text as="span">{m.name}</Text>
                     <Orders type={medium} setType={setMedium} />
-                </div>
+                </Flex>
 
-                <div className='type_select-info'>
-                    <div>
-                        <span>{m.description}</span>
-                        <span>{m.others}</span>
-                    </div>
+                <Flex
+                    justifyContent="space-between"
+                    mr="5%"
+                    p="10px 15px 10px 70px"
+                    mb="10px"
+                >
+                    <Flex
+                                                direction="column"
+                                                fontWeight="400"
+                                                fontSize="15px"
+                    >
+                        <Text as="span">{m.description}</Text>
+                        <Text as="span">{m.others}</Text>
+                    </Flex>
 
-                    <span>
-                        <span>Price per item {product?.price.medium}€</span>
-                    </span>
-                </div>
-            </div>
+                    <Text as="span">
+                        <Text as="span">Price per item {product?.price.medium}€</Text>
+                    </Text>
+                </Flex>
+            </Flex>
 
-            <div className='type_select'>
-                <div className='type_select-size'>
-                    <span>{n.name}</span>
+            <Flex
+                direction="column"
+            >
+                <Flex
+                    justifyContent="space-between"
+                    alignItems="center"
+                    border="1px solid #000000"
+                    rounded="20px"
+                    p="10px 15px 10px 70px"
+                    color="#000"
+                    fontWeight="700"
+                    fontSize="17px"
+                    mt="10px"
+                >
+                    <Text as="span">{n.name}</Text>
                     <Orders type={normal} setType={setNormal} />
-                </div>
+                </Flex>
 
-                <div className='type_select-info'>
-                    <div style={{ width: resposive ? '55%' : '50%' }}>
-                        <span>{n.description}</span>
-                        <span>{n.others}</span>
-                    </div>
+                <Flex
+                    justifyContent="space-between"
+                    mr="5%"
+                    p="10px 15px 10px 70px"
+                >
+                    <Flex
+                        direction="column"
+                        fontWeight="400"
+                        fontSize="15px" 
+                        w={resposive ? '55%' : '50%'}
+                    >
+                        <Text as="span">{n.description}</Text>
+                        <Text as="span">{n.others}</Text>
+                    </Flex>
 
                     {!product?.price?.normal
-                        ? 
-                        <span>Free</span> 
+                        ?
+                        <Text as="span">Free</Text>
                         :
-                        <span>
-                            <span>Price per item {product?.price?.normal}€</span>
-                        </span>
+                        <Text as="span">
+                            <Text as="span">Price per item {product?.price?.normal}€</Text>
+                        </Text>
                     }
 
-                </div>
-            </div>
-        </div>
+                </Flex>
+            </Flex>
+        </Box>
     );
 };
 

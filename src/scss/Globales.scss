@@ -1,5 +1,3 @@
-@use '../base/variables' as v;
-
 html {
     box-sizing: border-box;
     scroll-behavior: smooth;
@@ -17,10 +15,6 @@ html {
 
 a {
     text-decoration: none;
-}
-
-body {
-    font-family: v.$poppins !important;
 }
 
 video::-webkit-media-controls {

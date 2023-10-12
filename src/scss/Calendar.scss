@@ -1,20 +1,11 @@
-@use '../base/variables' as v;
-@use '../base/mixins' as m;
-
-.calendar {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-}
-
 .p-calendar {
-    font-family: v.$poppins !important;
+    font-family: 'Poppins', sans-serif !important;
     margin: 0 !important;
     width: 400px !important;
     margin-bottom: 20px !important;
     padding: 0;
 
-    @include m.phone {
+    @media (max-width: 480px) {
         width: 320px !important;
     }
 
@@ -46,4 +37,3 @@
         }
     }
 }
-

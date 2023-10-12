@@ -106,9 +106,9 @@ export default async function Home() {
 
       <Events />
 
-      <div id="options">
+      <Box id="options">
         <Options />
-      </div>
+      </Box>
 
       <Whatsapp />
 

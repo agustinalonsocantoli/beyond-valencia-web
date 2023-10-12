@@ -21,7 +21,6 @@ export const Menu = ({ isOpen, onClose }: Props) => {
     ]
 
     return (
-        <div>
             <Drawer placement={'left'} onClose={onClose} isOpen={isOpen}>
                 <DrawerOverlay />
                 <DrawerContent
@@ -124,6 +123,5 @@ export const Menu = ({ isOpen, onClose }: Props) => {
                     </DrawerBody>
                 </DrawerContent>
             </Drawer>
-        </div>
     );
 };

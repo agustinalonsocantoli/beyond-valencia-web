@@ -11,7 +11,7 @@ import { First } from '@/shared/components/Orders/First';
 import { Second } from '@/shared/components/Orders/Second';
 import { Third } from '@/shared/components/Orders/Third';
 import { Complete } from '@/shared/components/Orders/Complete';
-// import { Payments } from '../components/stripe/Payments';
+import { Payments } from '@/shared/components/stripe/Payments';
 // Icons
 import { IoReturnDownBackSharp } from 'react-icons/io5';
 import { BsCheck2 } from 'react-icons/bs';
@@ -25,7 +25,7 @@ import { getStaticData } from '@/shared/middlewares/fetcher';
 import { getProdruct } from '@/shared/utils/functions/getProduct';
 import { toastNotify } from '@/shared/utils/functions/toastNotify';
 import { StatusEnumTypes } from '@/shared/utils/types/StatusEnumTypes';
-import { useToast } from '@chakra-ui/react';
+import { Box, Button, Flex, useToast } from '@chakra-ui/react';
 import { format } from 'date-fns';
 
 
@@ -163,14 +163,33 @@ export default function Bikes() {
     }
 
     return (
-        <div className="bikes">
+        <Flex
+            h="100vh"
+            bg="#FFFBF6"
+        >
 
-            <div className='bikes_contents'>
-                <div className='bikes_contents-logo'>
+            <Box
+                flex="1"
+                bg="#FFFBF6"
+                pos="relative"
+            >
+                <Box
+                    w="300px"
+                    mt="-5px"
+                    ml="-6px"
+                >
                     <Link href={'/'}>
-                        <Image src={logo} alt="img/logo" />
+                        <Image 
+                            src={logo} 
+                            alt="img/logo" 
+                            style={{
+                                objectFit: "cover",
+                                height: "100%",
+                                width: "100%"
+                            }}
+                        />
                     </Link>
-                </div>
+                </Box>
 
                 {page === 0 && <First
                     title="For how long would you like to rent the bike?"
@@ -216,32 +235,97 @@ export default function Bikes() {
                 />}
 
                 {page !== 3 &&
-                    <div className='btn_ok'>
-                        <button onClick={handleOk}>Ok<BsCheck2 /></button>
-                    </div>
+                    <Box
+                        pos="absolute"
+                        bottom="50px"
+                        right="100px"
+                    >
+                        <Button 
+                            border="none"
+                            bg="rgba(0, 0, 0, .7)"
+                            rounded="20px"
+                            color="#FFF"
+                            fontWeight="300"
+                            _active={{
+                                transform: "scale(0.9)",
+                                transition: "all 200ms ease"
+                            }}
+                            _hover={{
+                                bg: "rgba(0, 0, 0, 1)"
+                            }}
+                            fontSize="15px"
+                            textTransform="uppercase"
+                            display="flex"
+                            alignItems="center"
+                            gap="5px"
+                            h="fit-content"
+                            p="5px 15px"
+                            onClick={handleOk}
+                        >
+                            Ok
+                            <BsCheck2 style={{ fontSize: "20px"}}/>
+                        </Button>
+                    </Box>
                 }
 
                 {page !== 0 &&
-                    <div className='btn_back'>
-                        <button onClick={handleBack}><IoReturnDownBackSharp />Back</button>
-                    </div>
+                    <Box
+                        pos="absolute"
+                        bottom="10px"
+                        left="20px"
+                    >
+                        <Button 
+                            border="none"
+                            bg="rgba(0, 0, 0, .7)"
+                            rounded="20px"
+                            color="#FFF"
+                            fontWeight="300"
+                            _active={{
+                                transform: "scale(0.9)",
+                                transition: "all 200ms ease"
+                            }}
+                            _hover={{
+                                bg: "rgba(0, 0, 0, 1)"
+                            }}
+                            p="5px 20px"
+                            fontSize="13px"
+                            alignItems="center"
+                            gap="7px"
+                            h="fit-content"
+                            onClick={handleBack}
+                        >
+                            <IoReturnDownBackSharp style={{ fontSize: "20px"}}/>
+                            Back
+                        </Button>
+                    </Box>
                 }
-            </div>
+            </Box>
 
-            <div className='bikes_line'></div>
+            <Box w="10px" bg="#000000" />
 
-            <div className='bikes_img'>
-                <Image src={!resposive ? bikes : bikesMb} alt="img/bikes" loading='lazy' />
-            </div>
+            <Box
+                flex="1"
+            >
+                <Image 
+                    src={!resposive ? bikes : bikesMb} 
+                    alt="img/bikes" 
+                    loading='lazy' 
+                    style={{
+                        objectFit: "cover",
+                        height: "100%",
+                        width: "100%"
+                    }}
+                />
+            </Box>
 
-            {/* {paymentVisible &&
+            {paymentVisible &&
                 <Payments
                     setCurrentOrder={setCurrentOrder}
                     setPaymentVisible={setPaymentVisible}
                     totalPay={totalPay}
                     description={`Order Bikes Email: ${currentOrder.email ? currentOrder.email : ""}`}
                 />
-            } */}
-        </div>
+            }
+        </Flex>
     );
 };

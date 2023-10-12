@@ -1,4 +1,4 @@
-import { Box, Modal, ModalBody, ModalContent, ModalOverlay } from '@chakra-ui/react';
+import { Box, Flex, Modal, ModalBody, ModalContent, ModalOverlay, Text } from '@chakra-ui/react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 
 interface Props {
@@ -13,15 +13,39 @@ export const ModalPaySuccess = ({ onClose, isOpen }: Props) => {
             isOpen={isOpen}
             onClose={onClose}
             isCentered
+            size="3xl"
         >
             <ModalOverlay />
 
-            <ModalContent>
+            <ModalContent
+                color="#FFF"
+            >
                 <ModalBody>
-                    <Box className="pay_success">
-                        <h1>Successful Payment</h1>
-                        <BsCheckCircleFill />
-                    </Box>
+                    <Flex
+                        p="20px"
+                        m="auto"
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="center"
+                        gap="20px"
+                        rounded="12px"
+                        mt="10%"
+                    >
+                        <Text 
+                            as="h1"
+                            fontSize="40px"
+                            fontWeight="400"
+                        >
+                            Successful Payment
+                        </Text>
+
+                        <BsCheckCircleFill 
+                            style={{
+                                color: "#52DD11",
+                                fontSize: '200px'
+                            }}
+                        />
+                    </Flex>
                 </ModalBody>
             </ModalContent>
         </Modal>

@@ -18,11 +18,12 @@ import { FaUniversalAccess } from "react-icons/fa"
 import { SlLocationPin } from "react-icons/sl"
 import { MdAccessible } from "react-icons/md"
 import { BsTicket } from 'react-icons/bs';
-import { Accordion, AccordionButton, AccordionIcon, AccordionPanel, AccordionItem } from '@chakra-ui/react';
+import { Accordion, AccordionButton, AccordionIcon, AccordionPanel, AccordionItem, Box, Text, Flex, Grid, ListItem, UnorderedList } from '@chakra-ui/react';
 import { getStaticData } from '@/shared/middlewares/fetcher';
 import { DaystripsInt } from '@/interfaces/DaytripsInt';
 import { Payments } from '@/shared/components/stripe/Payments';
 import { Book } from '@/shared/components/Book/Book';
+import { isMobile } from 'react-device-detect';
 
 export default function DetailsDaytrips() {
     const { slug } = useParams();
@@ -31,8 +32,6 @@ export default function DetailsDaytrips() {
     const [totalPay, setTotalPay] = useState<number | null>(null);
     const [scroll, setScroll] = useState<number>(0)
     const [daytrips, setDaytrips] = useState<DaystripsInt>()
-
-    const isMobile = window.innerWidth < 1025 ? true : false;
 
     useEffect(() => {
         if (!slug) return
@@ -63,111 +62,357 @@ export default function DetailsDaytrips() {
 
     return (
         daytrips &&
-        <div className="details">
+        <Box>
 
-            <Navbar title={"Daytrips"} subtitle={"Daytrips"} />
+            <Navbar title={"Experiences"} subtitle={"Experiences"} />
 
-            <div className="details_exposure">
+            <Box
+                p="0 0 10px 0"
+                bg="#000"
+            >
                 <Exposure
                     data={daytrips?.multimedia}
+                    fromCall="details"
                 />
-            </div>
+            </Box>
 
-            <div className="details_description">
-                <div className="description">
-                    <h1>{daytrips?.title}</h1>
-                    <p className='subtitle'><strong>{daytrips?.subtitle?.label && `${daytrips?.subtitle?.label}: `}</strong>{daytrips?.subtitle?.text}</p>
+            <Flex
+                gap="100px"
+                p="0 5% 3% 5%"
+                mt="50px"
+            >
+                <Box
+                    w="55%"
+                >
+                    <Text
+                        as="h1"
+                        textDecoration="underline"
+                        fontSize="50px"
+                        textAlign="left"
+                    >
+                        {daytrips?.title}
+                    </Text>
 
-                    <div className="description_slogan">
-                        <p>
+                    <Text
+                        mb="10px"
+                        fontSize="30px"
+                        textAlign="left"
+                    >
+                        <Text as="strong">
+                            {daytrips?.subtitle?.label && `${daytrips?.subtitle?.label}: `}
+                        </Text>
+                        {daytrips?.subtitle?.text}
+                    </Text>
+
+                    <Box
+                        fontSize="20px"
+                        fontWeight="200px"
+                        mb="50px"
+                    >
+                        <Text>
                             {daytrips?.headline}
-                        </p>
-                    </div>
+                        </Text>
+                    </Box>
 
-                    <h3>Overview</h3>
-                    <div className="description_text">
-                        <p>
+                    <Text
+                        as="h3"
+                        fontSize="22px"
+                        textDecoration="underline"
+                        mb="20px"
+                        fontWeight="400"
+                    >
+                        Overview
+                    </Text>
+
+                    <Box
+                        fontSize="20px"
+                        fontWeight="300"
+                        mb="50px"
+                    >
+                        <Text>
                             {daytrips?.description}
-                        </p>
-                    </div>
+                        </Text>
+                    </Box>
 
                     {!isMobile &&
                         <>
-                            <h3>Highlights</h3>
-                            <ul className="highlights">
+                            <Text
+                                as="h3"
+                                fontSize="22px"
+                                textDecoration="underline"
+                                mb="20px"
+                                fontWeight="400"
+                            >
+                                Highlights
+                            </Text>
+
+                            <UnorderedList
+                                mb="50px"
+                            >
                                 {daytrips?.highlights?.map((item: string, index: number) => (
-                                    <li key={index}>{item}</li>
+                                    <ListItem
+                                        key={index}
+                                        ml="30px"
+                                        fontSize="18px"
+                                        fontWeight="300"
+                                    >
+                                        {item}
+                                    </ListItem>
                                 ))}
-                            </ul>
+                            </UnorderedList>
                         </>
                     }
 
                     {(daytrips?.included && !isMobile) &&
                         <>
-                            <h3>Included</h3>
-                            <ul className="highlights">
+                            <Text
+                                as="h3"
+                                fontSize="22px"
+                                textDecoration="underline"
+                                mb="20px"
+                                fontWeight="400"
+                            >
+                                Included
+                            </Text>
+
+                            <UnorderedList
+                                mb="50px"
+                            >
                                 {daytrips?.included?.map((item: any, index: number) => (
-                                    <li style={{ listStyle: 'none' }} key={index}>
+                                    <ListItem
+                                        listStyleType="none"
+                                        ml="30px"
+                                        fontSize="18px"
+                                        fontWeight="300"
+                                        key={index}
+                                        display="flex"
+                                    >
                                         {item?.state
                                             ? <RxCheck style={{ color: 'green', marginRight: 5, }} />
                                             : <RxCross1 style={{ color: 'red', marginRight: 5 }} />
                                         }
                                         {item?.text}
-                                    </li>
+                                    </ListItem>
                                 ))}
-                            </ul>
+                            </UnorderedList>
                         </>
                     }
 
-                    <h3>Details</h3>
-                    <div className="information">
-                        <p><HiOutlineUserGroup /><strong>Age</strong> {daytrips?.details?.age}</p>
-                        <p><BiTimer /><strong>How long?</strong> {daytrips?.details?.duration}</p>
-                        <p><BsTicket /><strong>Ticketing</strong> {daytrips?.details?.ticket}</p>
-                        <p><IoCalendar /><strong>Availability</strong> {daytrips?.details?.availably}</p>
-                        <p><GiTalk /> <strong>Lenguage</strong> {daytrips?.details?.language}</p>
-                        <p className='location'><SlLocationPin /><strong>Meeting Point</strong> {daytrips?.details?.meetengPoint?.label}</p>
-                        <p><FaUniversalAccess /><strong>Accessibility</strong> {daytrips?.details?.accessibility}</p>
-                        <p><MdAccessible /><strong>Mobility</strong> {daytrips?.details?.mobility}</p>
-                    </div>
+                    <Text
+                        as="h3"
+                        fontSize="22px"
+                        textDecoration="underline"
+                        mb="20px"
+                        fontWeight="400"
+                    >
+                        Details
+                    </Text>
+
+                    <Grid
+                        gridTemplateColumns="repeat(2, 1fr)"
+                        columnGap="50px"
+                        rowGap="20px"
+                        w="80%"
+                        m="auto"
+                        mb="50px"
+                    >
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <HiOutlineUserGroup
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Age</Text>
+                            {daytrips?.details?.age}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <BiTimer
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">How long?</Text>
+                            {daytrips?.details?.duration}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <BsTicket
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Ticketing</Text>
+                            {daytrips?.details?.ticket}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <IoCalendar
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Availability</Text>
+                            {daytrips?.details?.availably}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <GiTalk
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Lenguage</Text>
+                            {daytrips?.details?.language}
+                        </Text>
+
+                        <Text
+                            w="100%"
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <SlLocationPin
+                                style={{
+                                    fontSize: "75px"
+                                }}
+                            />
+                            <Text as="strong">Meeting Point</Text>
+                            {daytrips?.details?.meetengPoint?.label}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <FaUniversalAccess
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Accessibility</Text>
+                            {daytrips?.details?.accessibility}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <MdAccessible
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Mobility</Text>
+                            {daytrips?.details?.mobility}
+                        </Text>
+                    </Grid>
 
                     {isMobile &&
                         <Accordion>
                             <AccordionItem>
                                 <AccordionButton>
-                                    <p>Highlights</p>
+                                    <Text
+                                        p="20px"
+                                        fontSize="15px"
+                                        fontWeight="600"
+                                    >
+                                        Highlights
+                                    </Text>
 
                                     <AccordionIcon />
                                 </AccordionButton>
 
                                 <AccordionPanel>
-                                    <ul className="highlights">
+                                    <UnorderedList
+                                        mb="50px"
+                                    >
                                         {daytrips?.highlights?.map((item: string, index: number) => (
-                                            <li key={index}>{item}</li>
+                                            <ListItem
+                                                key={index}
+                                                ml="30px"
+                                                fontSize="18px"
+                                                fontWeight="300"
+                                            >
+                                                {item}
+                                            </ListItem>
                                         ))}
-                                    </ul>
+                                    </UnorderedList>
                                 </AccordionPanel>
                             </AccordionItem>
 
                             <AccordionItem>
                                 <AccordionButton>
-                                    <p>Included</p>
+                                    <Text
+                                        p="20px"
+                                        fontSize="15px"
+                                        fontWeight="600"
+                                    >
+                                        Included
+                                    </Text>
 
                                     <AccordionIcon />
                                 </AccordionButton>
 
                                 <AccordionPanel>
-                                    <ul className="highlights">
+                                    <UnorderedList
+                                        mb="50px"
+                                    >
                                         {daytrips?.included?.map((item: any, index: number) => (
-                                            <li style={{ listStyle: 'none' }} key={index}>
+                                            <ListItem
+                                                listStyleType="none"
+                                                ml="30px"
+                                                fontSize="18px"
+                                                fontWeight="300"
+                                                key={index}
+                                                display="flex"
+                                            >
                                                 {item?.state
                                                     ? <RxCheck style={{ color: 'green', marginRight: 5, }} />
                                                     : <RxCross1 style={{ color: 'red', marginRight: 5 }} />
                                                 }
                                                 {item?.text}
-                                            </li>
+                                            </ListItem>
                                         ))}
-                                    </ul>
+                                    </UnorderedList>
                                 </AccordionPanel>
                             </AccordionItem>
                         </Accordion>
@@ -177,13 +422,25 @@ export default function DetailsDaytrips() {
                         <AccordionItem>
                             <AccordionButton
                             >
-                                <p>More about experience</p>
+                                <Text
+                                    p="20px"
+                                    fontSize="15px"
+                                    fontWeight="600"
+                                >
+                                    More about experiences
+                                </Text>
 
                                 <AccordionIcon />
                             </AccordionButton>
 
                             <AccordionPanel>
-                                <p>{daytrips?.information}</p>
+                                <Text
+                                    p="20px"
+                                    fontSize="13px"
+                                    fontWeight="500"
+                                >
+                                    {daytrips?.information}
+                                </Text>
                             </AccordionPanel>
                         </AccordionItem>
 
@@ -191,13 +448,25 @@ export default function DetailsDaytrips() {
                             <AccordionItem>
                                 <AccordionButton
                                 >
-                                    <p>Cancelation polices</p>
+                                    <Text
+                                        p="20px"
+                                        fontSize="15px"
+                                        fontWeight="600"
+                                    >
+                                        Cancelation polices
+                                    </Text>
 
                                     <AccordionIcon />
                                 </AccordionButton>
 
                                 <AccordionPanel>
-                                    <p>{daytrips?.policies}</p>
+                                    <Text
+                                        p="20px"
+                                        fontSize="13px"
+                                        fontWeight="500"
+                                    >
+                                        {daytrips?.policies}
+                                    </Text>
                                 </AccordionPanel>
                             </AccordionItem>
                         }
@@ -205,20 +474,34 @@ export default function DetailsDaytrips() {
                         <AccordionItem>
                             <AccordionButton
                             >
-                                <p>Terms and conditions</p>
+                                <Text
+                                    p="20px"
+                                    fontSize="15px"
+                                    fontWeight="600"
+                                >
+                                    Terms and conditions
+                                </Text>
 
                                 <AccordionIcon />
                             </AccordionButton>
 
                             <AccordionPanel>
-                                <p>{daytrips?.conditions}</p>
+                                <Text
+                                    p="20px"
+                                    fontSize="13px"
+                                    fontWeight="500"
+                                >
+                                    {daytrips?.conditions}
+                                </Text>
                             </AccordionPanel>
                         </AccordionItem>
                     </Accordion>
-                </div>
+                </Box>
 
                 {daytrips?.published &&
-                    <div className='book_container'>
+                    <Box
+                        pos="relative"
+                    >
                         <Book
                             setCurrentOrder={setCurrentOrder}
                             setPaymentVisible={setPaymentVisible}
@@ -227,9 +510,9 @@ export default function DetailsDaytrips() {
                             data={daytrips}
                             scroll={scroll}
                         />
-                    </div>
+                    </Box>
                 }
-            </div>
+            </Flex>
 
             {paymentVisible &&
                 <Payments
@@ -242,6 +525,6 @@ export default function DetailsDaytrips() {
             <Whatsapp />
 
             <Footer />
-        </div>
+        </Box>
     );
 }

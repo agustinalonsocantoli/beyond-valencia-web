@@ -7,7 +7,7 @@ import { FormBook } from "../Form/Form";
 import { OrdersDataInt } from "@/interfaces/orders.model";
 import { toastNotify } from "@/shared/utils/functions/toastNotify";
 import { StatusEnumTypes } from "@/shared/utils/types/StatusEnumTypes";
-import { useToast } from "@chakra-ui/react";
+import { Box, Flex, Text, useToast } from "@chakra-ui/react";
 import { getStaticData } from "@/shared/middlewares/fetcher";
 
 interface Props {
@@ -79,32 +79,56 @@ export const Complete = ({
     }
 
     return(
-        <div className='contents_complete'>
+        <Box
+            p="0 3%"
+            mt="50px"
+        >
 
-            <div className="contents_complete-title">
-                <h2>{title}</h2>
-                <h3>{subtitle}</h3>
-            </div>
+            <Box
+                w="70%"
+                margin="auto"
+                mb="30px"
+            >
+                <Text
+                    as="h2"
+                    fontSize="40px"
+                    fontWeight="700"
+                >
+                    {title}
+                </Text>
 
-            <div className="contents_complete-box">
+                <Text
+                    as="h3"
+                    fontSize="15px"
+                    color="#6D6D6D"
+                    fontWeight="700"
+                >
+                    {subtitle}
+                </Text>
+            </Box>
+
+            <Flex
+                gap="15px"
+                mb="50px"
+            >
                 <CodeOrders
-                small={small}
-                medium={medium}
-                normal={normal}
-                subTotal={subTotal}
-                discount={discount}
-                totalPay={totalPay}
-                handleGetCode={handleGetCode}
-                validateCode={validateCode}
-                data={data}
+                    small={small}
+                    medium={medium}
+                    normal={normal}
+                    subTotal={subTotal}
+                    discount={discount}
+                    totalPay={totalPay}
+                    handleGetCode={handleGetCode}
+                    validateCode={validateCode}
+                    data={data}
                 />
                 
                 <FormBook
-                handleSubmit={handleSubmit} 
-                labelButton={totalPay <= 0 ? "SEND ORDER" : "PAY NOW"}
-                nameClass="contents_complete-form"
+                    handleSubmit={handleSubmit} 
+                    labelButton={totalPay <= 0 ? "SEND ORDER" : "PAY NOW"}
+                    fromCall="orders"
                 />
-            </div>
-        </div>
+            </Flex>
+        </Box>
     );
 };

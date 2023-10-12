@@ -18,11 +18,12 @@ import { FaUniversalAccess } from "react-icons/fa"
 import { SlLocationPin } from "react-icons/sl"
 import { MdAccessible } from "react-icons/md"
 import { BsTicket } from 'react-icons/bs';
-import { Accordion, AccordionButton, AccordionIcon, AccordionPanel, AccordionItem } from '@chakra-ui/react';
+import { Accordion, AccordionButton, AccordionIcon, AccordionPanel, AccordionItem, Box, Flex, Text, UnorderedList, ListItem, Grid } from '@chakra-ui/react';
 import { getStaticData } from '@/shared/middlewares/fetcher';
 import { ExperiencesInt } from '@/interfaces/ExperiencesInt';
 import { Payments } from '@/shared/components/stripe/Payments';
 import { Book } from '@/shared/components/Book/Book';
+import { isMobile } from 'react-device-detect';
 
 export default function DetailsExperiences() {
     const { slug } = useParams();
@@ -31,8 +32,6 @@ export default function DetailsExperiences() {
     const [totalPay, setTotalPay] = useState<number | null>(null);
     const [scroll, setScroll] = useState<number>(0)
     const [experience, setExperience] = useState<ExperiencesInt>()
-
-    const isMobile = window.innerWidth < 1025 ? true : false;
 
     useEffect(() => {
         if (!slug) return
@@ -63,111 +62,357 @@ export default function DetailsExperiences() {
 
     return (
         experience &&
-        <div className="details">
+        <Box>
 
             <Navbar title={"Experiences"} subtitle={"Experiences"} />
 
-            <div className="details_exposure">
+            <Box
+                p="0 0 10px 0"
+                bg="#000"
+            >
                 <Exposure
                     data={experience?.multimedia}
+                    fromCall="details"
                 />
-            </div>
+            </Box>
 
-            <div className="details_description">
-                <div className="description">
-                    <h1>{experience?.title}</h1>
-                    <p className='subtitle'><strong>{experience?.subtitle?.label && `${experience?.subtitle?.label}: `}</strong>{experience?.subtitle?.text}</p>
+            <Flex
+                gap="100px"
+                p="0 5% 3% 5%"
+                mt="50px"
+            >
+                <Box
+                    w="55%"
+                >
+                    <Text
+                        as="h1"
+                        textDecoration="underline"
+                        fontSize="50px"
+                        textAlign="left"
+                    >
+                        {experience?.title}
+                    </Text>
 
-                    <div className="description_slogan">
-                        <p>
+                    <Text
+                        mb="10px"
+                        fontSize="30px"
+                        textAlign="left"
+                    >
+                        <Text as="strong">
+                            {experience?.subtitle?.label && `${experience?.subtitle?.label}: `}
+                        </Text>
+                        {experience?.subtitle?.text}
+                    </Text>
+
+                    <Box
+                        fontSize="20px"
+                        fontWeight="200px"
+                        mb="50px"
+                    >
+                        <Text>
                             {experience?.headline}
-                        </p>
-                    </div>
+                        </Text>
+                    </Box>
 
-                    <h3>Overview</h3>
-                    <div className="description_text">
-                        <p>
+                    <Text
+                        as="h3"
+                        fontSize="22px"
+                        textDecoration="underline"
+                        mb="20px"
+                        fontWeight="400"
+                    >
+                        Overview
+                    </Text>
+
+                    <Box
+                        fontSize="20px"
+                        fontWeight="300"
+                        mb="50px"
+                    >
+                        <Text>
                             {experience?.description}
-                        </p>
-                    </div>
+                        </Text>
+                    </Box>
 
                     {!isMobile &&
                         <>
-                            <h3>Highlights</h3>
-                            <ul className="highlights">
+                            <Text
+                                as="h3"
+                                fontSize="22px"
+                                textDecoration="underline"
+                                mb="20px"
+                                fontWeight="400"
+                            >
+                                Highlights
+                            </Text>
+
+                            <UnorderedList
+                                mb="50px"
+                            >
                                 {experience?.highlights?.map((item: string, index: number) => (
-                                    <li key={index}>{item}</li>
+                                    <ListItem
+                                        key={index}
+                                        ml="30px"
+                                        fontSize="18px"
+                                        fontWeight="300"
+                                    >
+                                        {item}
+                                    </ListItem>
                                 ))}
-                            </ul>
+                            </UnorderedList>
                         </>
                     }
 
                     {(experience?.included && !isMobile) &&
                         <>
-                            <h3>Included</h3>
-                            <ul className="highlights">
+                            <Text
+                                as="h3"
+                                fontSize="22px"
+                                textDecoration="underline"
+                                mb="20px"
+                                fontWeight="400"
+                            >
+                                Included
+                            </Text>
+
+                            <UnorderedList
+                                mb="50px"
+                            >
                                 {experience?.included?.map((item: any, index: number) => (
-                                    <li style={{ listStyle: 'none' }} key={index}>
+                                    <ListItem
+                                        listStyleType="none"
+                                        ml="30px"
+                                        fontSize="18px"
+                                        fontWeight="300"
+                                        key={index}
+                                        display="flex"
+                                    >
                                         {item?.state
                                             ? <RxCheck style={{ color: 'green', marginRight: 5, }} />
                                             : <RxCross1 style={{ color: 'red', marginRight: 5 }} />
                                         }
                                         {item?.text}
-                                    </li>
+                                    </ListItem>
                                 ))}
-                            </ul>
+                            </UnorderedList>
                         </>
                     }
 
-                    <h3>Details</h3>
-                    <div className="information">
-                        <p><HiOutlineUserGroup /><strong>Age</strong> {experience?.details?.age}</p>
-                        <p><BiTimer /><strong>How long?</strong> {experience?.details?.duration}</p>
-                        <p><BsTicket /><strong>Ticketing</strong> {experience?.details?.ticket}</p>
-                        <p><IoCalendar /><strong>Availability</strong> {experience?.details?.availably}</p>
-                        <p><GiTalk /> <strong>Lenguage</strong> {experience?.details?.language}</p>
-                        <p className='location'><SlLocationPin /><strong>Meeting Point</strong> {experience?.details?.meetengPoint?.label}</p>
-                        <p><FaUniversalAccess /><strong>Accessibility</strong> {experience?.details?.accessibility}</p>
-                        <p><MdAccessible /><strong>Mobility</strong> {experience?.details?.mobility}</p>
-                    </div>
+                    <Text
+                        as="h3"
+                        fontSize="22px"
+                        textDecoration="underline"
+                        mb="20px"
+                        fontWeight="400"
+                    >
+                        Details
+                    </Text>
+
+                    <Grid
+                        gridTemplateColumns="repeat(2, 1fr)"
+                        columnGap="50px"
+                        rowGap="20px"
+                        w="80%"
+                        m="auto"
+                        mb="50px"
+                    >
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <HiOutlineUserGroup
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Age</Text>
+                            {experience?.details?.age}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <BiTimer
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">How long?</Text>
+                            {experience?.details?.duration}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <BsTicket
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Ticketing</Text>
+                            {experience?.details?.ticket}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <IoCalendar
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Availability</Text>
+                            {experience?.details?.availably}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <GiTalk
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Lenguage</Text>
+                            {experience?.details?.language}
+                        </Text>
+
+                        <Text
+                            w="100%"
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <SlLocationPin
+                                style={{
+                                    fontSize: "75px"
+                                }}
+                            />
+                            <Text as="strong">Meeting Point</Text>
+                            {experience?.details?.meetengPoint?.label}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <FaUniversalAccess
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Accessibility</Text>
+                            {experience?.details?.accessibility}
+                        </Text>
+
+                        <Text
+                            display="flex"
+                            alignItems="center"
+                            fontSize="15px"
+                            fontWeight="300"
+                            gap="10px"
+                        >
+                            <MdAccessible
+                                style={{
+                                    fontSize: "55px"
+                                }}
+                            />
+                            <Text as="strong">Mobility</Text>
+                            {experience?.details?.mobility}
+                        </Text>
+                    </Grid>
 
                     {isMobile &&
                         <Accordion>
                             <AccordionItem>
                                 <AccordionButton>
-                                    <p>Highlights</p>
+                                    <Text
+                                        p="20px"
+                                        fontSize="15px"
+                                        fontWeight="600"
+                                    >
+                                        Highlights
+                                    </Text>
 
                                     <AccordionIcon />
                                 </AccordionButton>
 
                                 <AccordionPanel>
-                                    <ul className="highlights">
+                                    <UnorderedList
+                                        mb="50px"
+                                    >
                                         {experience?.highlights?.map((item: string, index: number) => (
-                                            <li key={index}>{item}</li>
+                                            <ListItem
+                                                key={index}
+                                                ml="30px"
+                                                fontSize="18px"
+                                                fontWeight="300"
+                                            >
+                                                {item}
+                                            </ListItem>
                                         ))}
-                                    </ul>
+                                    </UnorderedList>
                                 </AccordionPanel>
                             </AccordionItem>
 
                             <AccordionItem>
                                 <AccordionButton>
-                                    <p>Included</p>
+                                    <Text
+                                        p="20px"
+                                        fontSize="15px"
+                                        fontWeight="600"
+                                    >
+                                        Included
+                                    </Text>
 
                                     <AccordionIcon />
                                 </AccordionButton>
 
                                 <AccordionPanel>
-                                    <ul className="highlights">
+                                    <UnorderedList
+                                        mb="50px"
+                                    >
                                         {experience?.included?.map((item: any, index: number) => (
-                                            <li style={{ listStyle: 'none' }} key={index}>
+                                            <ListItem
+                                                listStyleType="none"
+                                                ml="30px"
+                                                fontSize="18px"
+                                                fontWeight="300"
+                                                key={index}
+                                                display="flex"
+                                            >
                                                 {item?.state
                                                     ? <RxCheck style={{ color: 'green', marginRight: 5, }} />
                                                     : <RxCross1 style={{ color: 'red', marginRight: 5 }} />
                                                 }
                                                 {item?.text}
-                                            </li>
+                                            </ListItem>
                                         ))}
-                                    </ul>
+                                    </UnorderedList>
                                 </AccordionPanel>
                             </AccordionItem>
                         </Accordion>
@@ -177,13 +422,25 @@ export default function DetailsExperiences() {
                         <AccordionItem>
                             <AccordionButton
                             >
-                                <p>More about experience</p>
+                                <Text
+                                    p="20px"
+                                    fontSize="15px"
+                                    fontWeight="600"
+                                >
+                                    More about experience
+                                </Text>
 
                                 <AccordionIcon />
                             </AccordionButton>
 
                             <AccordionPanel>
-                                <p>{experience?.information}</p>
+                                <Text
+                                    p="20px"
+                                    fontSize="13px"
+                                    fontWeight="500"
+                                >
+                                    {experience?.information}
+                                </Text>
                             </AccordionPanel>
                         </AccordionItem>
 
@@ -191,13 +448,25 @@ export default function DetailsExperiences() {
                             <AccordionItem>
                                 <AccordionButton
                                 >
-                                    <p>Cancelation polices</p>
+                                    <Text
+                                        p="20px"
+                                        fontSize="15px"
+                                        fontWeight="600"
+                                    >
+                                        Cancelation polices
+                                    </Text>
 
                                     <AccordionIcon />
                                 </AccordionButton>
 
                                 <AccordionPanel>
-                                    <p>{experience?.policies}</p>
+                                    <Text
+                                        p="20px"
+                                        fontSize="13px"
+                                        fontWeight="500"
+                                    >
+                                        {experience?.policies}
+                                    </Text>
                                 </AccordionPanel>
                             </AccordionItem>
                         }
@@ -205,20 +474,34 @@ export default function DetailsExperiences() {
                         <AccordionItem>
                             <AccordionButton
                             >
-                                <p>Terms and conditions</p>
+                                <Text
+                                    p="20px"
+                                    fontSize="15px"
+                                    fontWeight="600"
+                                >
+                                    Terms and conditions
+                                </Text>
 
                                 <AccordionIcon />
                             </AccordionButton>
 
                             <AccordionPanel>
-                                <p>{experience?.conditions}</p>
+                                <Text
+                                    p="20px"
+                                    fontSize="13px"
+                                    fontWeight="500"
+                                >
+                                    {experience?.conditions}
+                                </Text>
                             </AccordionPanel>
                         </AccordionItem>
                     </Accordion>
-                </div>
+                </Box>
 
                 {experience?.published &&
-                    <div className='book_container'>
+                    <Box
+                        pos="relative"
+                    >
                         <Book
                             setCurrentOrder={setCurrentOrder}
                             setPaymentVisible={setPaymentVisible}
@@ -227,9 +510,9 @@ export default function DetailsExperiences() {
                             data={experience}
                             scroll={scroll}
                         />
-                    </div>
+                    </Box>
                 }
-            </div>
+            </Flex>
 
             {paymentVisible &&
                 <Payments
@@ -242,6 +525,6 @@ export default function DetailsExperiences() {
             <Whatsapp />
 
             <Footer />
-        </div>
+        </Box>
     );
 }

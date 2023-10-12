@@ -9,7 +9,7 @@ import { GrFormClose } from "react-icons/gr"
 import { useRouter } from "next/navigation";
 import { toastNotify } from "@/shared/utils/functions/toastNotify";
 import { StatusEnumTypes } from "@/shared/utils/types/StatusEnumTypes";
-import { CircularProgress, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Button, CircularProgress, Flex, useDisclosure, useToast } from "@chakra-ui/react";
 
 interface Props {
     setPaymentVisible: (action: boolean) => void;
@@ -95,34 +95,92 @@ export const CheckoutForm = ({ setPaymentVisible, setCurrentOrder, id }: Props) 
     return (
         <div>
             {!isOpen &&
-                <form onSubmit={handleSubmit} className="checkout">
-                    <GrFormClose className="icon_close" onClick={handleCancel} />
+                <form 
+                    onSubmit={handleSubmit}
+                    style={{
+                        width: "50%",
+                        position: "absolute",
+                        padding: "50px",
+                        backgroundColor: "#FFFFFF",
+                        margin: "auto",
+                        left: "0",
+                        right: "0",
+                        top: "5%",
+                        borderRadius: "20px",
+                        maxHeight: "98vh",
+                        overflow: "scroll" 
+                    }}
+                >
+                    <GrFormClose 
+                        onClick={handleCancel} 
+                        style={{
+                            position: "absolute",
+                            fontSize: "30px",
+                            right: "15px",
+                            top: "15px",
+                            cursor: "pointer"
+                        }}
+                    />
 
-                    <div className="checkout_email">
+                    <Box
+                        mb="10px"
+                    >
                         <LinkAuthenticationElement
                             onChange={handleChange}
                         />
-                    </div>
+                    </Box>
 
                     <PaymentElement options={paymentElementOptions} />
 
                     {isLoading ?
-                        <div className="loading">
+                        <Flex
+                            mt="30px"
+                            justifyContent="center"
+                        >
                             <CircularProgress />
-                        </div>
+                        </Flex>
                         :
-                        <div className="checkout_btn">
-                            <button disabled={isLoading || !stripe} type="submit">
+                        <Flex
+                            mt="20px"
+                        >
+                            <Button 
+                                disabled={isLoading || !stripe} 
+                                type="submit"
+                                m="auto"
+                                border="none"
+                                bg="rgba(0, 0, 0, .7)"
+                                p="10px"
+                                rounded="8px"
+                                w="40%"
+                                color="#FFF"
+                                fontWeight="300"
+                                fontSize="13px"
+                                _active={{ transform: "scale(0.9)", transition: 'all 200ms ease' }}
+                                _hover={{ bg: "rgba(0, 0, 0, 1)" }}
+                            >
                                 CONFIRM
-                            </button>
+                            </Button>
 
-                            <button onClick={handleCancel}>
+                            <Button 
+                                onClick={handleCancel}
+                                m="auto"
+                                border="none"
+                                bg="rgba(0, 0, 0, .7)"
+                                p="10px"
+                                rounded="8px"
+                                w="40%"
+                                color="#FFF"
+                                fontWeight="300"
+                                fontSize="13px"
+                                _active={{ transform: "scale(0.9)", transition: 'all 200ms ease' }}
+                                _hover={{ bg: "rgba(0, 0, 0, 1)" }}
+                            >
                                 CANCEL
-                            </button>
-                        </div>
+                            </Button>
+                        </Flex>
                     }
 
-                    {message && <div className="checkout_msg">{message}</div>}
+                    {message && <Box mt="5px" color="#DC2222">{message}</Box>}
                 </form>
             }
 
