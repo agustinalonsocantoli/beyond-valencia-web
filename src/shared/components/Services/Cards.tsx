@@ -19,12 +19,12 @@ export const Cards = ({ data }: Props) => {
             <Flex 
                 direction="column"
                 gap="40px"
-                pl="175px"
+                pl={{ base: "10%", xs: "10%", sm: "10%", md: "10%", lg: "10%", xl: "175px"}}
             >
                 <Text 
                     as='h1'
                     pt="20px"
-                    fontSize='60px'
+                    fontSize={{ base: "18px", xs: "30px", sm: "30px", md: "30px", lg: "45px", xl: "60px"}}
                     fontWeight="600"
                 >
                     {data?.h1}
@@ -32,33 +32,33 @@ export const Cards = ({ data }: Props) => {
 
                 <Text
                     as="h2"
-                    w="25%"
+                    w={{ base: "80%", xs: "40%", sm: "40%", md: "40%", lg: "30%", xl: "25%"}}
                     textAlign="center"
                     mb="60px"
                     bg="#FFFFFF"
                     color="#000000"
                     rounded="50px"
                     p="12px 0"
-                    fontSize="18px"
+                    fontSize={{base: "15px", xs: "18px"}}
                     fontWeight="600"
                     letterSpacing="1.5px"
                 >
                     {data?.navigate
-                        ? <a href={data?.navigate}>{data?.h2}</a>
+                        ? <ChakraLink as={Link} href={data?.navigate}>{data?.h2}</ChakraLink>
                         : data?.h2
                     }
                 </Text>
             </Flex>
 
             <Flex
-                // style={{ padding: resposive ? "15px 5%" : "15px 3%" }}
-                style={{ padding: "15px 5%" }}
+                p={{ base: "15px 5%", xs: "15px 5%", sm: "15px 5%", md: "15px 5%", lg: "15px 5%", xl: "15px 5%", '2xl': "15px 3%"}}
                 mb="150px"
             >
                 <Flex 
                     position="relative" 
                     gap="70px"
                     mb="-50px"
+                    direction={{ base: "column", xs: "column", sm: "column", md: "row", }}
                 >
                     {
                         data?.content?.map((item: ContentInt, index: number) => (
@@ -66,17 +66,25 @@ export const Cards = ({ data }: Props) => {
                                 as={Link}
                                 key={index} 
                                 href={item?.link}
-                                display="flex"
                                 flex="1"
                                 minHeight="600px"
                                 position="relative"
                                 _hover={{
-                                    transform: "scale(1.05)",
-                                    transition: "all 1s ease-in-out"
+                                    base: {
+                                        transform: "scale(1)"
+                                    },
+                                    md:{
+                                        transform: "scale(1.05)",
+                                        transition: "all 1s ease-in-out"
+                                    }
                                 }}
                                 _after={{
                                     content: '""',
                                     position: "absolute",
+                                    top: "0",
+                                    right: "0",
+                                    left: "0",
+                                    bottom: "0",
                                     width: "100%",
                                     height: "100%",
                                     backgroundColor: "rgba(0, 0, 0, .4)",
@@ -86,7 +94,7 @@ export const Cards = ({ data }: Props) => {
                                 <Image 
                                     src={item?.img} 
                                     alt={`img/${item?.h3}`} 
-                                    width={385}
+                                    width={355}
                                     height={600}
                                     style={{
                                         objectFit: "cover",

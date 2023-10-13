@@ -5,10 +5,10 @@ import { AiOutlineInstagram } from 'react-icons/ai';
 import { Whatsapp } from "@/shared/components/Custom/Whatsapp";
 import { Events } from "@/shared/components/Events/Events";
 import { Footer } from "@/shared/components/Footer/Footer";
-import { Box, Flex, Heading, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from 'next/image';
 import Link from 'next/link';
-import { getRevalidatedData, getStaticData } from '@/shared/middlewares/fetcher';
+import { getRevalidatedData } from '@/shared/middlewares/fetcher';
 import { Options } from '@/shared/components/Options/Options';
 import { Cards } from '@/shared/components/Services/Cards';
 
@@ -25,7 +25,6 @@ export default async function Home() {
   return (
     <Box
       pos="relative"
-      className="home"
     >
       <Box 
         w="100%"
@@ -63,6 +62,7 @@ export default async function Home() {
           textAlign="center"
         >
           <Flex
+            display={{ base: "none", xs: "none", sm: "none", md: "none", lg: "flex"}}
             mb="50px"
             w="100%"
             justifyContent="center"
@@ -76,14 +76,29 @@ export default async function Home() {
             />
           </Flex>
 
+          <Flex
+            display={{ base: "flex", xs: "flex", sm: "flex", md: "flex", lg: "none"}}
+            mb="50px"
+            w="100%"
+            justifyContent="center"
+          >
+            <Image src={logo} alt="img/logo"
+              style={{
+                width: "65%",
+                height: "100%",
+                objectFit: "cover"
+              }}
+            />
+          </Flex>
+
           <Text
             color="#FFFFFF"
-            w="20%"
+            w={{ base: "60%", xs: "40%", sm: "40%", md: "40%", lg: "20%"}}
             m="auto"
             p="10px"
             bgColor="#000000"
             rounded="50px"
-            fontSize="15px"
+            fontSize={{ base: "13px", xs: "15px", sm: "15px", md: "15px", lg: "15px"}}
             fontWeight="600"
             letterSpacing="1px"
           >

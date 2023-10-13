@@ -16,7 +16,7 @@ import { MdEmail } from 'react-icons/md'
 import { FiInstagram, FiLinkedin } from 'react-icons/fi'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Box, Flex, ListItem, Text, UnorderedList } from '@chakra-ui/react'
+import { Box, Flex, Grid, ListItem, Text, UnorderedList } from '@chakra-ui/react'
 
 export const Footer = () => {
     return (
@@ -24,23 +24,25 @@ export const Footer = () => {
             direction='column'
             bg='#000000'
             color='#FFFFFF'
-            padding="4% 2%" 
+            p={{ base: "5% 2%", lg: "4% 2%" }}
         >
-            <Flex 
+            <Flex
                 justifyContent="space-around"
+                direction={{ base: "column", lg: "row" }}
             >
                 <Box
-                    w='25%'
+                    w={{ base: "100%", sm: "80%", lg: "25%"}}
                     mb="50px"
+                    mx={{base: "0", sm: "auto", lg: "0"}}
                 >
                     <Box
                         border="1px solid #FFFFFF"
                         p="10px 20px 30px 20px"
                         mb="20px"
                     >
-                        <Text 
-                            fontSize="25px" 
-                            mb="25px" 
+                        <Text
+                            fontSize="25px"                            
+                            mb="25px"
                             as="h3"
                         >
                             Office Hours
@@ -62,9 +64,9 @@ export const Footer = () => {
                     </Box>
 
                     <Box>
-                        <Text 
-                            fontSize="25px" 
-                            mb="25px" 
+                        <Text
+                            fontSize="25px"                            
+                            mb="25px"
                             as="h3"
                         >
                             More about us
@@ -83,17 +85,18 @@ export const Footer = () => {
                 </Box>
 
                 <Box
-                    w='25%'
-                    mb="50px" 
+                    w={{ base: "100%", sm: "80%", lg: "25%"}}
+                    mb="50px"
+                    mx={{base: "0", sm: "auto", lg: "0"}}
                 >
                     <Box
                         border="1px solid #FFFFFF"
                         p="10px 20px 30px 20px"
                         mb="20px"
                     >
-                        <Text 
-                            fontSize="25px" 
-                            mb="25px" 
+                        <Text
+                            fontSize="25px"                            
+                            mb="25px"
                             as="h3"
                         >
                             Drop Off {">"} Old Town
@@ -103,12 +106,12 @@ export const Footer = () => {
                             display="flex"
                             gap="10px"
                             alignItems="center"
-                            color="#FFFFFF" 
+                            color="#FFFFFF"
                         >
-                            <IoLocationSharp style={{ color: "red", fontSize: "50px" }}/>
-                            <Link 
-                                href='https://goo.gl/maps/G5UcGWaBxEkd1VF99' 
-                                target='_blank' 
+                            <IoLocationSharp style={{ color: "red", fontSize: "50px" }} />
+                            <Link
+                                href='https://goo.gl/maps/G5UcGWaBxEkd1VF99'
+                                target='_blank'
                                 rel='noopener noreferrer'
                                 style={{
                                     color: "rgba(255, 255, 255, .7)",
@@ -120,14 +123,14 @@ export const Footer = () => {
                         </Text>
                     </Box>
 
-                    <Box 
+                    <Box
                         border="1px solid #FFFFFF"
                         p="10px 20px 30px 20px"
                         mb="20px"
                     >
-                        <Text 
-                            fontSize="25px" 
-                            mb="25px" 
+                        <Text
+                            fontSize="25px"
+                            mb="25px"
                             as="h3"
                         >
                             Drop Off {">"} Beachside
@@ -136,12 +139,12 @@ export const Footer = () => {
                             display="flex"
                             gap="10px"
                             alignItems="center"
-                            color="#FFFFFF" 
+                            color="#FFFFFF"
                         >
-                            <IoLocationSharp  style={{ color: "red", fontSize: "50px" }}/>
-                            <Link 
-                                href='https://goo.gl/maps/ggzkikLQQAnNueQx5' 
-                                target='_blank' 
+                            <IoLocationSharp style={{ color: "red", fontSize: "50px" }} />
+                            <Link
+                                href='https://goo.gl/maps/ggzkikLQQAnNueQx5'
+                                target='_blank'
                                 rel='noopener noreferrer'
                                 style={{
                                     color: "rgba(255, 255, 255, .7)",
@@ -154,9 +157,9 @@ export const Footer = () => {
                     </Box>
 
                     <Box>
-                        <Text 
-                            fontSize="25px" 
-                            mb="25px" 
+                        <Text
+                            fontSize="25px"
+                            mb="25px"
                             as="h3"
                         >
                             Services
@@ -177,22 +180,23 @@ export const Footer = () => {
                 </Box>
 
                 <Box
-                    w='25%'
-                    mb="50px" 
+                    w={{ base: "100%", sm: "80%", lg: "25%"}}
+                    mb="50px"
+                    mx={{base: "0", sm: "auto", lg: "0"}}
                 >
                     <Box
                         border="1px solid #FFFFFF"
                         p="10px 20px 30px 20px"
                         mb="20px"
                     >
-                        <Text 
-                            fontSize="25px" 
-                            mb="25px" 
+                        <Text
+                            fontSize="25px"
+                            mb="25px"
                             as="h3"
                         >
                             Get Social
                         </Text>
-                        <Text 
+                        <Text
                             display="flex"
                             gap="10px"
                             alignItems="center"
@@ -202,7 +206,7 @@ export const Footer = () => {
                             +34 680841402
                         </Text>
 
-                        <Text 
+                        <Text
                             display="flex"
                             gap="10px"
                             alignItems="center"
@@ -215,36 +219,36 @@ export const Footer = () => {
                         <Flex
                             mt="30px"
                             mb="35px"
-                            gap='10px' 
+                            gap='10px'
                         >
-                            <Box 
+                            <Box
                                 border="1px solid #FFFFFF"
                                 rounded="50%"
                                 p="10px"
                             >
-                                <FiLinkedin style={{ fontSize: "30px"}}/>
+                                <FiLinkedin style={{ fontSize: "30px" }} />
                             </Box>
 
-                            <Box 
+                            <Box
                                 border="1px solid #FFFFFF"
                                 rounded="50%"
                                 p="10px"
                             >
-                                <MdEmail style={{ fontSize: "30px"}}/>
+                                <MdEmail style={{ fontSize: "30px" }} />
                             </Box>
 
-                            <Box 
+                            <Box
                                 border="1px solid #FFFFFF"
                                 rounded="50%"
                                 p="10px"
                             >
-                                <Link href="https://www.instagram.com/beyond_valencia_/" target='_blank'  rel='noopener noreferrer'>
-                                    <FiInstagram style={{ fontSize: "30px"}}/>
+                                <Link href="https://www.instagram.com/beyond_valencia_/" target='_blank' rel='noopener noreferrer'>
+                                    <FiInstagram style={{ fontSize: "30px" }} />
                                 </Link>
                             </Box>
                         </Flex>
 
-                        <Box 
+                        <Box
                             border="1px solid #FFFFFF"
                             textAlign="center"
                             p='15px'
@@ -260,10 +264,8 @@ export const Footer = () => {
                                 Chat with us
                             </Text>
                         </Box>
-                               
-                                
 
-                        <Box 
+                        <Box
                             border="1px solid #FFFFFF"
                             textAlign="center"
                             p='15px'
@@ -279,16 +281,14 @@ export const Footer = () => {
                                 Join our newsletter
                             </Text>
                         </Box>
-                               
-                                
                     </Box>
 
-                    <Box 
+                    <Box
                         w='150px'
                         ml="auto"
                     >
-                        <Image 
-                            src={logo} alt="logo/beyondvalencia" 
+                        <Image
+                            src={logo} alt="logo/beyondvalencia"
                             style={{
                                 objectFit: "cover",
                                 width: '100%',
@@ -300,28 +300,46 @@ export const Footer = () => {
             </Flex>
 
 
-            <Flex 
+            <Flex
                 justifyContent="space-between"
-                alignItems="center"
+                alignItems="end"
             >
-                <Flex 
+                <Flex
+                    display={{ base: "none" ,sm: "flex" }}
                     gap="10px"
                 >
-                    <Image src={visa} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px" , borderRadius: "2px"}} />
-                    <Image src={amex} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px" , borderRadius: "2px"}} />
-                    <Image src={master} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px" , borderRadius: "2px"}} />
-                    <Image src={cc} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px" , borderRadius: "2px"}} />
-                    <Image src={apl} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px" , borderRadius: "2px"}} />
-                    <Image src={goo} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px" , borderRadius: "2px"}} />
-                    <Image src={ali} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px" , borderRadius: "2px"}} />
-                    <Image src={we} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px" , borderRadius: "2px"}} />
-                    <Image src={id} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px" , borderRadius: "2px"}} />
-                    <Image src={pho} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px" , borderRadius: "2px"}} />
+                    <Image src={visa} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px", borderRadius: "2px" }} />
+                    <Image src={amex} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px", borderRadius: "2px" }} />
+                    <Image src={master} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px", borderRadius: "2px" }} />
+                    <Image src={cc} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px", borderRadius: "2px" }} />
+                    <Image src={apl} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px", borderRadius: "2px" }} />
+                    <Image src={goo} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px", borderRadius: "2px" }} />
+                    <Image src={ali} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px", borderRadius: "2px" }} />
+                    <Image src={we} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px", borderRadius: "2px" }} />
+                    <Image src={id} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px", borderRadius: "2px" }} />
+                    <Image src={pho} alt="img/" style={{ objectFit: "cover", width: "45px", height: "25px", borderRadius: "2px" }} />
                 </Flex>
 
-                <Text 
-                    fontSize="15px" 
-                    mr='7%' 
+                <Grid
+                    display={{ base: "grid" ,sm: "none" }}
+                    gridTemplateColumns="repeat(5, 1fr)"
+                    gap="5px"
+                >
+                    <Image src={visa} alt="img/" style={{ objectFit: "cover", width: "32px", height: "15px", borderRadius: "2px" }} />
+                    <Image src={amex} alt="img/" style={{ objectFit: "cover", width: "32px", height: "15px", borderRadius: "2px" }} />
+                    <Image src={master} alt="img/" style={{ objectFit: "cover", width: "32px", height: "15px", borderRadius: "2px" }} />
+                    <Image src={cc} alt="img/" style={{ objectFit: "cover", width: "32px", height: "15px", borderRadius: "2px" }} />
+                    <Image src={apl} alt="img/" style={{ objectFit: "cover", width: "32px", height: "15px", borderRadius: "2px" }} />
+                    <Image src={goo} alt="img/" style={{ objectFit: "cover", width: "32px", height: "15px", borderRadius: "2px" }} />
+                    <Image src={ali} alt="img/" style={{ objectFit: "cover", width: "32px", height: "15px", borderRadius: "2px" }} />
+                    <Image src={we} alt="img/" style={{ objectFit: "cover", width: "32px", height: "15px", borderRadius: "2px" }} />
+                    <Image src={id} alt="img/" style={{ objectFit: "cover", width: "32px", height: "15px", borderRadius: "2px" }} />
+                    <Image src={pho} alt="img/" style={{ objectFit: "cover", width: "32px", height: "15px", borderRadius: "2px" }} />
+                </Grid>
+
+                <Text
+                    fontSize={{base: "7px", sm: "15px"}}
+                    mr={{base: "15%", sm: "10%" ,lg: '7%'}}
                     as="h3"
                 >
                     2023 &copy; All Rights Reserved

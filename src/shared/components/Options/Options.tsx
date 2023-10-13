@@ -7,7 +7,9 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 export const Options = () => {
     return (
         <Flex
-            h="100vh"
+            h={{ base: "auto", lg: "100vh"}}
+            w={{ base: "100%", lg: "auto"}}
+            direction={{ base: "column", lg: "row"}}
         >
             <Box
                 flex="1"
@@ -37,7 +39,7 @@ export const Options = () => {
                     <Text
                         as="h1"
                         color="#FFFFFF"
-                        fontSize="80px"
+                        fontSize={{ base: "35px", xs: "60px", lg: "80px"}}
                         fontWeight="600"
                     >
                         LOCKERS &
@@ -46,9 +48,9 @@ export const Options = () => {
                     <Text
                         as="h1"
                         color="#FFFFFF"
-                        fontSize="80px"
+                        fontSize={{ base: "35px", xs: "60px", lg: "80px"}}
                         fontWeight="600"
-                        mt="-50px"
+                        mt={{ base: "0", lg: "-50px"}}
                     >
                         CONSIGNAS
                     </Text>
@@ -86,7 +88,7 @@ export const Options = () => {
                     <Text
                         as="h1"
                         color="#FFFFFF"
-                        fontSize="80px"
+                        fontSize={{ base: "35px", xs: "60px", lg: "80px"}}
                         fontWeight="600"
                     >
                         BIKE
@@ -95,9 +97,9 @@ export const Options = () => {
                     <Text
                         as="h1"
                         color="#FFFFFF"
-                        fontSize="80px"
+                        fontSize={{ base: "35px", xs: "60px", lg: "80px"}}
                         fontWeight="600"
-                        mt="-50px"
+                        mt={{ base: "0", lg: "-50px"}}
                     >
                         RENTAL
                     </Text>

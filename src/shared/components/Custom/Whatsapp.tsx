@@ -14,20 +14,17 @@ export const Whatsapp = () => {
             cursor="pointer"
             zIndex="399"
             bg="white"
-            p={
-                isMobile ? "7px 9px 2px 9px" : isTablet ? "8px 10px 3px 10px"
-                : isDesktop ? "8px 10px 3px 10px" : "10px 12px 5px 12px"
-            }
+            p={{
+                base: "7px 9px 2px 9px", sm: "8px 10px 3px 10px",
+                md: "8px 10px 3px 10px", lg: "10px 12px 5px 12px"
+            }}
             rounded="100%"
         >
             <Link href='https://wa.me/34722648023' target='_blank'  rel='noopener noreferrer'>
                 <Icon 
                     as={BsWhatsapp} 
                     color="green" 
-                    boxSize={
-                        isMobile ? "20px" : isTablet ? "30px"
-                        : isDesktop ? "30px" : "40px"
-                    }
+                    boxSize={{ base: "20px", xs: "30px", ms: "30px", lg:"40px" }}
                 />
             </Link>
         </Box>

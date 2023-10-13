@@ -5,6 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import "primereact/resources/primereact.min.css";
+import { theme } from '@/theme/theme';
 
 export function Providers({ 
     children 
@@ -13,7 +14,7 @@ export function Providers({
   }) {
   return (
     <CacheProvider>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         {children}
       </ChakraProvider>
     </CacheProvider>

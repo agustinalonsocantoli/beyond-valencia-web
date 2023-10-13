@@ -14,9 +14,10 @@ export const Exposure = ({ data, fromCall = "landing" }: Props) => {
 
     return (
         <Grid
-            gridTemplateColumns="repeat(3, 1fr)"
+            gridTemplateColumns={{base: "repeat(1, 1fr)", xs: "repeat(1, 1fr)", sm: "repeat(1, 1fr)", md: "repeat(3, 1fr)"}}
             gap="10px"
-            pb="30px"
+            pb={{md: "30px"}}
+            p={{xs: "0 3% 10px 3%", sm: "0 3% 10px 3%"}}
             bg="#000000"
         >
             {
@@ -24,20 +25,22 @@ export const Exposure = ({ data, fromCall = "landing" }: Props) => {
                     <Box
                         key={index}
                         gridColumn={
-                            index === 0 ? "1 / 2" :
-                                index === 1 ? "2 / 3" :
-                                    index === 2 ? "3 / 4" : "2 / 4"
+                            index === 0 ? {base: "1 / 1", xs: "1 / 1", sm: "1 / 1", md: "1 / 2"} :
+                                index === 1 ? {base: "1 / 1", xs: "1 / 1", sm: "1 / 1", md: "2 / 3"} :
+                                    index === 2 ? {base: "1 / 1", xs: "1 / 1", sm: "1 / 1", md: "3 / 4"}
+                                        : {base: "1 / 1", xs: "1 / 1", sm: "1 / 1", md: "2 / 4"}
                         }
                         gridRow={
-                            index === 0 ? "1 / 3" :
-                                index === 1 ? "1 / 2" :
-                                    index === 2 ? "1 / 2" : "2 / 3"
+                            index === 0 ? {base: "1 / 1", xs: "1 / 1", sm: "1 / 1", md: "1 / 3"} :
+                                index === 1 ? {base: "2 / 2", xs: "2 / 2", sm: "2 / 2", md: "1 / 2"} :
+                                    index === 2 ? {base: "3 / 3", xs: "3 / 3", sm: "3 / 3", md: "1 / 2"}  
+                                        : {base: "4 / 4", xs: "4 / 4", sm: "4 / 4", md: "2 / 3"} 
                         }
                         pos="relative"
                         border={fromCall === "landing" ? "1px solid #FFF" : "none"}
                         rounded={fromCall === "landing" ? "20px" : "0"}
                         overflow="hidden"
-                        height={index === 0 ? "560px" : "275px"}
+                        height={index === 0 ? {base: "550px", xs: "550px", sm: "550px", md: "560px"} : "275px"}
                     >
                         <LinkChakra as={Link} href={item?.navigate ? item?.navigate : ""}>
                             {item?.type === "image" &&
