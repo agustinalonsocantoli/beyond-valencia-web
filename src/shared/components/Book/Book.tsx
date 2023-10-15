@@ -162,17 +162,23 @@ export const Book = (props: Props) => {
                     Choose a Date
                 </Text>
 
-                <Calendar value={date} onChange={(e) => setDate(e.value)} inline />
+                <Flex
+                    w="100%"
+                    justifyContent="center"
+                >
+                    <Calendar value={date} onChange={(e) => setDate(e.value)} inline />
+                </Flex>
             </Flex>
 
-            <Box 
+            <Flex 
                 opacity={date === null ? "0.5" : "1" }
+                justifyContent="center"
             >
                 <SelectGroup
                     handleSelect={handleSelect}
                     groups={data?.groups}
                 />
-            </Box>
+            </Flex>
 
             <ModalBook
                 onClose={onClose}

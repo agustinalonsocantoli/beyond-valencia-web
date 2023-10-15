@@ -23,7 +23,6 @@ import { getStaticData } from '@/shared/middlewares/fetcher';
 import { DaystripsInt } from '@/interfaces/DaytripsInt';
 import { Payments } from '@/shared/components/stripe/Payments';
 import { Book } from '@/shared/components/Book/Book';
-import { isMobile } from 'react-device-detect';
 
 export default function DetailsDaytrips() {
     const { slug } = useParams();
@@ -61,470 +60,538 @@ export default function DetailsDaytrips() {
     // }, [])
 
     return (
-        daytrips &&
         <Box>
+        <Navbar title={"Daytrips"} subtitle={"Daytrips"} />
 
-            <Navbar title={"Experiences"} subtitle={"Experiences"} />
+        <Box
+            p="0 0 10px 0"
+            bg="#000"
+        >
+            <Exposure
+                data={daytrips?.multimedia}
+                fromCall="details"
+            />
+        </Box>
 
+        <Flex
+            gap={{ base: "30px", lg: "100px" }}
+            p="0 5% 3% 5%"
+            mt="50px"
+            direction={{ base: "column", lg: "row" }}
+        >
             <Box
-                p="0 0 10px 0"
-                bg="#000"
+                w={{ base: "100%", lg: "55%" }}
             >
-                <Exposure
-                    data={daytrips?.multimedia}
-                    fromCall="details"
-                />
-            </Box>
+                <Text
+                    as="h1"
+                    textDecoration="underline"
+                    fontSize={{ base: "30px", xs: "40px", lg: "50px" }}
+                    textAlign="left"
+                >
+                    {daytrips?.title}
+                </Text>
 
-            <Flex
-                gap="100px"
-                p="0 5% 3% 5%"
-                mt="50px"
-            >
+                <Text
+                    mb="10px"
+                    fontSize={{ base: "20px", xs: "25px", lg: "30px" }}
+                    textAlign="left"
+                >
+                    <Text as="strong">
+                        {daytrips?.subtitle?.label && `${daytrips?.subtitle?.label}: `}
+                    </Text>
+                    {daytrips?.subtitle?.text}
+                </Text>
+
                 <Box
-                    w="55%"
+                    fontSize={{ base: "15px", xs: "20px" }}
+                    fontWeight="200px"
+                    mb="50px"
+                >
+                    <Text>
+                        {daytrips?.headline}
+                    </Text>
+                </Box>
+
+                <Text
+                    as="h3"
+                    fontSize={{ base: "17px", xs: "22px" }}
+                    textDecoration="underline"
+                    mb="20px"
+                    fontWeight="400"
+                >
+                    Overview
+                </Text>
+
+                <Box
+                    fontSize={{ base: "15px", xs: "20px" }}
+                    fontWeight="300"
+                    mb="50px"
+                >
+                    <Text>
+                        {daytrips?.description}
+                    </Text>
+                </Box>
+
+                <Box
+                    display={{ base: "none", sm: "block" }}
                 >
                     <Text
-                        as="h1"
-                        textDecoration="underline"
-                        fontSize="50px"
-                        textAlign="left"
-                    >
-                        {daytrips?.title}
-                    </Text>
-
-                    <Text
-                        mb="10px"
-                        fontSize="30px"
-                        textAlign="left"
-                    >
-                        <Text as="strong">
-                            {daytrips?.subtitle?.label && `${daytrips?.subtitle?.label}: `}
-                        </Text>
-                        {daytrips?.subtitle?.text}
-                    </Text>
-
-                    <Box
-                        fontSize="20px"
-                        fontWeight="200px"
-                        mb="50px"
-                    >
-                        <Text>
-                            {daytrips?.headline}
-                        </Text>
-                    </Box>
-
-                    <Text
                         as="h3"
-                        fontSize="22px"
+                        fontSize={{ base: "17px", xs: "22px" }}
                         textDecoration="underline"
                         mb="20px"
                         fontWeight="400"
                     >
-                        Overview
+                        Highlights
                     </Text>
 
+                    <UnorderedList
+                        mb="50px"
+                    >
+                        {daytrips?.highlights?.map((item: string, index: number) => (
+                            <ListItem
+                                key={index}
+                                ml="30px"
+                                fontSize={{ base: "15px", xs: "18px" }}
+                                fontWeight="300"
+                            >
+                                {item}
+                            </ListItem>
+                        ))}
+                    </UnorderedList>
+                </Box>
+
+                {daytrips?.included &&
                     <Box
-                        fontSize="20px"
+                        display={{ base: "none", sm: "block" }}
+                    >
+                        <Text
+                            as="h3"
+                            fontSize={{ base: "17px", xs: "22px" }}
+                            textDecoration="underline"
+                            mb="20px"
+                            fontWeight="400"
+                        >
+                            Included
+                        </Text>
+
+                        <UnorderedList
+                            mb="50px"
+                        >
+                            {daytrips?.included?.map((item: any, index: number) => (
+                                <ListItem
+                                    listStyleType="none"
+                                    ml="30px"
+                                    fontSize={{ base: "15px", xs: "18px" }}
+                                    fontWeight="300"
+                                    key={index}
+                                    display="flex"
+                                >
+                                    {item?.state
+                                        ? <RxCheck style={{ color: 'green', marginRight: 5, }} />
+                                        : <RxCross1 style={{ color: 'red', marginRight: 5 }} />
+                                    }
+                                    {item?.text}
+                                </ListItem>
+                            ))}
+                        </UnorderedList>
+                    </Box>
+                }
+
+                <Text
+                    as="h3"
+                    fontSize={{ base: "17px", xs: "22px" }}
+                    textDecoration="underline"
+                    mb="20px"
+                    fontWeight="400"
+                >
+                    Details
+                </Text>
+
+                <Grid
+                    gridTemplateColumns="repeat(2, 1fr)"
+                    columnGap={{ base: "20px", xs: "50px" }}
+                    rowGap={{ base: "30px", xs: "20px" }}
+                    w={{ base: "95%", xs: "80%" }}
+                    m="auto"
+                    mb={{ base: "40px", xs: "50px" }}
+                >
+                    <Text
+                        display="flex"
+                        alignItems="center"
+                        fontSize={{base: "10px", xs: "15px"}}
+                        flexDirection={{base: "column", xs: "row"}}
+                        justifyContent={{base: "center", xs: "flex-start"}}
+                        width={{base: "95%", xs: "100%"}}
                         fontWeight="300"
-                        mb="50px"
+                        gap="10px"
                     >
-                        <Text>
-                            {daytrips?.description}
-                        </Text>
-                    </Box>
+                        <Box
+                            sx={{
+                                '& > svg': {
+                                    fontSize: { base: "25px", xs: "55px" }
+                                }
+                            }}
+                        >
+                            <HiOutlineUserGroup />
+                        </Box>
 
-                    {!isMobile &&
-                        <>
-                            <Text
-                                as="h3"
-                                fontSize="22px"
-                                textDecoration="underline"
-                                mb="20px"
-                                fontWeight="400"
-                            >
-                                Highlights
-                            </Text>
-
-                            <UnorderedList
-                                mb="50px"
-                            >
-                                {daytrips?.highlights?.map((item: string, index: number) => (
-                                    <ListItem
-                                        key={index}
-                                        ml="30px"
-                                        fontSize="18px"
-                                        fontWeight="300"
-                                    >
-                                        {item}
-                                    </ListItem>
-                                ))}
-                            </UnorderedList>
-                        </>
-                    }
-
-                    {(daytrips?.included && !isMobile) &&
-                        <>
-                            <Text
-                                as="h3"
-                                fontSize="22px"
-                                textDecoration="underline"
-                                mb="20px"
-                                fontWeight="400"
-                            >
-                                Included
-                            </Text>
-
-                            <UnorderedList
-                                mb="50px"
-                            >
-                                {daytrips?.included?.map((item: any, index: number) => (
-                                    <ListItem
-                                        listStyleType="none"
-                                        ml="30px"
-                                        fontSize="18px"
-                                        fontWeight="300"
-                                        key={index}
-                                        display="flex"
-                                    >
-                                        {item?.state
-                                            ? <RxCheck style={{ color: 'green', marginRight: 5, }} />
-                                            : <RxCross1 style={{ color: 'red', marginRight: 5 }} />
-                                        }
-                                        {item?.text}
-                                    </ListItem>
-                                ))}
-                            </UnorderedList>
-                        </>
-                    }
-
-                    <Text
-                        as="h3"
-                        fontSize="22px"
-                        textDecoration="underline"
-                        mb="20px"
-                        fontWeight="400"
-                    >
-                        Details
+                        <Text as="strong">Age</Text>
+                        {daytrips?.details?.age}
                     </Text>
 
-                    <Grid
-                        gridTemplateColumns="repeat(2, 1fr)"
-                        columnGap="50px"
-                        rowGap="20px"
-                        w="80%"
-                        m="auto"
-                        mb="50px"
+                    <Text
+                        display="flex"
+                        alignItems="center"
+                        fontSize={{base: "10px", xs: "15px"}}
+                        flexDirection={{base: "column", xs: "row"}}
+                        justifyContent={{base: "center", xs: "flex-start"}}
+                        width={{base: "95%", xs: "100%"}}
+                        fontWeight="300"
+                        gap="10px"
                     >
-                        <Text
-                            display="flex"
-                            alignItems="center"
-                            fontSize="15px"
-                            fontWeight="300"
-                            gap="10px"
+                        <Box
+                            sx={{
+                                '& > svg': {
+                                    fontSize: { base: "25px", xs: "55px" }
+                                }
+                            }}
                         >
-                            <HiOutlineUserGroup
-                                style={{
-                                    fontSize: "55px"
-                                }}
-                            />
-                            <Text as="strong">Age</Text>
-                            {daytrips?.details?.age}
-                        </Text>
+                            <BiTimer />
+                        </Box>
 
-                        <Text
-                            display="flex"
-                            alignItems="center"
-                            fontSize="15px"
-                            fontWeight="300"
-                            gap="10px"
+                        <Text as="strong">How long?</Text>
+                        {daytrips?.details?.duration}
+                    </Text>
+
+                    <Text
+                        display="flex"
+                        alignItems="center"
+                        fontSize={{base: "10px", xs: "15px"}}
+                        flexDirection={{base: "column", xs: "row"}}
+                        justifyContent={{base: "center", xs: "flex-start"}}
+                        width={{base: "95%", xs: "100%"}}
+                        fontWeight="300"
+                        gap="10px"
+                    >
+                        <Box
+                            sx={{
+                                '& > svg': {
+                                    fontSize: { base: "25px", xs: "55px" }
+                                }
+                            }}
                         >
-                            <BiTimer
-                                style={{
-                                    fontSize: "55px"
-                                }}
-                            />
-                            <Text as="strong">How long?</Text>
-                            {daytrips?.details?.duration}
-                        </Text>
+                            <BsTicket />
+                        </Box>
 
-                        <Text
-                            display="flex"
-                            alignItems="center"
-                            fontSize="15px"
-                            fontWeight="300"
-                            gap="10px"
+                        <Text as="strong">Ticketing</Text>
+                        {daytrips?.details?.ticket}
+                    </Text>
+
+                    <Text
+                        display="flex"
+                        alignItems="center"
+                        fontSize={{base: "10px", xs: "15px"}}
+                        flexDirection={{base: "column", xs: "row"}}
+                        justifyContent={{base: "center", xs: "flex-start"}}
+                        width={{base: "95%", xs: "100%"}}
+                        fontWeight="300"
+                        gap="10px"
+                    >
+                        <Box
+                            sx={{
+                                '& > svg': {
+                                    fontSize: { base: "25px", xs: "55px" }
+                                }
+                            }}
                         >
-                            <BsTicket
-                                style={{
-                                    fontSize: "55px"
-                                }}
-                            />
-                            <Text as="strong">Ticketing</Text>
-                            {daytrips?.details?.ticket}
-                        </Text>
+                            <IoCalendar />
+                        </Box>
 
-                        <Text
-                            display="flex"
-                            alignItems="center"
-                            fontSize="15px"
-                            fontWeight="300"
-                            gap="10px"
+                        <Text as="strong">Availability</Text>
+                        {daytrips?.details?.availably}
+                    </Text>
+
+                    <Text
+                        display="flex"
+                        alignItems="center"
+                        fontSize={{base: "10px", xs: "15px"}}
+                        flexDirection={{base: "column", xs: "row"}}
+                        justifyContent={{base: "center", xs: "flex-start"}}
+                        width={{base: "95%", xs: "100%"}}
+                        fontWeight="300"
+                        gap="10px"
+                    >
+                        <Box
+                            sx={{
+                                '& > svg': {
+                                    fontSize: { base: "25px", xs: "55px" }
+                                }
+                            }}
                         >
-                            <IoCalendar
-                                style={{
-                                    fontSize: "55px"
-                                }}
-                            />
-                            <Text as="strong">Availability</Text>
-                            {daytrips?.details?.availably}
-                        </Text>
+                            <GiTalk />
+                        </Box>
 
-                        <Text
-                            display="flex"
-                            alignItems="center"
-                            fontSize="15px"
-                            fontWeight="300"
-                            gap="10px"
+                        <Text as="strong">Lenguage</Text>
+                        {daytrips?.details?.language}
+                    </Text>
+
+                    <Text
+                        w="100%"
+                        display="flex"
+                        alignItems="center"
+                        fontSize={{base: "10px", xs: "15px"}}
+                        flexDirection={{base: "column", xs: "row"}}
+                        justifyContent={{base: "center", xs: "flex-start"}}
+                        width={{base: "95%", xs: "100%"}}
+                        fontWeight="300"
+                        gap="10px"
+                    >
+                        <Box
+                            sx={{
+                                '& > svg': {
+                                    fontSize: { base: "25px", xs: "55px" }
+                                }
+                            }}
                         >
-                            <GiTalk
-                                style={{
-                                    fontSize: "55px"
-                                }}
-                            />
-                            <Text as="strong">Lenguage</Text>
-                            {daytrips?.details?.language}
-                        </Text>
+                            <SlLocationPin />
+                        </Box>
 
-                        <Text
-                            w="100%"
-                            display="flex"
-                            alignItems="center"
-                            fontSize="15px"
-                            fontWeight="300"
-                            gap="10px"
+                        <Text as="strong">Meeting Point</Text>
+                        {daytrips?.details?.meetengPoint?.label}
+                    </Text>
+
+                    <Text
+                        display="flex"
+                        alignItems="center"
+                        fontSize={{base: "10px", xs: "15px"}}
+                        flexDirection={{base: "column", xs: "row"}}
+                        justifyContent={{base: "center", xs: "flex-start"}}
+                        width={{base: "95%", xs: "100%"}}
+                        fontWeight="300"
+                        gap="10px"
+                    >
+                        <Box
+                            sx={{
+                                '& > svg': {
+                                    fontSize: { base: "25px", xs: "55px" }
+                                }
+                            }}
                         >
-                            <SlLocationPin
-                                style={{
-                                    fontSize: "75px"
-                                }}
-                            />
-                            <Text as="strong">Meeting Point</Text>
-                            {daytrips?.details?.meetengPoint?.label}
-                        </Text>
+                            <FaUniversalAccess />
+                        </Box>
 
-                        <Text
-                            display="flex"
-                            alignItems="center"
-                            fontSize="15px"
-                            fontWeight="300"
-                            gap="10px"
+                        <Text as="strong">Accessibility</Text>
+                        {daytrips?.details?.accessibility}
+                    </Text>
+
+                    <Text
+                        display="flex"
+                        alignItems="center"
+                        fontSize={{base: "10px", xs: "15px"}}
+                        flexDirection={{base: "column", xs: "row"}}
+                        justifyContent={{base: "center", xs: "flex-start"}}
+                        width={{base: "95%", xs: "100%"}}
+                        fontWeight="300"
+                        gap="10px"
+                    >
+                        <Box
+                            sx={{
+                                '& > svg': {
+                                    fontSize: { base: "25px", xs: "55px" }
+                                }
+                            }}
                         >
-                            <FaUniversalAccess
-                                style={{
-                                    fontSize: "55px"
-                                }}
-                            />
-                            <Text as="strong">Accessibility</Text>
-                            {daytrips?.details?.accessibility}
-                        </Text>
+                            <MdAccessible />
+                        </Box>
 
-                        <Text
-                            display="flex"
-                            alignItems="center"
-                            fontSize="15px"
-                            fontWeight="300"
-                            gap="10px"
-                        >
-                            <MdAccessible
-                                style={{
-                                    fontSize: "55px"
-                                }}
-                            />
-                            <Text as="strong">Mobility</Text>
-                            {daytrips?.details?.mobility}
-                        </Text>
-                    </Grid>
+                        <Text as="strong">Mobility</Text>
+                        {daytrips?.details?.mobility}
+                    </Text>
+                </Grid>
 
-                    {isMobile &&
-                        <Accordion>
-                            <AccordionItem>
-                                <AccordionButton>
-                                    <Text
-                                        p="20px"
-                                        fontSize="15px"
-                                        fontWeight="600"
-                                    >
-                                        Highlights
-                                    </Text>
-
-                                    <AccordionIcon />
-                                </AccordionButton>
-
-                                <AccordionPanel>
-                                    <UnorderedList
-                                        mb="50px"
-                                    >
-                                        {daytrips?.highlights?.map((item: string, index: number) => (
-                                            <ListItem
-                                                key={index}
-                                                ml="30px"
-                                                fontSize="18px"
-                                                fontWeight="300"
-                                            >
-                                                {item}
-                                            </ListItem>
-                                        ))}
-                                    </UnorderedList>
-                                </AccordionPanel>
-                            </AccordionItem>
-
-                            <AccordionItem>
-                                <AccordionButton>
-                                    <Text
-                                        p="20px"
-                                        fontSize="15px"
-                                        fontWeight="600"
-                                    >
-                                        Included
-                                    </Text>
-
-                                    <AccordionIcon />
-                                </AccordionButton>
-
-                                <AccordionPanel>
-                                    <UnorderedList
-                                        mb="50px"
-                                    >
-                                        {daytrips?.included?.map((item: any, index: number) => (
-                                            <ListItem
-                                                listStyleType="none"
-                                                ml="30px"
-                                                fontSize="18px"
-                                                fontWeight="300"
-                                                key={index}
-                                                display="flex"
-                                            >
-                                                {item?.state
-                                                    ? <RxCheck style={{ color: 'green', marginRight: 5, }} />
-                                                    : <RxCross1 style={{ color: 'red', marginRight: 5 }} />
-                                                }
-                                                {item?.text}
-                                            </ListItem>
-                                        ))}
-                                    </UnorderedList>
-                                </AccordionPanel>
-                            </AccordionItem>
-                        </Accordion>
-                    }
-
-                    <Accordion allowToggle allowMultiple>
+                <Box
+                    display={{ base: "block", sm: "none" }}
+                >
+                    <Accordion allowToggle>
                         <AccordionItem>
-                            <AccordionButton
-                            >
+                            <AccordionButton>
                                 <Text
                                     p="20px"
-                                    fontSize="15px"
+                                    fontSize={{base: "13px", xs: "15px"}}
                                     fontWeight="600"
                                 >
-                                    More about experiences
+                                    Highlights
                                 </Text>
 
                                 <AccordionIcon />
                             </AccordionButton>
 
                             <AccordionPanel>
-                                <Text
-                                    p="20px"
-                                    fontSize="13px"
-                                    fontWeight="500"
+                                <UnorderedList
+                                    mb="50px"
                                 >
-                                    {daytrips?.information}
-                                </Text>
+                                    {daytrips?.highlights?.map((item: string, index: number) => (
+                                        <ListItem
+                                            key={index}
+                                            ml="30px"
+                                            fontSize={{base: "10px", xs: "13px"}}
+                                            fontWeight="300"
+                                        >
+                                            {item}
+                                        </ListItem>
+                                    ))}
+                                </UnorderedList>
                             </AccordionPanel>
                         </AccordionItem>
 
-                        {daytrips?.policies &&
-                            <AccordionItem>
-                                <AccordionButton
-                                >
-                                    <Text
-                                        p="20px"
-                                        fontSize="15px"
-                                        fontWeight="600"
-                                    >
-                                        Cancelation polices
-                                    </Text>
-
-                                    <AccordionIcon />
-                                </AccordionButton>
-
-                                <AccordionPanel>
-                                    <Text
-                                        p="20px"
-                                        fontSize="13px"
-                                        fontWeight="500"
-                                    >
-                                        {daytrips?.policies}
-                                    </Text>
-                                </AccordionPanel>
-                            </AccordionItem>
-                        }
-
                         <AccordionItem>
-                            <AccordionButton
-                            >
+                            <AccordionButton>
                                 <Text
                                     p="20px"
-                                    fontSize="15px"
+                                    fontSize={{base: "13px", xs: "15px"}}
                                     fontWeight="600"
                                 >
-                                    Terms and conditions
+                                    Included
                                 </Text>
 
                                 <AccordionIcon />
                             </AccordionButton>
 
                             <AccordionPanel>
-                                <Text
-                                    p="20px"
-                                    fontSize="13px"
-                                    fontWeight="500"
+                                <UnorderedList
+                                    mb="50px"
                                 >
-                                    {daytrips?.conditions}
-                                </Text>
+                                    {daytrips?.included?.map((item: any, index: number) => (
+                                        <ListItem
+                                            listStyleType="none"
+                                            ml="30px"
+                                            fontSize={{base: "10px", xs: "13px"}}
+                                            fontWeight="300"
+                                            key={index}
+                                            display="flex"
+                                        >
+                                            {item?.state
+                                                ? <RxCheck style={{ color: 'green', marginRight: 5, }} />
+                                                : <RxCross1 style={{ color: 'red', marginRight: 5 }} />
+                                            }
+                                            {item?.text}
+                                        </ListItem>
+                                    ))}
+                                </UnorderedList>
                             </AccordionPanel>
                         </AccordionItem>
                     </Accordion>
                 </Box>
 
-                {daytrips?.published &&
-                    <Box
-                        pos="relative"
-                    >
-                        <Book
-                            setCurrentOrder={setCurrentOrder}
-                            setPaymentVisible={setPaymentVisible}
-                            setTotalPay={setTotalPay}
-                            totalPay={totalPay}
-                            data={daytrips}
-                            scroll={scroll}
-                        />
-                    </Box>
-                }
-            </Flex>
 
-            {paymentVisible &&
-                <Payments
-                    setCurrentOrder={setCurrentOrder}
-                    setPaymentVisible={setPaymentVisible}
-                    totalPay={totalPay}
-                    description={`${currentOrder.tourName ? currentOrder.tourName : ""}, Email: ${currentOrder.email ? currentOrder.email : ""}`}
-                />}
+                <Accordion allowToggle>
+                    <AccordionItem>
+                        <AccordionButton
+                        >
+                            <Text
+                                p="20px"
+                                fontSize={{base: "13px", xs: "15px"}}
+                                fontWeight="600"
+                            >
+                                More about experience
+                            </Text>
 
-            <Whatsapp />
+                            <AccordionIcon />
+                        </AccordionButton>
 
-            <Footer />
-        </Box>
+                        <AccordionPanel>
+                            <Text
+                                p="20px"
+                                fontSize={{base: "10px", xs: "13px"}}
+                                fontWeight="500"
+                            >
+                                {daytrips?.information}
+                            </Text>
+                        </AccordionPanel>
+                    </AccordionItem>
+
+                    {daytrips?.policies &&
+                        <AccordionItem>
+                            <AccordionButton
+                            >
+                                <Text
+                                    p="20px"
+                                    fontSize={{base: "13px", xs: "15px"}}
+                                    fontWeight="600"
+                                >
+                                    Cancelation polices
+                                </Text>
+
+                                <AccordionIcon />
+                            </AccordionButton>
+
+                            <AccordionPanel>
+                                <Text
+                                    p="20px"
+                                    fontSize={{base: "10px", xs: "13px"}}
+                                    fontWeight="500"
+                                >
+                                    {daytrips?.policies}
+                                </Text>
+                            </AccordionPanel>
+                        </AccordionItem>
+                    }
+
+                    <AccordionItem>
+                        <AccordionButton
+                        >
+                            <Text
+                                p="20px"
+                                fontSize={{base: "13px", xs: "15px"}}
+                                fontWeight="600"
+                            >
+                                Terms and conditions
+                            </Text>
+
+                            <AccordionIcon />
+                        </AccordionButton>
+
+                        <AccordionPanel>
+                            <Text
+                                p="20px"
+                                fontSize={{base: "10px", xs: "13px"}}
+                                fontWeight="500"
+                            >
+                                {daytrips?.conditions}
+                            </Text>
+                        </AccordionPanel>
+                    </AccordionItem>
+                </Accordion>
+            </Box>
+
+            {daytrips?.published &&
+                <Box
+                    pos="relative"
+                >
+                    <Book
+                        setCurrentOrder={setCurrentOrder}
+                        setPaymentVisible={setPaymentVisible}
+                        setTotalPay={setTotalPay}
+                        totalPay={totalPay}
+                        data={daytrips}
+                        scroll={scroll}
+                    />
+                </Box>
+            }
+        </Flex>
+
+        {paymentVisible &&
+            <Payments
+                setCurrentOrder={setCurrentOrder}
+                setPaymentVisible={setPaymentVisible}
+                totalPay={totalPay}
+                description={`${currentOrder.tourName ? currentOrder.tourName : ""}, Email: ${currentOrder.email ? currentOrder.email : ""}`}
+            />}
+
+        <Whatsapp />
+
+        <Footer />
+    </Box>
     );
 }

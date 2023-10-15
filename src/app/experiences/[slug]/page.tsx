@@ -23,7 +23,6 @@ import { getStaticData } from '@/shared/middlewares/fetcher';
 import { ExperiencesInt } from '@/interfaces/ExperiencesInt';
 import { Payments } from '@/shared/components/stripe/Payments';
 import { Book } from '@/shared/components/Book/Book';
-import { isMobile } from 'react-device-detect';
 
 export default function DetailsExperiences() {
     const { slug } = useParams();
@@ -61,9 +60,7 @@ export default function DetailsExperiences() {
     // }, [])
 
     return (
-        experience &&
         <Box>
-
             <Navbar title={"Experiences"} subtitle={"Experiences"} />
 
             <Box
@@ -77,17 +74,18 @@ export default function DetailsExperiences() {
             </Box>
 
             <Flex
-                gap="100px"
+                gap={{ base: "30px", lg: "100px" }}
                 p="0 5% 3% 5%"
                 mt="50px"
+                direction={{ base: "column", lg: "row" }}
             >
                 <Box
-                    w="55%"
+                    w={{ base: "100%", lg: "55%" }}
                 >
                     <Text
                         as="h1"
                         textDecoration="underline"
-                        fontSize="50px"
+                        fontSize={{ base: "30px", xs: "40px", lg: "50px" }}
                         textAlign="left"
                     >
                         {experience?.title}
@@ -95,7 +93,7 @@ export default function DetailsExperiences() {
 
                     <Text
                         mb="10px"
-                        fontSize="30px"
+                        fontSize={{ base: "20px", xs: "25px", lg: "30px" }}
                         textAlign="left"
                     >
                         <Text as="strong">
@@ -105,7 +103,7 @@ export default function DetailsExperiences() {
                     </Text>
 
                     <Box
-                        fontSize="20px"
+                        fontSize={{ base: "15px", xs: "20px" }}
                         fontWeight="200px"
                         mb="50px"
                     >
@@ -116,7 +114,7 @@ export default function DetailsExperiences() {
 
                     <Text
                         as="h3"
-                        fontSize="22px"
+                        fontSize={{ base: "17px", xs: "22px" }}
                         textDecoration="underline"
                         mb="20px"
                         fontWeight="400"
@@ -125,7 +123,7 @@ export default function DetailsExperiences() {
                     </Text>
 
                     <Box
-                        fontSize="20px"
+                        fontSize={{ base: "15px", xs: "20px" }}
                         fontWeight="300"
                         mb="50px"
                     >
@@ -134,40 +132,42 @@ export default function DetailsExperiences() {
                         </Text>
                     </Box>
 
-                    {!isMobile &&
-                        <>
+                    <Box
+                        display={{ base: "none", sm: "block" }}
+                    >
+                        <Text
+                            as="h3"
+                            fontSize={{ base: "17px", xs: "22px" }}
+                            textDecoration="underline"
+                            mb="20px"
+                            fontWeight="400"
+                        >
+                            Highlights
+                        </Text>
+
+                        <UnorderedList
+                            mb="50px"
+                        >
+                            {experience?.highlights?.map((item: string, index: number) => (
+                                <ListItem
+                                    key={index}
+                                    ml="30px"
+                                    fontSize={{ base: "15px", xs: "18px" }}
+                                    fontWeight="300"
+                                >
+                                    {item}
+                                </ListItem>
+                            ))}
+                        </UnorderedList>
+                    </Box>
+
+                    {experience?.included &&
+                        <Box
+                            display={{ base: "none", sm: "block" }}
+                        >
                             <Text
                                 as="h3"
-                                fontSize="22px"
-                                textDecoration="underline"
-                                mb="20px"
-                                fontWeight="400"
-                            >
-                                Highlights
-                            </Text>
-
-                            <UnorderedList
-                                mb="50px"
-                            >
-                                {experience?.highlights?.map((item: string, index: number) => (
-                                    <ListItem
-                                        key={index}
-                                        ml="30px"
-                                        fontSize="18px"
-                                        fontWeight="300"
-                                    >
-                                        {item}
-                                    </ListItem>
-                                ))}
-                            </UnorderedList>
-                        </>
-                    }
-
-                    {(experience?.included && !isMobile) &&
-                        <>
-                            <Text
-                                as="h3"
-                                fontSize="22px"
+                                fontSize={{ base: "17px", xs: "22px" }}
                                 textDecoration="underline"
                                 mb="20px"
                                 fontWeight="400"
@@ -182,7 +182,7 @@ export default function DetailsExperiences() {
                                     <ListItem
                                         listStyleType="none"
                                         ml="30px"
-                                        fontSize="18px"
+                                        fontSize={{ base: "15px", xs: "18px" }}
                                         fontWeight="300"
                                         key={index}
                                         display="flex"
@@ -195,12 +195,12 @@ export default function DetailsExperiences() {
                                     </ListItem>
                                 ))}
                             </UnorderedList>
-                        </>
+                        </Box>
                     }
 
                     <Text
                         as="h3"
-                        fontSize="22px"
+                        fontSize={{ base: "17px", xs: "22px" }}
                         textDecoration="underline"
                         mb="20px"
                         fontWeight="400"
@@ -210,24 +210,32 @@ export default function DetailsExperiences() {
 
                     <Grid
                         gridTemplateColumns="repeat(2, 1fr)"
-                        columnGap="50px"
-                        rowGap="20px"
-                        w="80%"
+                        columnGap={{ base: "20px", xs: "50px" }}
+                        rowGap={{ base: "30px", xs: "20px" }}
+                        w={{ base: "95%", xs: "80%" }}
                         m="auto"
-                        mb="50px"
+                        mb={{ base: "40px", xs: "50px" }}
                     >
                         <Text
                             display="flex"
                             alignItems="center"
-                            fontSize="15px"
+                            fontSize={{base: "10px", xs: "15px"}}
+                            flexDirection={{base: "column", xs: "row"}}
+                            justifyContent={{base: "center", xs: "flex-start"}}
+                            width={{base: "95%", xs: "100%"}}
                             fontWeight="300"
                             gap="10px"
                         >
-                            <HiOutlineUserGroup
-                                style={{
-                                    fontSize: "55px"
+                            <Box
+                                sx={{
+                                    '& > svg': {
+                                        fontSize: { base: "25px", xs: "55px" }
+                                    }
                                 }}
-                            />
+                            >
+                                <HiOutlineUserGroup />
+                            </Box>
+
                             <Text as="strong">Age</Text>
                             {experience?.details?.age}
                         </Text>
@@ -235,15 +243,23 @@ export default function DetailsExperiences() {
                         <Text
                             display="flex"
                             alignItems="center"
-                            fontSize="15px"
+                            fontSize={{base: "10px", xs: "15px"}}
+                            flexDirection={{base: "column", xs: "row"}}
+                            justifyContent={{base: "center", xs: "flex-start"}}
+                            width={{base: "95%", xs: "100%"}}
                             fontWeight="300"
                             gap="10px"
                         >
-                            <BiTimer
-                                style={{
-                                    fontSize: "55px"
+                            <Box
+                                sx={{
+                                    '& > svg': {
+                                        fontSize: { base: "25px", xs: "55px" }
+                                    }
                                 }}
-                            />
+                            >
+                                <BiTimer />
+                            </Box>
+
                             <Text as="strong">How long?</Text>
                             {experience?.details?.duration}
                         </Text>
@@ -251,15 +267,23 @@ export default function DetailsExperiences() {
                         <Text
                             display="flex"
                             alignItems="center"
-                            fontSize="15px"
+                            fontSize={{base: "10px", xs: "15px"}}
+                            flexDirection={{base: "column", xs: "row"}}
+                            justifyContent={{base: "center", xs: "flex-start"}}
+                            width={{base: "95%", xs: "100%"}}
                             fontWeight="300"
                             gap="10px"
                         >
-                            <BsTicket
-                                style={{
-                                    fontSize: "55px"
+                            <Box
+                                sx={{
+                                    '& > svg': {
+                                        fontSize: { base: "25px", xs: "55px" }
+                                    }
                                 }}
-                            />
+                            >
+                                <BsTicket />
+                            </Box>
+
                             <Text as="strong">Ticketing</Text>
                             {experience?.details?.ticket}
                         </Text>
@@ -267,15 +291,23 @@ export default function DetailsExperiences() {
                         <Text
                             display="flex"
                             alignItems="center"
-                            fontSize="15px"
+                            fontSize={{base: "10px", xs: "15px"}}
+                            flexDirection={{base: "column", xs: "row"}}
+                            justifyContent={{base: "center", xs: "flex-start"}}
+                            width={{base: "95%", xs: "100%"}}
                             fontWeight="300"
                             gap="10px"
                         >
-                            <IoCalendar
-                                style={{
-                                    fontSize: "55px"
+                            <Box
+                                sx={{
+                                    '& > svg': {
+                                        fontSize: { base: "25px", xs: "55px" }
+                                    }
                                 }}
-                            />
+                            >
+                                <IoCalendar />
+                            </Box>
+
                             <Text as="strong">Availability</Text>
                             {experience?.details?.availably}
                         </Text>
@@ -283,15 +315,23 @@ export default function DetailsExperiences() {
                         <Text
                             display="flex"
                             alignItems="center"
-                            fontSize="15px"
+                            fontSize={{base: "10px", xs: "15px"}}
+                            flexDirection={{base: "column", xs: "row"}}
+                            justifyContent={{base: "center", xs: "flex-start"}}
+                            width={{base: "95%", xs: "100%"}}
                             fontWeight="300"
                             gap="10px"
                         >
-                            <GiTalk
-                                style={{
-                                    fontSize: "55px"
+                            <Box
+                                sx={{
+                                    '& > svg': {
+                                        fontSize: { base: "25px", xs: "55px" }
+                                    }
                                 }}
-                            />
+                            >
+                                <GiTalk />
+                            </Box>
+
                             <Text as="strong">Lenguage</Text>
                             {experience?.details?.language}
                         </Text>
@@ -300,15 +340,23 @@ export default function DetailsExperiences() {
                             w="100%"
                             display="flex"
                             alignItems="center"
-                            fontSize="15px"
+                            fontSize={{base: "10px", xs: "15px"}}
+                            flexDirection={{base: "column", xs: "row"}}
+                            justifyContent={{base: "center", xs: "flex-start"}}
+                            width={{base: "95%", xs: "100%"}}
                             fontWeight="300"
                             gap="10px"
                         >
-                            <SlLocationPin
-                                style={{
-                                    fontSize: "75px"
+                            <Box
+                                sx={{
+                                    '& > svg': {
+                                        fontSize: { base: "25px", xs: "55px" }
+                                    }
                                 }}
-                            />
+                            >
+                                <SlLocationPin />
+                            </Box>
+
                             <Text as="strong">Meeting Point</Text>
                             {experience?.details?.meetengPoint?.label}
                         </Text>
@@ -316,15 +364,23 @@ export default function DetailsExperiences() {
                         <Text
                             display="flex"
                             alignItems="center"
-                            fontSize="15px"
+                            fontSize={{base: "10px", xs: "15px"}}
+                            flexDirection={{base: "column", xs: "row"}}
+                            justifyContent={{base: "center", xs: "flex-start"}}
+                            width={{base: "95%", xs: "100%"}}
                             fontWeight="300"
                             gap="10px"
                         >
-                            <FaUniversalAccess
-                                style={{
-                                    fontSize: "55px"
+                            <Box
+                                sx={{
+                                    '& > svg': {
+                                        fontSize: { base: "25px", xs: "55px" }
+                                    }
                                 }}
-                            />
+                            >
+                                <FaUniversalAccess />
+                            </Box>
+
                             <Text as="strong">Accessibility</Text>
                             {experience?.details?.accessibility}
                         </Text>
@@ -332,27 +388,37 @@ export default function DetailsExperiences() {
                         <Text
                             display="flex"
                             alignItems="center"
-                            fontSize="15px"
+                            fontSize={{base: "10px", xs: "15px"}}
+                            flexDirection={{base: "column", xs: "row"}}
+                            justifyContent={{base: "center", xs: "flex-start"}}
+                            width={{base: "95%", xs: "100%"}}
                             fontWeight="300"
                             gap="10px"
                         >
-                            <MdAccessible
-                                style={{
-                                    fontSize: "55px"
+                            <Box
+                                sx={{
+                                    '& > svg': {
+                                        fontSize: { base: "25px", xs: "55px" }
+                                    }
                                 }}
-                            />
+                            >
+                                <MdAccessible />
+                            </Box>
+
                             <Text as="strong">Mobility</Text>
                             {experience?.details?.mobility}
                         </Text>
                     </Grid>
 
-                    {isMobile &&
-                        <Accordion>
+                    <Box
+                        display={{ base: "block", sm: "none" }}
+                    >
+                        <Accordion allowToggle>
                             <AccordionItem>
                                 <AccordionButton>
                                     <Text
                                         p="20px"
-                                        fontSize="15px"
+                                        fontSize={{base: "13px", xs: "15px"}}
                                         fontWeight="600"
                                     >
                                         Highlights
@@ -369,7 +435,7 @@ export default function DetailsExperiences() {
                                             <ListItem
                                                 key={index}
                                                 ml="30px"
-                                                fontSize="18px"
+                                                fontSize={{base: "10px", xs: "13px"}}
                                                 fontWeight="300"
                                             >
                                                 {item}
@@ -383,7 +449,7 @@ export default function DetailsExperiences() {
                                 <AccordionButton>
                                     <Text
                                         p="20px"
-                                        fontSize="15px"
+                                        fontSize={{base: "13px", xs: "15px"}}
                                         fontWeight="600"
                                     >
                                         Included
@@ -400,7 +466,7 @@ export default function DetailsExperiences() {
                                             <ListItem
                                                 listStyleType="none"
                                                 ml="30px"
-                                                fontSize="18px"
+                                                fontSize={{base: "10px", xs: "13px"}}
                                                 fontWeight="300"
                                                 key={index}
                                                 display="flex"
@@ -416,15 +482,16 @@ export default function DetailsExperiences() {
                                 </AccordionPanel>
                             </AccordionItem>
                         </Accordion>
-                    }
+                    </Box>
 
-                    <Accordion allowToggle allowMultiple>
+
+                    <Accordion allowToggle>
                         <AccordionItem>
                             <AccordionButton
                             >
                                 <Text
                                     p="20px"
-                                    fontSize="15px"
+                                    fontSize={{base: "13px", xs: "15px"}}
                                     fontWeight="600"
                                 >
                                     More about experience
@@ -436,7 +503,7 @@ export default function DetailsExperiences() {
                             <AccordionPanel>
                                 <Text
                                     p="20px"
-                                    fontSize="13px"
+                                    fontSize={{base: "10px", xs: "13px"}}
                                     fontWeight="500"
                                 >
                                     {experience?.information}
@@ -450,7 +517,7 @@ export default function DetailsExperiences() {
                                 >
                                     <Text
                                         p="20px"
-                                        fontSize="15px"
+                                        fontSize={{base: "13px", xs: "15px"}}
                                         fontWeight="600"
                                     >
                                         Cancelation polices
@@ -462,7 +529,7 @@ export default function DetailsExperiences() {
                                 <AccordionPanel>
                                     <Text
                                         p="20px"
-                                        fontSize="13px"
+                                        fontSize={{base: "10px", xs: "13px"}}
                                         fontWeight="500"
                                     >
                                         {experience?.policies}
@@ -476,7 +543,7 @@ export default function DetailsExperiences() {
                             >
                                 <Text
                                     p="20px"
-                                    fontSize="15px"
+                                    fontSize={{base: "13px", xs: "15px"}}
                                     fontWeight="600"
                                 >
                                     Terms and conditions
@@ -488,7 +555,7 @@ export default function DetailsExperiences() {
                             <AccordionPanel>
                                 <Text
                                     p="20px"
-                                    fontSize="13px"
+                                    fontSize={{base: "10px", xs: "13px"}}
                                     fontWeight="500"
                                 >
                                     {experience?.conditions}

@@ -14,7 +14,6 @@ import { SelectQuantity } from '../Book/SelectQuantity';
 import { SelectTime } from '../Book/SelectTime';
 import { PricesInt } from '@/interfaces/ExperiencesInt';
 import { IoReturnDownBackSharp } from "react-icons/io5";
-import { isMobile } from 'react-device-detect';
 
 interface Props {
     isOpen: boolean;
@@ -82,7 +81,7 @@ export const ModalBook = ({
                 closeOnEsc={false}
                 closeOnOverlayClick={false}
                 isCentered
-                size="6xl"
+                size={{ base: "sm", xs: "4xl", lg: "6xl"}}
             >
                 <ModalOverlay />
                 <ModalContent
@@ -90,11 +89,11 @@ export const ModalBook = ({
                 >
                     <ModalBody>
                         <Flex
-                            gap="100px"
+                            gap={{base: "10px", xs: "40px", lg: "100px"}}
                             justifyContent="center"
-                            w="70%"
                             m="3% auto"
                             rounded="12px"
+                            direction={{base: "column", xs: "row"}}
                         >
                             <Flex
                                 direction="column"
@@ -126,8 +125,8 @@ export const ModalBook = ({
                                     prices={prices}
                                 />
 
-                                {!isMobile &&
                                     <Box
+                                        display={{base: "none", xs: "block"}}
                                         m="0 auto 0 0"
                                     >
                                         <Button 
@@ -151,7 +150,6 @@ export const ModalBook = ({
                                             Back
                                         </Button>
                                     </Box>
-                                }
                             </Flex>
 
                             <Flex
@@ -194,16 +192,15 @@ export const ModalBook = ({
                                     labelButton="BOOK AND PAY"
                                     fromCall='modal'
                                 />
-
-                                {isMobile &&
                                     <Box
-                                        m="0 auto 0 0"
+                                        m="20px auto 0 0"
+                                        display={{base: "block", xs: "none"}}
                                     >
                                         <Button 
                                             onClick={handleCancel}
-                                            p="5px 20px"
+                                            p="5px 15px"
                                             h="fit-content"
-                                            fontSize="13px"
+                                            fontSize="11px"
                                             alignItems="center"
                                             gap="7px"
                                             display="flex"
@@ -219,8 +216,6 @@ export const ModalBook = ({
                                             Back
                                         </Button>
                                     </Box>
-                                }
-
                             </Flex>
                         </Flex>
                     </ModalBody>

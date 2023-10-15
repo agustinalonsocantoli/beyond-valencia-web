@@ -20,7 +20,7 @@ export const SelectGroup = ({ handleSelect, groups }: Props) => {
                     rounded="8px"
                     border="1px solid rgba(0, 0, 0, 1)"
                     pos="relative"
-                    minW="350px"
+                    minW={{base: "300px", xs: "400px", lg: "350px"}}
                     mb="10px"
                 >
                     <Flex

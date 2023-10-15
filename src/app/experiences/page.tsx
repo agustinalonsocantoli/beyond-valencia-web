@@ -11,6 +11,7 @@ import { DataInt } from "../../interfaces/services.model";
 import { getRevalidatedData, getStaticData } from "@/shared/middlewares/fetcher";
 import { isMobile } from 'react-device-detect';
 import { Services } from "@/shared/components/Services/Services";
+import { Box } from "@chakra-ui/react";
 
 export default async function Experiences() {
     const { data: multimediaExperiences } = await getStaticData("multimedia?landing=experiences")
@@ -24,26 +25,30 @@ export default async function Experiences() {
     }
 
     return (
-        <div >
+        <Box>
             <Navbar title={"Experiences"} subtitle={"Experiences"} />
 
             <Exposure
                 data={multimediaExperiences}
             />
 
-            {isMobile
-            ? 
+            <Box
+                display={{ base: "block", xs: "none" }}
+            >
                 <Services
-                    sliderPage1={experiencesData} 
+                    sliderPage1={experiencesData}
                     sliderPage2={contentDaytrips}
                 />
-            :
-            <GroupServices 
-                    sliderPage1={experiencesData} 
-                    sliderPage2={contentDaytrips}
-                />
-            }
+            </Box>
 
+            <Box
+                display={{ base: "none", xs: "block" }}
+            >
+                <GroupServices
+                    sliderPage1={experiencesData}
+                    sliderPage2={contentDaytrips}
+                />
+            </Box>
 
             <Events />
 
@@ -52,6 +57,6 @@ export default async function Experiences() {
             <Whatsapp />
 
             <Footer />
-        </div>
+        </Box>
     );
 }

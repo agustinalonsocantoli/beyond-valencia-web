@@ -19,8 +19,7 @@ export const Events = () => {
                     as="h1"
                     fontSize={{ base: "45px", xs: "50px", sm: "50px", md: "50px", lg: "70px"}}
                     w={{ base: "100%", lg: "80%"}}
-                    pl={{ base: "0", lg: "120px"}}
-                    p={{ base: "0 10px", xs: "0 10px", sm: "0 10px", md: "0 10px", lg: "0"}}
+                    p={{ base: "0 10px", xs: "0 10px", sm: "0 10px", md: "0 10px", lg: "0 0 0 120px"}}
                     mt="-10px"
                     mb={{ base: "30px", lg: "0px"}}
                     fontWeight="600"

@@ -16,13 +16,13 @@ export const Third = ({ title, subtitle, date, setDate }: Props) => {
 
     return(
         <Box
-            w="70%"
             m="auto"
-            mt="50px"
+            mt={{ base: "20px", xs: "30px", lg: "45px" }}
+            w={{ base: "85%", md: "75%", lg: "70%" }}
         >
             <Text 
                 as="h2"
-                fontSize="40px"
+                fontSize={{ base: "30px", xs: "35px", lg: "40px" }}
                 fontWeight="700"
             >
                 {title}
@@ -30,6 +30,7 @@ export const Third = ({ title, subtitle, date, setDate }: Props) => {
 
             <Text 
                 as="h3"
+                w={{ base: "80%", xs: "60%", lg: "50%" }}
                 color="#6D6D6D"
                 mb="20px"
                 fontSize="15px"

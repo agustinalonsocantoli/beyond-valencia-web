@@ -81,17 +81,18 @@ export const Complete = ({
     return(
         <Box
             p="0 3%"
-            mt="50px"
+            mt={{base: "10px", xs: "30px", lg: "50px"}}
         >
 
             <Box
-                w="70%"
+                w={{base: "85%", xs: "75%", lg: "70%"}}
                 margin="auto"
                 mb="30px"
+                mt={{base: "10px", xs: "30px", lg: "0"}}
             >
                 <Text
                     as="h2"
-                    fontSize="40px"
+                    fontSize={{base: "30px", xs: "35px", lg: "40px"}}
                     fontWeight="700"
                 >
                     {title}
@@ -110,6 +111,7 @@ export const Complete = ({
             <Flex
                 gap="15px"
                 mb="50px"
+                direction={{base: "column", xs: "row"}}
             >
                 <CodeOrders
                     small={small}

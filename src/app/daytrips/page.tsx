@@ -6,11 +6,10 @@ import { Footer } from "@/shared/components/Footer/Footer";
 import { Events } from "@/shared/components/Events/Events";
 import { Whatsapp } from "@/shared/components/Custom/Whatsapp";
 import { Options } from "@/shared/components/Options/Options";
-// import { Services } from "../components/shared/Services";
 import { DataInt } from "@/interfaces/services.model";
 import { getRevalidatedData, getStaticData } from "@/shared/middlewares/fetcher";
-import { isMobile } from 'react-device-detect';
 import { Services } from "@/shared/components/Services/Services";
+import { Box } from "@chakra-ui/react";
 
 export default async function Daytrips() {
     const { data: multimediaDaytrips } = await getStaticData("multimedia?landing=daytrips")
@@ -24,25 +23,30 @@ export default async function Daytrips() {
     }
 
     return (
-        <div>
+        <Box>
             <Navbar title={"Day Trips"} subtitle={"Days Trips"} />
 
             <Exposure
                 data={multimediaDaytrips}
             />
 
-            {isMobile
-                ?
+            <Box
+                display={{base: "block", xs: "none"}}
+            >
                 <Services
                     sliderPage1={daytripsData}
                     sliderPage2={contentExperiences}
                 />
-                :
+            </Box>
+
+            <Box
+                display={{base: "none", xs: "block"}}
+            >
                 <GroupServices
                     sliderPage1={daytripsData}
                     sliderPage2={contentExperiences}
                 />
-            }
+            </Box>
 
 
             <Events />
@@ -52,6 +56,6 @@ export default async function Daytrips() {
             <Whatsapp />
 
             <Footer />
-        </div>
+        </Box>
     );
 }

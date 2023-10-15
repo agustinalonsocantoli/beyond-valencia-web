@@ -27,7 +27,7 @@ import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default  function Lockers() {
+export default function Lockers() {
     const toast = useToast();
     const dateNow = new Date();
     const router = useRouter();
@@ -64,13 +64,13 @@ export default  function Lockers() {
 
     useEffect(() => {
         getStaticData("lockers")
-        .then((response: any) => {
-            setLockersProducts(response?.data)
-        })
+            .then((response: any) => {
+                setLockersProducts(response?.data)
+            })
     }, [])
 
     useEffect(() => {
-        lockersProducts && 
+        lockersProducts &&
             setSelectedProduct(getProdruct(lockersProducts, time))
 
     }, [time, lockersProducts])
@@ -87,7 +87,7 @@ export default  function Lockers() {
                 router.push("/")
             }, 2000);
         }
-        
+
         setCurrentOrder((prev: any) => ({
             ...prev,
             name,
@@ -132,7 +132,7 @@ export default  function Lockers() {
 
                 setSubTotal(total);
                 setTotalPay(total);
-                setCurrentOrder((prev: any) => ({ ...prev, date: format(new Date(date), 'dd/MM/yyy')}));
+                setCurrentOrder((prev: any) => ({ ...prev, date: format(new Date(date), 'dd/MM/yyy') }));
                 setPage(prev => prev + 1);
             }
         }
@@ -170,16 +170,19 @@ export default  function Lockers() {
 
     return (
         <Flex
-            h="100vh"
+            h={{ base: "auto", lg: "100vh" }}
+            w={{ base: "100%", lg: "auto" }}
+            direction={{ base: "column", lg: "row" }}
             bg="#FFFBF6"
         >
             <Box
-                flex="1"
+                flex={{ base: "auto", lg: "1" }}
+                h={{ base: "20vh", xs: "30vh", lg: "auto" }}
             >
-                <Image 
-                    src={lockers} 
-                    alt="img/lockers" 
-                    loading='lazy' 
+                <Image
+                    src={lockers}
+                    alt="img/lockers"
+                    loading='lazy'
                     style={{
                         objectFit: "cover",
                         height: "100%",
@@ -194,16 +197,18 @@ export default  function Lockers() {
                 flex="1"
                 bg="#FFFBF6"
                 pos="relative"
+                minH={{base: "80vh", xs: "70vh", lg: "auto"}}
+                h={{base: "80vh", sm: "70vh", lg: "auto"}}
             >
-                <Box 
-                    w="300px"
+                <Box
+                    w={{base: "200px", xs: "300px"}}
                     mt="-5px"
                     ml="-6px"
                 >
                     <Link href={'/'}>
-                        <Image 
-                            src={logo} 
-                            alt="img/logo" 
+                        <Image
+                            src={logo}
+                            alt="img/logo"
                             style={{
                                 objectFit: "cover",
                                 height: "100%",
@@ -261,10 +266,10 @@ export default  function Lockers() {
                 {page !== 3 &&
                     <Box
                         pos="absolute"
-                        bottom="50px"
-                        right="100px"
+                        bottom={{base: "30px", md: "20%", lg: "40px"}}
+                        right={{base: "50px", md: "100px", lg: "100px"}}
                     >
-                        <Button 
+                        <Button
                             border="none"
                             bg="rgba(0, 0, 0, .7)"
                             rounded="20px"
@@ -298,7 +303,7 @@ export default  function Lockers() {
                         bottom="10px"
                         left="20px"
                     >
-                        <Button 
+                        <Button
                             border="none"
                             bg="rgba(0, 0, 0, .7)"
                             rounded="20px"

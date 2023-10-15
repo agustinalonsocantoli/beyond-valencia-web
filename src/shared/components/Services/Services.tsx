@@ -62,13 +62,10 @@ export const Services = (props: Props) => {
                 </Text>
             </Flex>
 
-            <Box
-                as={Swiper}
-                modules={[Navigation]}
-                navigation
+            <Swiper
                 spaceBetween={80}
                 slidesPerView={1}
-                p={{ base: "15px 5%", xs: "15px 5%", sm: "15px 5%", md: "15px 5%", lg: "15px 5%", xl: "15px 5%", '2xl': "15px 3%"}}
+                style={{ padding: "15px 3%" }}
             >
                 {
                     sliderPage1?.content?.map((item: ContentInt, index: number) => (
@@ -88,19 +85,15 @@ export const Services = (props: Props) => {
                                 flex="1"
                                 minHeight="600px"
                                 position="relative"
-                                _hover={{
-                                    base: {
-                                        transform: "scale(1)"
-                                    },
-                                    md:{
-                                        transform: "scale(1.05)",
-                                        transition: "all 1s ease-in-out"
-                                    }
-                                }}
+                                justifyContent="center"
                                 _after={{
                                     content: '""',
                                     position: "absolute",
-                                    width: "100%",
+                                    top: "0",
+                                    right: "0",
+                                    left: "0",
+                                    bottom: "0",
+                                    width: "calc(385px - 3.5%)",
                                     height: "100%",
                                     backgroundColor: "rgba(0, 0, 0, .4)",
                                     borderRadius: "20px"
@@ -166,19 +159,14 @@ export const Services = (props: Props) => {
                                 flex="1"
                                 minHeight="600px"
                                 position="relative"
-                                _hover={{
-                                    base: {
-                                        transform: "scale(1)"
-                                    },
-                                    md:{
-                                        transform: "scale(1.05)",
-                                        transition: "all 1s ease-in-out"
-                                    }
-                                }}
                                 _after={{
                                     content: '""',
                                     position: "absolute",
-                                    width: "100%",
+                                    top: "0",
+                                    right: "0",
+                                    left: "0",
+                                    bottom: "0",
+                                    width: "calc(385px - 3.5%)",
                                     height: "100%",
                                     backgroundColor: "rgba(0, 0, 0, .4)",
                                     borderRadius: "20px"
@@ -244,19 +232,14 @@ export const Services = (props: Props) => {
                                 flex="1"
                                 minHeight="600px"
                                 position="relative"
-                                _hover={{
-                                    base: {
-                                        transform: "scale(1)"
-                                    },
-                                    md:{
-                                        transform: "scale(1.05)",
-                                        transition: "all 1s ease-in-out"
-                                    }
-                                }}
                                 _after={{
                                     content: '""',
                                     position: "absolute",
-                                    width: "100%",
+                                    top: "0",
+                                    right: "0",
+                                    left: "0",
+                                    bottom: "0",
+                                    width: "calc(385px - 3.5%)",
                                     height: "100%",
                                     backgroundColor: "rgba(0, 0, 0, .4)",
                                     borderRadius: "20px"
@@ -302,7 +285,7 @@ export const Services = (props: Props) => {
                         </SwiperSlide>
                     ))
                 }
-            </Box>
+            </Swiper>
 
             <Box
                 h="100px"

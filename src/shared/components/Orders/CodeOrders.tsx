@@ -26,11 +26,12 @@ export const CodeOrders = (props: Props) => {
             p="10px"
             rounded="12px"
             justifyContent="space-between"
+            mb={{base: "15px", xs: "0"}}
         >
             {small > 0 &&
                 <Text
                     as="h3"
-                    fontSize="15px"
+                    fontSize={{base: "13px", xs: "15px"}}
                     fontWeight="400"
                 >
                     {s.name} x {small}
@@ -40,7 +41,7 @@ export const CodeOrders = (props: Props) => {
             {medium > 0 &&
                 <Text
                     as="h3"
-                    fontSize="15px"
+                    fontSize={{base: "13px", xs: "15px"}}
                     fontWeight="400"
                 >
                     {m.name} x {medium}
@@ -50,7 +51,7 @@ export const CodeOrders = (props: Props) => {
             {normal > 0 &&
                 <Text
                     as="h3"
-                    fontSize="15px"
+                    fontSize={{base: "13px", xs: "15px"}}
                     fontWeight="400"
                 >
                     {n.name} x {normal}
@@ -59,7 +60,7 @@ export const CodeOrders = (props: Props) => {
 
             <Text
                 as="h2"
-                fontSize="18px"
+                fontSize={{base: "15px", xs: "18px"}}
                 fontWeight="600"
                 m="5px 0 5px 0"
             >
@@ -76,16 +77,16 @@ export const CodeOrders = (props: Props) => {
             </Text>
 
             <FormLabel
-                fontSize="15px"
+                fontSize={{base: "13px", xs: "15px"}}
                 fontWeight="600"
-                mb="5px"
+                mb={{base: "3px", xs: "5px"}}
             >
                 Enter your code here!
             </FormLabel>
 
             <Flex
                 direction="column"
-                gap="15px"
+                gap={{base: "10px", xs: "15px"}}
             >
                 <Input 
                     type="text" 
@@ -93,7 +94,7 @@ export const CodeOrders = (props: Props) => {
                     onChange={handleGetCode}
                     outline="none"
                     p="5px 2px"
-                    fontSize="13px"
+                    fontSize={{base: "10px", xs: "13px"}}
                     rounded="0"
                     h="fit-content"
                     fontWeight="300"
@@ -105,7 +106,7 @@ export const CodeOrders = (props: Props) => {
                     border="none"
                     w="60%"
                     bg="rgba(0, 0, 0, .7)"
-                    p="7px 15px"
+                    p={{base: "5px 10px", xs: "7px 15px"}}
                     rounded="20px"
                     color="#FFFFFF"
                     fontWeight="400"

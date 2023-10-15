@@ -21,10 +21,10 @@ export const CodeBook = (props: Props) => {
         <Flex
             direction="column"
             border="1px solid #000"
-            mb="20px"
+            mb={{ base: "0", xs: "20px" }}
             p="10px"
             rounded="12px"
-            w="400px"
+            w={{ base: "350px", xs: "400px" }}
         >
             <Flex
                 justifyContent="space-between"
@@ -38,7 +38,7 @@ export const CodeBook = (props: Props) => {
                     {prices?.adults &&
                         <Text
                             as="h3"
-                            fontSize="15px"
+                            fontSize={{ base: "13px", xs: "15px" }}
                             fontWeight="400px"
                         >
                             Adults {adults !== null ? adults : 0} x €{prices?.adults}
@@ -48,7 +48,7 @@ export const CodeBook = (props: Props) => {
                     {prices?.children &&
                         <Text
                             as="h3"
-                            fontSize="15px"
+                            fontSize={{ base: "13px", xs: "15px" }}
                             fontWeight="400px"
                         >
                             Children {children !== null ? children : 0} x €{prices?.children}
@@ -64,7 +64,7 @@ export const CodeBook = (props: Props) => {
                     {date &&
                         <Text
                             as="h3"
-                            fontSize="15px"
+                            fontSize={{ base: "13px", xs: "15px" }}
                             fontWeight="400px"
                         >
                             Date: {date}
@@ -74,7 +74,7 @@ export const CodeBook = (props: Props) => {
                     {time &&
                         <Text
                             as="h3"
-                            fontSize="15px"
+                            fontSize={{ base: "13px", xs: "15px" }}
                             fontWeight="400px"
                         >
                             Time: {time}
@@ -104,28 +104,28 @@ export const CodeBook = (props: Props) => {
             <FormLabel
                 fontSize="15px"
                 fontWeight="600"
-                mb="5px"
+                mb={{base: "3px", xs: "5px"}}
             >
                 Enter your code here!
             </FormLabel>
 
             <Flex
-                gap="15px"
+                gap={{base: "10px", xs: "15px"}}
                 alignItems="center"
             >
-                <Input 
-                    type="text" 
-                    name="discountCode" 
-                    onChange={handleGetCode} 
+                <Input
+                    type="text"
+                    name="discountCode"
+                    onChange={handleGetCode}
                     outline="none"
-                    fontSize="13px"
+                    fontSize={{base: "10px", xs: "13px"}}
                     fontWeight="300"
                     mb="5px"
                     w="60%"
                     border="1px solid rgb(198, 40, 40)"
                 />
 
-                <Button 
+                <Button
                     onClick={validateCode}
                     border="none"
                     bg="rgba(0, 0, 0, .7)"
@@ -134,7 +134,7 @@ export const CodeBook = (props: Props) => {
                     rounded="20px"
                     color="#FFF"
                     fontWeight="300"
-                    fontSize="13px"
+                    fontSize={{base: "10px", xs: "13px"}}
                     mb="7px"
                     outline="none"
                     _active={{ transform: "scale(0.9)", transition: "all 200ms ease" }}

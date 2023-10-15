@@ -163,17 +163,20 @@ export default function Bikes() {
 
     return (
         <Flex
-            h="100vh"
+            h={{ base: "auto", lg: "100vh"}}
+            w={{ base: "100%", lg: "auto"}}
+            direction={{ base: "column-reverse", lg: "row"}}
             bg="#FFFBF6"
         >
-
             <Box
                 flex="1"
                 bg="#FFFBF6"
                 pos="relative"
+                minH={{base: "80vh", xs: "70vh", lg: "auto"}}
+                h={{base: "80vh", sm: "70vh", lg: "auto"}}
             >
                 <Box
-                    w="300px"
+                    w={{base: "200px", xs: "300px"}}
                     mt="-5px"
                     ml="-6px"
                 >
@@ -236,8 +239,8 @@ export default function Bikes() {
                 {page !== 3 &&
                     <Box
                         pos="absolute"
-                        bottom="50px"
-                        right="100px"
+                        bottom={{base: "30px", md: "20%", lg: "40px"}}
+                        right={{base: "50px", md: "100px", lg: "100px"}}
                     >
                         <Button 
                             border="none"
@@ -303,7 +306,8 @@ export default function Bikes() {
             <Box w="10px" bg="#000000" />
 
             <Box
-                flex="1"
+                flex={{base: "auto", lg: "1"}}
+                h={{base: "20vh", xs: "30vh", lg: "auto"}}
             >
                 <Image 
                     src={!isMobile ? bikes : bikesMb} 

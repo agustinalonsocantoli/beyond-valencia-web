@@ -49,8 +49,8 @@ export const FormBook = ({ handleSubmit, labelButton, fromCall }: Props) => {
                 <FormLabel 
                     htmlFor="name"
                     fontSize={fromCall === "orders" ?
-                        "15px" :
-                        "18px"
+                        {base: "13px", xs: "15px"} :
+                        {base: "15px", xs: "18px"}
                     }
                     fontWeight="600"
                     mb={fromCall === "orders" ?
@@ -77,7 +77,7 @@ export const FormBook = ({ handleSubmit, labelButton, fromCall }: Props) => {
                     outline="none"
                     p="5px 2px"
                     h="fit-content"
-                    fontSize="13px"
+                    fontSize={{base: "10px", xs: "13px"}}
                     fontWeight="300"
                     mb={fromCall === "orders" ? 
                         "5px" :
@@ -106,8 +106,8 @@ export const FormBook = ({ handleSubmit, labelButton, fromCall }: Props) => {
                 <FormLabel 
                     htmlFor="email"
                     fontSize={fromCall === "orders" ?
-                        "15px" :
-                        "18px"
+                        {base: "13px", xs: "15px"} :
+                        {base: "15px", xs: "18px"}
                     }
                     fontWeight="600"
                     mb={fromCall === "orders" ?
@@ -134,7 +134,7 @@ export const FormBook = ({ handleSubmit, labelButton, fromCall }: Props) => {
                     outline="none"
                     p="5px 2px"
                     h="fit-content"
-                    fontSize="13px"
+                    fontSize={{base: "10px", xs: "13px"}}
                     fontWeight="300"
                     mb={fromCall === "orders" ? 
                         "5px" :
@@ -164,8 +164,8 @@ export const FormBook = ({ handleSubmit, labelButton, fromCall }: Props) => {
                 <FormLabel 
                     htmlFor="phone"
                     fontSize={fromCall === "orders" ?
-                        "15px" :
-                        "18px"
+                        {base: "13px", xs: "15px"} :
+                        {base: "15px", xs: "18px"}
                     }
                     fontWeight="600"
                     mb={fromCall === "orders" ?
@@ -192,7 +192,7 @@ export const FormBook = ({ handleSubmit, labelButton, fromCall }: Props) => {
                     outline="none"
                     p="5px 2px"
                     h="fit-content"
-                    fontSize="13px"
+                    fontSize={{base: "10px", xs: "13px"}}
                     fontWeight="300"
                     mb={fromCall === "orders" ? 
                         "5px" :
@@ -221,8 +221,8 @@ export const FormBook = ({ handleSubmit, labelButton, fromCall }: Props) => {
                 <FormLabel 
                     htmlFor="comment"
                     fontSize={fromCall === "orders" ?
-                        "15px" :
-                        "18px"
+                        {base: "13px", xs: "15px"} :
+                        {base: "15px", xs: "18px"}
                     }
                     fontWeight="600"
                     mb={fromCall === "orders" ?
@@ -241,9 +241,9 @@ export const FormBook = ({ handleSubmit, labelButton, fromCall }: Props) => {
                     outline="none"
                     resize="none"
                     p="5px 2px"
-                    fontSize="13px"
+                    fontSize={{base: "10px", xs: "13px"}}
                     fontWeight="300"
-                    mb="20px"
+                    mb={{base: "15px", xs: "20px"}}
                     h={fromCall === "orders" ?
                         "55px" :
                         "100px"
@@ -263,10 +263,10 @@ export const FormBook = ({ handleSubmit, labelButton, fromCall }: Props) => {
                     p="10px 15px"
                     h="fit-content"
                     rounded="20px"
-                    w="60%"
+                    w={{base: "100%", xs: "60%"}}
                     color="#FFFFFF"
                     fontWeight="600"
-                    fontSize="15px"
+                    fontSize={"15px"}
                     _active={{
                         transform: "scale(0.9)",
                         transition: "all 200ms ease"

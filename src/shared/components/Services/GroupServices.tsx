@@ -62,13 +62,12 @@ export const GroupServices = (props: Props) => {
                 </Text>
             </Flex>
 
-            <Box
-                as={Swiper}
+            <Swiper
                 modules={[Navigation]}
                 navigation
                 spaceBetween={80}
                 slidesPerView={1}
-                p={{ base: "15px 5%", xs: "15px 5%", sm: "15px 5%", md: "15px 5%", lg: "15px 5%", xl: "15px 5%", '2xl': "15px 3%"}}
+                style={{ padding: "15px 3%" }}
             >
                 <SwiperSlide
                     style={{
@@ -101,7 +100,11 @@ export const GroupServices = (props: Props) => {
                                 _after={{
                                     content: '""',
                                     position: "absolute",
-                                    width: "100%",
+                                    top: "0",
+                                    right: "0",
+                                    left: "0",
+                                    bottom: "0",
+                                    width: "385px",
                                     height: "100%",
                                     backgroundColor: "rgba(0, 0, 0, .4)",
                                     borderRadius: "20px"
@@ -181,7 +184,11 @@ export const GroupServices = (props: Props) => {
                                     _after={{
                                         content: '""',
                                         position: "absolute",
-                                        width: "100%",
+                                        top: "0",
+                                        right: "0",
+                                        left: "0",
+                                        bottom: "0",
+                                        width: "385px",
                                         height: "100%",
                                         backgroundColor: "rgba(0, 0, 0, .4)",
                                         borderRadius: "20px"
@@ -261,7 +268,11 @@ export const GroupServices = (props: Props) => {
                                     _after={{
                                         content: '""',
                                         position: "absolute",
-                                        width: "100%",
+                                        top: "0",
+                                        right: "0",
+                                        left: "0",
+                                        bottom: "0",
+                                        width: "385px",
                                         height: "100%",
                                         backgroundColor: "rgba(0, 0, 0, .4)",
                                         borderRadius: "20px"
@@ -308,7 +319,7 @@ export const GroupServices = (props: Props) => {
                         }
                     </SwiperSlide>
                 }
-            </Box>
+            </Swiper>
 
             <Box
                 h="100px"

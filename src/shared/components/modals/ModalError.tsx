@@ -15,7 +15,7 @@ export const ModalError = ({ onClose, isOpen, message }: Props) => {
                 isOpen={isOpen}
                 onClose={onClose}
                 isCentered
-                size="3xl"
+                size={{ base: "sm", xs: "2xl", lg: "3xl"}}
             >
                 <ModalOverlay />
                 <ModalContent
@@ -34,7 +34,7 @@ export const ModalError = ({ onClose, isOpen, message }: Props) => {
                         >
                             <Text
                                 as="h1"
-                                fontSize="40px"
+                                fontSize={{base: "25px", xs: "35px", lg: "40px"}}
                                 fontWeight="400"
                             >
                                 {message}
@@ -43,7 +43,7 @@ export const ModalError = ({ onClose, isOpen, message }: Props) => {
                             <MdError 
                                 style={{
                                     color: "#DC2222",
-                                    fontSize: "200px"
+                                    fontSize: '150px'
                                 }}
                             />
                         </Flex>

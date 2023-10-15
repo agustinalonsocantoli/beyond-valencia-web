@@ -13,8 +13,8 @@ export const ModalPaySuccess = ({ onClose, isOpen }: Props) => {
             isOpen={isOpen}
             onClose={onClose}
             isCentered
-            size="3xl"
-        >
+            size={{ base: "sm", xs: "2xl", lg: "3xl"}}
+            >
             <ModalOverlay />
 
             <ModalContent
@@ -33,7 +33,7 @@ export const ModalPaySuccess = ({ onClose, isOpen }: Props) => {
                     >
                         <Text 
                             as="h1"
-                            fontSize="40px"
+                            fontSize={{base: "25px", xs: "35px", lg: "40px"}}
                             fontWeight="400"
                         >
                             Successful Payment
@@ -42,7 +42,7 @@ export const ModalPaySuccess = ({ onClose, isOpen }: Props) => {
                         <BsCheckCircleFill 
                             style={{
                                 color: "#52DD11",
-                                fontSize: '200px'
+                                fontSize: '150px'
                             }}
                         />
                     </Flex>

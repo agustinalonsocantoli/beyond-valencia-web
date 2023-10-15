@@ -2,7 +2,7 @@ import lockers from '../../../../public/Options/lockers.jpg';
 import bikes from '../../../../public/Options/bikes.jpg';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Box, Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text, Link as ChakraLink } from '@chakra-ui/react';
 
 export const Options = () => {
     return (
@@ -25,21 +25,20 @@ export const Options = () => {
                     }}
                 />
 
-                <Link
-                    style={{
-                        position: "absolute",
-                        top: "40%",
-                        left: "10%",
-                        padding: "10px 25px",
-                        background: "rgba(0, 0, 0, .7)",
-                        borderRadius: "12px"
-                    }}
+                <ChakraLink
+                    as={Link}
+                    position= "absolute"
+                    top= "40%"
+                    left={{base: "13%", md: "25%", lg: "10%"}}
+                    padding= "10px 25px"
+                    background= "rgba(0, 0, 0, .7)"
+                    borderRadius= "12px"
                     href="/lockers"
                 >
                     <Text
                         as="h1"
                         color="#FFFFFF"
-                        fontSize={{ base: "35px", xs: "60px", lg: "80px"}}
+                        fontSize={{ base: "35px", xs: "60px", md: "80px"}}
                         fontWeight="600"
                     >
                         LOCKERS &
@@ -48,14 +47,14 @@ export const Options = () => {
                     <Text
                         as="h1"
                         color="#FFFFFF"
-                        fontSize={{ base: "35px", xs: "60px", lg: "80px"}}
+                        fontSize={{ base: "35px", xs: "60px", md: "80px"}}
                         fontWeight="600"
-                        mt={{ base: "0", lg: "-50px"}}
+                        mt={{ base: "0", md: "-50px"}}
                     >
                         CONSIGNAS
                     </Text>
 
-                </Link>
+                </ChakraLink>
             </Box>
 
             <Box w="10px" bg="#000000"/>
@@ -74,21 +73,20 @@ export const Options = () => {
                     }}
                 />
 
-                <Link
-                    style={{
-                        position: "absolute",
-                        top: "40%",
-                        left: "25%",
-                        padding: "10px 25px",
-                        background: "rgba(0, 0, 0, .7)",
-                        borderRadius: "12px"
-                    }}
+                <ChakraLink
+                    as={Link}
+                    position= "absolute"
+                    top= "40%"
+                    left={{base: "25%", md: "30%", lg: "25%"}}
+                    padding= "10px 25px"
+                    background= "rgba(0, 0, 0, .7)"
+                    borderRadius= "12px"
                     href="/bikes"
                 >
                     <Text
                         as="h1"
                         color="#FFFFFF"
-                        fontSize={{ base: "35px", xs: "60px", lg: "80px"}}
+                        fontSize={{ base: "35px", xs: "60px", md: "80px"}}
                         fontWeight="600"
                     >
                         BIKE
@@ -97,15 +95,15 @@ export const Options = () => {
                     <Text
                         as="h1"
                         color="#FFFFFF"
-                        fontSize={{ base: "35px", xs: "60px", lg: "80px"}}
+                        fontSize={{ base: "35px", xs: "60px", md: "80px"}}
                         fontWeight="600"
-                        mt={{ base: "0", lg: "-50px"}}
+                        mt={{ base: "0", md: "-50px"}}
                     >
                         RENTAL
                     </Text>
 
-                </Link>
+                </ChakraLink>
             </Box>
-        </Flex>
+        </Flex >
     );
 };

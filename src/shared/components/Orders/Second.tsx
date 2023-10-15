@@ -1,7 +1,6 @@
 import { OrdersDataInt, ProductInt } from "@/interfaces/orders.model";
 import { Orders } from "../Custom/Orders";
 import { Box, Flex, Text } from "@chakra-ui/react";
-import { isMobile } from "react-device-detect";
 
 interface Props {
     title: string;
@@ -33,14 +32,14 @@ export const Second = (props: Props) => {
 
     return (
         <Box
-            width="70%"
             m="auto"
-            mt="50px"
             mb="80px"
+            mt={{ base: "20px", xs: "30px", lg: "45px" }}
+            w={{ base: "85%", md: "75%", lg: "70%" }}
         >
             <Text
                 as="h2"
-                fontSize="40px"
+                fontSize={{ base: "30px", xs: "35px", lg: "40px" }}
                 fontWeight="700"
             >
                 {title}
@@ -48,7 +47,7 @@ export const Second = (props: Props) => {
 
             <Text
                 as="h3"
-                w="50%"
+                w={{ base: "80%", xs: "60%", lg: "50%" }}
                 color="#6D6D6D"
                 mb="20px"
                 fontSize="15px"
@@ -65,10 +64,10 @@ export const Second = (props: Props) => {
                     alignItems="center"
                     border="1px solid #000000"
                     rounded="20px"
-                    p="10px 15px 10px 70px"
+                    p={{ base: "5px 15px 5px 70px", xs: "10px 15px 10px 70px" }}
                     color="#000"
                     fontWeight="700"
-                    fontSize="17px"
+                    fontSize={{ base: "15px", xs: "17px" }}
                     mt="10px"
                 >
                     <Text as="span">{s.name}</Text>
@@ -78,19 +77,19 @@ export const Second = (props: Props) => {
                 <Flex
                     justifyContent="space-between"
                     mr="5%"
-                    p="10px 15px 10px 70px"
-                    mb="10px"
+                    p={{ base: "5px 15px 5px 70px", xs: "10px 15px 10px 70px" }}
+                    mb={{ base: "5px", xs: "10px" }}
                 >
                     <Flex
                         direction="column"
                         fontWeight="400"
-                        fontSize="15px"
+                        fontSize={{ base: "10px", xs: "15px" }}
                     >
                         <Text as="span">{s.description}</Text>
                         <Text as="span">{s.others}</Text>
                     </Flex>
 
-                    <Text as="span">
+                    <Text as="span" fontSize={{ base: "10px", xs: "15px" }}>
                         <Text as="span">Price per item {product?.price?.small}€</Text>
                     </Text>
                 </Flex>
@@ -104,10 +103,10 @@ export const Second = (props: Props) => {
                     alignItems="center"
                     border="1px solid #000000"
                     rounded="20px"
-                    p="10px 15px 10px 70px"
+                    p={{ base: "5px 15px 5px 70px", xs: "10px 15px 10px 70px" }}
                     color="#000"
                     fontWeight="700"
-                    fontSize="17px"
+                    fontSize={{ base: "15px", xs: "17px" }}
                     mt="10px"
                 >
                     <Text as="span">{m.name}</Text>
@@ -117,19 +116,19 @@ export const Second = (props: Props) => {
                 <Flex
                     justifyContent="space-between"
                     mr="5%"
-                    p="10px 15px 10px 70px"
-                    mb="10px"
+                    p={{ base: "5px 15px 5px 70px", xs: "10px 15px 10px 70px" }}
+                    mb={{ base: "5px", xs: "10px" }}
                 >
                     <Flex
-                                                direction="column"
-                                                fontWeight="400"
-                                                fontSize="15px"
+                        direction="column"
+                        fontWeight="400"
+                        fontSize={{ base: "10px", xs: "15px" }}
                     >
                         <Text as="span">{m.description}</Text>
                         <Text as="span">{m.others}</Text>
                     </Flex>
 
-                    <Text as="span">
+                    <Text as="span"  fontSize={{ base: "10px", xs: "15px" }}>
                         <Text as="span">Price per item {product?.price.medium}€</Text>
                     </Text>
                 </Flex>
@@ -143,10 +142,10 @@ export const Second = (props: Props) => {
                     alignItems="center"
                     border="1px solid #000000"
                     rounded="20px"
-                    p="10px 15px 10px 70px"
+                    p={{base: "5px 15px 5px 70px", xs: "10px 15px 10px 70px"}}
                     color="#000"
                     fontWeight="700"
-                    fontSize="17px"
+                    fontSize={{ base: "15px", xs: "17px" }}
                     mt="10px"
                 >
                     <Text as="span">{n.name}</Text>
@@ -156,13 +155,13 @@ export const Second = (props: Props) => {
                 <Flex
                     justifyContent="space-between"
                     mr="5%"
-                    p="10px 15px 10px 70px"
+                    p={{base: "5px 15px 5px 70px", xs: "10px 15px 10px 70px"}}
                 >
                     <Flex
                         direction="column"
                         fontWeight="400"
-                        fontSize="15px" 
-                        w={isMobile ? '55%' : '50%'}
+                        fontSize={{ base: "10px", xs: "15px" }}
+                        w={{ base: '55%', xs: '50%'}}
                     >
                         <Text as="span">{n.description}</Text>
                         <Text as="span">{n.others}</Text>
@@ -170,9 +169,9 @@ export const Second = (props: Props) => {
 
                     {!product?.price?.normal
                         ?
-                        <Text as="span">Free</Text>
+                        <Text as="span" fontSize={{ base: "10px", xs: "15px" }}>Free</Text>
                         :
-                        <Text as="span">
+                        <Text as="span"  fontSize={{ base: "10px", xs: "15px" }}>
                             <Text as="span">Price per item {product?.price?.normal}€</Text>
                         </Text>
                     }

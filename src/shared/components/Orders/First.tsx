@@ -18,12 +18,12 @@ export const First = (props: Props) => {
     return (
         <Box
             m="auto"
-            mt="50px"
-            w="70%"
+            mt={{base: "20px", xs: "30px", lg: "50px"}}
+            w={{base: "85%", md: "75%", lg: "70%"}}
         >
             <Text
                 as="h2"
-                fontSize="40px"
+                fontSize={{base: "30px", xs: "35px", lg: "40px"}}
                 fontWeight="700"
             >
                 {title}
@@ -31,7 +31,7 @@ export const First = (props: Props) => {
             
             <Text
                 as="h3"
-                w="50%"
+                w={{base: "80%", xs: "60%" ,lg: "50%"}}
                 fontSize="15px"
                 color="#6D6D6D"
                 fontWeight="700"
@@ -41,8 +41,9 @@ export const First = (props: Props) => {
 
             <Grid
                 gridTemplateColumns="repeat(2, 1fr)"
-                mt="50px"
-                gap="30px"
+                mt={{base: "30px", xs: "50px"}}
+                gap={{base: "15px", xs: "20px", lg: "30px"}}
+                mb={{base: "80px", xs: "0"}}
                 justifyItems="center"
                 textAlign="center"
             >
@@ -53,7 +54,7 @@ export const First = (props: Props) => {
                                 key={index}
                                 direction="column"
                                 gridColumn="1 / 3"
-                                ml="170px"
+                                ml={{base: "70px", xs: "170px"}}
                                 mt="20px"
                                 w="100%"
                             >
@@ -65,7 +66,7 @@ export const First = (props: Props) => {
                                     <Text
                                         color="#000000"
                                         fontWeight="700"
-                                        fontSize="17px"
+                                        fontSize={{base: "15px", xs: "17px"}}
                                         mb="5px"
                                         w="30%"
                                     >
@@ -80,7 +81,7 @@ export const First = (props: Props) => {
                                         rounded="20px"
                                         color="#000000"
                                         fontWeight="700"
-                                        fontSize='17px'
+                                        fontSize={{base: "15px", xs: "17px"}}
                                         bg="transparent"
                                         textAlign="center"
                                         outline="none"
@@ -118,10 +119,10 @@ export const First = (props: Props) => {
                                 as="span"
                                 border="1px solid #000"
                                 rounded="20px"
-                                p="10px 70px"
+                                p={{base: "10px 50px", xs: "10px 70px"}}
                                 color="#000000"
                                 fontWeight="700"
-                                fontSize="17px"
+                                fontSize={{base: "15px", xs: "17px"}}
                                 mb="5px"
                                 cursor="pointer"
                                 onClick={() => {

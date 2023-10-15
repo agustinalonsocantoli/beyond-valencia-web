@@ -27,24 +27,46 @@ export const Navbar = ({ title, subtitle }: Props) => {
         <Flex
             bg="#000000"
             justifyContent="space-between"
-            p="10px"
+            p={{ base: "0 5px 10px 5px", lg: "10px" }}
             color="#FFFFFF"
         >
 
             <Flex
-                gap="20px"
+                gap="10px"
             >
-                <Box 
+                <Box
                     position="relative"
-                    mt="38px"
+                    mt={{base: "0", lg: "28px"}}
                 >
-                    <TfiMenu 
-                        onClick={onOpen} 
-                        style={{
-                            fontSize: "36px",
-                            cursos: "pointer"
-                        }}
-                    />
+                    <Box display={{ base: "block", xs: "none" }}>
+                        <TfiMenu
+                            onClick={onOpen}
+                            style={{
+                                fontSize: "22px",
+                                cursor: "pointer"
+                            }}
+                        />
+                    </Box>
+
+                    <Box display={{ base: "none", xs: "block", sm: "none" }}>
+                        <TfiMenu
+                            onClick={onOpen}
+                            style={{
+                                fontSize: "36px",
+                                cursor: "pointer"
+                            }}
+                        />
+                    </Box>
+
+                    <Box display={{ base: "none", sm: "block" }}>
+                        <TfiMenu
+                            onClick={onOpen}
+                            style={{
+                                fontSize: "45px",
+                                cursor: "pointer"
+                            }}
+                        />
+                    </Box>
 
                     <Menu
                         isOpen={isOpen}
@@ -52,32 +74,54 @@ export const Navbar = ({ title, subtitle }: Props) => {
                     />
                 </Box>
 
-                <Image
-                    src={logo} alt="img/logo"
-                    onClick={() => router.push("/")}
-                    width={190}
-                    style={{
-                        objectFit: "contain",
-                        height: "100%",
-                        cursor: "pointer"
-                    }}
-                />
+                <Box
+                    display={{ base: "block", xs: "none" }}
+                >
+                    <Image
+                        src={logo} alt="img/logo"
+                        onClick={() => router.push("/")}
+                        width={120}
+                        style={{
+                            objectFit: "contain",
+                            height: "100%",
+                            cursor: "pointer"
+                        }}
+                    />
+                </Box>
+
+                <Box
+                    display={{ base: "none", xs: "block" }}
+                >
+                    <Image
+                        src={logo} alt="img/logo"
+                        onClick={() => router.push("/")}
+                        width={250}
+                        style={{
+                            objectFit: "contain",
+                            height: "100%",
+                            cursor: "pointer"
+                        }}
+                    />
+                </Box>
             </Flex>
 
-            <Box 
+            <Box
                 color="#262626"
                 pos="relative"
-                pr="50px"
+                pr={{ base: "20px", xs: "50px" }}
                 className={monoton.className}
             >
-                <Text 
-                    fontSize="100px"
+                <Text
+                    as="h1"
+                    fontSize={{ base: "20px", xs: "50px", lg: "100px" }}
+                    ml={{ base: "15px", xs: "0" }}
+                    mt={{ base: "10px", xs: "0" }}
                     _after={{
                         content: `'${subtitle}'`,
-                        fontSize: "50px",
+                        fontSize: { base: "13px", xs: "25px", lg: "50px" },
                         pos: "absolute",
-                        top: "40%",
-                        right: "10%",
+                        top: { base: "50%", xs: "35%", lg: "40%" },
+                        right: { base: "12%", lg: "10%" },
                         color: "rgba(255, 255, 255, .8)",
                     }}
                 >
