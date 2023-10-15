@@ -4,13 +4,12 @@
 import { ContentInt, DataInt } from "../../../interfaces/services.model"
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/react';
 import Link from "next/link";
-import { Box, Flex, Text, Link as ChakraLink } from "@chakra-ui/react";
+import { Box, Flex, Text, Link as ChakraLink, Image as ChakraImage } from "@chakra-ui/react";
 import Image from "next/image";
 
 interface Props {
@@ -83,24 +82,12 @@ export const Services = (props: Props) => {
                                 href={item?.link}
                                 display="flex"
                                 flex="1"
-                                w="385px"
                                 minHeight="600px"
                                 position="relative"
                                 justifyContent="center"
-                                _after={{
-                                    content: '""',
-                                    position: "absolute",
-                                    top: "0",
-                                    right: "0",
-                                    left: "0",
-                                    bottom: "0",
-                                    width: "100%",
-                                    height: "100%",
-                                    backgroundColor: "rgba(0, 0, 0, .4)",
-                                    borderRadius: "20px"
-                                }}
                             >
-                                <Image
+                                <ChakraImage
+                                    as={Image}
                                     src={item?.img}
                                     alt={`img/${item?.h3}`}
                                     width={385}
@@ -108,6 +95,18 @@ export const Services = (props: Props) => {
                                     style={{
                                         objectFit: "cover",
                                         height: "100%",
+                                        borderRadius: "20px"
+                                    }}
+                                    _after={{
+                                        content: '""',
+                                        position: "absolute",
+                                        top: "0",
+                                        right: "0",
+                                        left: "0",
+                                        bottom: "0",
+                                        width: "100%",
+                                        height: "100%",
+                                        backgroundColor: "rgba(0, 0, 0, .4)",
                                         borderRadius: "20px"
                                     }}
                                 />
@@ -158,23 +157,11 @@ export const Services = (props: Props) => {
                                 href={item?.link}
                                 display="flex"
                                 flex="1"
-                                w="385px"
                                 minHeight="600px"
                                 position="relative"
-                                _after={{
-                                    content: '""',
-                                    position: "absolute",
-                                    top: "0",
-                                    right: "0",
-                                    left: "0",
-                                    bottom: "0",
-                                    width: "100%",
-                                    height: "100%",
-                                    backgroundColor: "rgba(0, 0, 0, .4)",
-                                    borderRadius: "20px"
-                                }}
                             >
-                                <Image
+                                <ChakraImage
+                                    as={Image}
                                     src={item?.img}
                                     alt={`img/${item?.h3}`}
                                     width={385}
@@ -182,6 +169,18 @@ export const Services = (props: Props) => {
                                     style={{
                                         objectFit: "cover",
                                         height: "100%",
+                                        borderRadius: "20px"
+                                    }}
+                                    _after={{
+                                        content: '""',
+                                        position: "absolute",
+                                        top: "0",
+                                        right: "0",
+                                        left: "0",
+                                        bottom: "0",
+                                        width: "100%",
+                                        height: "100%",
+                                        backgroundColor: "rgba(0, 0, 0, .4)",
                                         borderRadius: "20px"
                                     }}
                                 />
@@ -232,23 +231,11 @@ export const Services = (props: Props) => {
                                 href={item?.link}
                                 display="flex"
                                 flex="1"
-                                w="385px"
                                 minHeight="600px"
                                 position="relative"
-                                _after={{
-                                    content: '""',
-                                    position: "absolute",
-                                    top: "0",
-                                    right: "0",
-                                    left: "0",
-                                    bottom: "0",
-                                    width: "100%",
-                                    height: "100%",
-                                    backgroundColor: "rgba(0, 0, 0, .4)",
-                                    borderRadius: "20px"
-                                }}
                             >
-                                <Image
+                                <ChakraImage
+                                    as={Image}
                                     src={item?.img}
                                     alt={`img/${item?.h3}`}
                                     width={385}
@@ -256,6 +243,18 @@ export const Services = (props: Props) => {
                                     style={{
                                         objectFit: "cover",
                                         height: "100%",
+                                        borderRadius: "20px"
+                                    }}
+                                    _after={{
+                                        content: '""',
+                                        position: "absolute",
+                                        top: "0",
+                                        right: "0",
+                                        left: "0",
+                                        bottom: "0",
+                                        width: "100%",
+                                        height: "100%",
+                                        backgroundColor: "rgba(0, 0, 0, .4)",
                                         borderRadius: "20px"
                                     }}
                                 />
