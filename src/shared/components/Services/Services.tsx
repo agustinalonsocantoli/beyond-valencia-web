@@ -83,6 +83,7 @@ export const Services = (props: Props) => {
                                 href={item?.link}
                                 display="flex"
                                 flex="1"
+                                w="385px"
                                 minHeight="600px"
                                 position="relative"
                                 justifyContent="center"
@@ -157,6 +158,7 @@ export const Services = (props: Props) => {
                                 href={item?.link}
                                 display="flex"
                                 flex="1"
+                                w="385px"
                                 minHeight="600px"
                                 position="relative"
                                 _after={{
@@ -230,6 +232,7 @@ export const Services = (props: Props) => {
                                 href={item?.link}
                                 display="flex"
                                 flex="1"
+                                w="385px"
                                 minHeight="600px"
                                 position="relative"
                                 _after={{
