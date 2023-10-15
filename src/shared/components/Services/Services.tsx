@@ -93,7 +93,7 @@ export const Services = (props: Props) => {
                                     right: "0",
                                     left: "0",
                                     bottom: "0",
-                                    width: "calc(385px - 3.5%)",
+                                    width: "100%",
                                     height: "100%",
                                     backgroundColor: "rgba(0, 0, 0, .4)",
                                     borderRadius: "20px"
@@ -166,7 +166,7 @@ export const Services = (props: Props) => {
                                     right: "0",
                                     left: "0",
                                     bottom: "0",
-                                    width: "calc(385px - 3.5%)",
+                                    width: "100%",
                                     height: "100%",
                                     backgroundColor: "rgba(0, 0, 0, .4)",
                                     borderRadius: "20px"
@@ -239,7 +239,7 @@ export const Services = (props: Props) => {
                                     right: "0",
                                     left: "0",
                                     bottom: "0",
-                                    width: "calc(385px - 3.5%)",
+                                    width: "100%",
                                     height: "100%",
                                     backgroundColor: "rgba(0, 0, 0, .4)",
                                     borderRadius: "20px"

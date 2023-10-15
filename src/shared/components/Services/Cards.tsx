@@ -59,6 +59,7 @@ export const Cards = ({ data }: Props) => {
                     gap="70px"
                     mb="-50px"
                     direction={{ base: "column", xs: "column", sm: "column", md: "row", }}
+                    // justifyContent={{base: "center"}}
                 >
                     {
                         data?.content?.map((item: ContentInt, index: number) => (
@@ -85,7 +86,7 @@ export const Cards = ({ data }: Props) => {
                                     right: "0",
                                     left: "0",
                                     bottom: "0",
-                                    width: "100%",
+                                    width: "385px",
                                     height: "100%",
                                     backgroundColor: "rgba(0, 0, 0, .4)",
                                     borderRadius: "20px"
@@ -94,7 +95,7 @@ export const Cards = ({ data }: Props) => {
                                 <Image 
                                     src={item?.img} 
                                     alt={`img/${item?.h3}`} 
-                                    width={355}
+                                    width={385}
                                     height={600}
                                     style={{
                                         objectFit: "cover",
