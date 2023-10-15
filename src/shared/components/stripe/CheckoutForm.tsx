@@ -9,8 +9,7 @@ import { GrFormClose } from "react-icons/gr"
 import { useRouter } from "next/navigation";
 import { toastNotify } from "@/shared/utils/functions/toastNotify";
 import { StatusEnumTypes } from "@/shared/utils/types/StatusEnumTypes";
-import { Box, Button, CircularProgress, Flex, FormControl, useDisclosure, useToast } from "@chakra-ui/react";
-import { Form } from "formik";
+import { Box, Button, CircularProgress, Flex, useDisclosure, useToast } from "@chakra-ui/react";
 
 interface Props {
     setPaymentVisible: (action: boolean) => void;
@@ -94,102 +93,107 @@ export const CheckoutForm = ({ setPaymentVisible, setCurrentOrder, id }: Props) 
     };
 
     return (
-        <div>
+        <Box>
             {!isOpen &&
-                <FormControl
-                    as={Form}
-                    onSubmit={handleSubmit}
-                    w={{base: "95%", xs: "90%", lg: "50%"}}
+                <Box
+                    w={{ base: "95%", xs: "90%", lg: "50%" }}
                     position="absolute"
-                    p={{base: "20px 30px", xs: "30px", md: "50px"}}
+                    p={{ base: "20px 30px", xs: "30px", md: "50px" }}
                     bg="#FFFFFF"
                     m="auto"
                     left="0"
                     right="0"
-                    top={{base: "1%", xs: "3%", md: "5%"}}
+                    top={{ base: "1%", xs: "3%", md: "5%" }}
                     rounded="20px"
                     maxH="98vh"
                     overflow="scroll"
                 >
-                    <GrFormClose 
-                        onClick={handleCancel} 
+                    <form
+                        onSubmit={handleSubmit}
                         style={{
-                            position: "absolute",
-                            fontSize: "30px",
-                            right: "15px",
-                            top: "15px",
-                            cursor: "pointer"
+                            width: "100%"
                         }}
-                    />
-
-                    <Box
-                        mb="10px"
                     >
-                        <LinkAuthenticationElement
-                            onChange={handleChange}
+                        <GrFormClose
+                            onClick={handleCancel}
+                            style={{
+                                position: "absolute",
+                                fontSize: "30px",
+                                right: "15px",
+                                top: "15px",
+                                cursor: "pointer"
+                            }}
                         />
-                    </Box>
 
-                    <PaymentElement options={paymentElementOptions} />
-
-                    {isLoading ?
-                        <Flex
-                            mt="30px"
-                            justifyContent="center"
+                        <Box
+                            mb="10px"
                         >
-                            <CircularProgress />
-                        </Flex>
-                        :
-                        <Flex
-                            mt="20px"
-                        >
-                            <Button 
-                                disabled={!stripe} 
-                                isLoading={isLoading}
-                                type="submit"
-                                m="auto"
-                                border="none"
-                                bg="rgba(0, 0, 0, .7)"
-                                p="10px"
-                                rounded="8px"
-                                w="40%"
-                                color="#FFF"
-                                fontWeight="300"
-                                fontSize="13px"
-                                _active={{ transform: "scale(0.9)", transition: 'all 200ms ease' }}
-                                _hover={{ bg: "rgba(0, 0, 0, 1)" }}
-                            >
-                                CONFIRM
-                            </Button>
+                            <LinkAuthenticationElement
+                                onChange={handleChange}
+                            />
+                        </Box>
 
-                            <Button 
-                                onClick={handleCancel}
-                                isLoading={isLoading}
-                                m="auto"
-                                border="none"
-                                bg="rgba(0, 0, 0, .7)"
-                                p="10px"
-                                rounded="8px"
-                                w="40%"
-                                color="#FFF"
-                                fontWeight="300"
-                                fontSize="13px"
-                                _active={{ transform: "scale(0.9)", transition: 'all 200ms ease' }}
-                                _hover={{ bg: "rgba(0, 0, 0, 1)" }}
-                            >
-                                CANCEL
-                            </Button>
-                        </Flex>
-                    }
+                        <PaymentElement options={paymentElementOptions} />
 
-                    {message && <Box mt="5px" color="#DC2222">{message}</Box>}
-                </FormControl>
+                        {isLoading ?
+                            <Flex
+                                mt="30px"
+                                justifyContent="center"
+                            >
+                                <CircularProgress />
+                            </Flex>
+                            :
+                            <Flex
+                                mt="20px"
+                            >
+                                <Button
+                                    disabled={!stripe}
+                                    isLoading={isLoading}
+                                    type="submit"
+                                    m="auto"
+                                    border="none"
+                                    bg="rgba(0, 0, 0, .7)"
+                                    p="10px"
+                                    rounded="8px"
+                                    w="40%"
+                                    color="#FFF"
+                                    fontWeight="300"
+                                    fontSize="13px"
+                                    _active={{ transform: "scale(0.9)", transition: 'all 200ms ease' }}
+                                    _hover={{ bg: "rgba(0, 0, 0, 1)" }}
+                                >
+                                    CONFIRM
+                                </Button>
+
+                                <Button
+                                    onClick={handleCancel}
+                                    isLoading={isLoading}
+                                    m="auto"
+                                    border="none"
+                                    bg="rgba(0, 0, 0, .7)"
+                                    p="10px"
+                                    rounded="8px"
+                                    w="40%"
+                                    color="#FFF"
+                                    fontWeight="300"
+                                    fontSize="13px"
+                                    _active={{ transform: "scale(0.9)", transition: 'all 200ms ease' }}
+                                    _hover={{ bg: "rgba(0, 0, 0, 1)" }}
+                                >
+                                    CANCEL
+                                </Button>
+                            </Flex>
+                        }
+
+                        {message && <Box mt="5px" color="#DC2222">{message}</Box>}
+                    </form>
+                </Box>
             }
 
             <ModalPaySuccess
                 onClose={onCloseSuccess}
                 isOpen={isOpen}
             />
-        </div>
+        </Box>
     );
 }
