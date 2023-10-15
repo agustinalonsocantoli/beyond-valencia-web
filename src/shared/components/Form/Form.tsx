@@ -1,4 +1,4 @@
-import { Box, Button, Flex, FormLabel, Input, Text, Textarea } from '@chakra-ui/react';
+import { Box, Button, Flex, FormControl, FormLabel, Input, Text, Textarea } from '@chakra-ui/react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -36,7 +36,7 @@ export const FormBook = ({ handleSubmit, labelButton, fromCall }: Props) => {
     });
 
     return (
-        <form
+        <FormControl
             onSubmit={formik.handleSubmit}
             style={ fromCall === "orders" ?
                 { flex: "1" } :
@@ -278,6 +278,6 @@ export const FormBook = ({ handleSubmit, labelButton, fromCall }: Props) => {
                         {labelButton}
                 </Button>
             </Flex>
-        </form>
+        </FormControl>
     );
 };

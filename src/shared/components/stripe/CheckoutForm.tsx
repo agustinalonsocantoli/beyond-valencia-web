@@ -9,7 +9,7 @@ import { GrFormClose } from "react-icons/gr"
 import { useRouter } from "next/navigation";
 import { toastNotify } from "@/shared/utils/functions/toastNotify";
 import { StatusEnumTypes } from "@/shared/utils/types/StatusEnumTypes";
-import { Box, Button, CircularProgress, Flex, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Button, CircularProgress, Flex, FormControl, useDisclosure, useToast } from "@chakra-ui/react";
 
 interface Props {
     setPaymentVisible: (action: boolean) => void;
@@ -95,21 +95,19 @@ export const CheckoutForm = ({ setPaymentVisible, setCurrentOrder, id }: Props) 
     return (
         <div>
             {!isOpen &&
-                <form 
+                <FormControl
                     onSubmit={handleSubmit}
-                    style={{
-                        width: "50%",
-                        position: "absolute",
-                        padding: "50px",
-                        backgroundColor: "#FFFFFF",
-                        margin: "auto",
-                        left: "0",
-                        right: "0",
-                        top: "5%",
-                        borderRadius: "20px",
-                        maxHeight: "98vh",
-                        overflow: "scroll" 
-                    }}
+                    w={{base: "95%", xs: "90%", lg: "50%"}}
+                    position="absolute"
+                    p={{base: "20px 30px", xs: "30px", md: "50px"}}
+                    bg="#FFFFFF"
+                    m="auto"
+                    left="0"
+                    right="0"
+                    top={{base: "1%", xs: "3%", md: "5%"}}
+                    rounded="20px"
+                    maxH="98vh"
+                    overflow="scroll"
                 >
                     <GrFormClose 
                         onClick={handleCancel} 
@@ -144,7 +142,8 @@ export const CheckoutForm = ({ setPaymentVisible, setCurrentOrder, id }: Props) 
                             mt="20px"
                         >
                             <Button 
-                                disabled={isLoading || !stripe} 
+                                disabled={!stripe} 
+                                isLoading={isLoading}
                                 type="submit"
                                 m="auto"
                                 border="none"
@@ -163,6 +162,7 @@ export const CheckoutForm = ({ setPaymentVisible, setCurrentOrder, id }: Props) 
 
                             <Button 
                                 onClick={handleCancel}
+                                isLoading={isLoading}
                                 m="auto"
                                 border="none"
                                 bg="rgba(0, 0, 0, .7)"
@@ -181,7 +181,7 @@ export const CheckoutForm = ({ setPaymentVisible, setCurrentOrder, id }: Props) 
                     }
 
                     {message && <Box mt="5px" color="#DC2222">{message}</Box>}
-                </form>
+                </FormControl>
             }
 
             <ModalPaySuccess

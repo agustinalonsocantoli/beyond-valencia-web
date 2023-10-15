@@ -89,7 +89,7 @@ export const Payments = (props: Props) => {
                 <Flex
                     bg="#FFF"
                     p="5%"
-                    w="40%"
+                    w={{base: "90%", lg: "40%"}}
                     m="auto"
                     justifyContent="center"
                     alignItems="center"
