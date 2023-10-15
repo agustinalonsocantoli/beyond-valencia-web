@@ -10,12 +10,9 @@ import { First } from '@/shared/components/Orders/First';
 import { Second } from '@/shared/components/Orders/Second';
 import { Third } from '@/shared/components/Orders/Third';
 import { Complete } from '@/shared/components/Orders/Complete';
-// import { Payments } from '../components/stripe/Payments';
-
 // Icons
 import { IoReturnDownBackSharp } from 'react-icons/io5';
 import { BsCheck2 } from 'react-icons/bs';
-// import { sendEmail } from '../shared/emails';
 import { OrdersDataInt, ProductInt } from '@/interfaces/orders.model';
 import { getProdruct } from '@/shared/utils/functions/getProduct';
 import { useRouter } from 'next/navigation';
@@ -26,6 +23,8 @@ import { getStaticData } from '@/shared/middlewares/fetcher';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
+import { sendEmail } from '@/shared/utils/functions/emails';
+import { Payments } from '@/shared/components/stripe/Payments';
 
 export default function Lockers() {
     const toast = useToast();
@@ -99,19 +98,19 @@ export default function Lockers() {
 
         { totalPay > 0 && setPaymentVisible(true); }
 
-        // sendEmail({
-        //     name: name,
-        //     email: email,
-        //     phone: phone,
-        //     time: currentOrder !== null && currentOrder.time,
-        //     date: currentOrder !== null && currentOrder.date,
-        //     small: currentOrder !== null && currentOrder.small,
-        //     medium: currentOrder !== null && currentOrder.medium,
-        //     normal: currentOrder !== null && currentOrder.normal,
-        //     comment: comment === null || comment === "" ? 'No comment entered' : comment,
-        //     total: `${totalPay}€`,
-        //     discountCode: currentOrder !== null && currentOrder.discountCode ? currentOrder.discountCode : 'No code used',
-        // }, import.meta.env.VITE_BASE_EMAIL_TEMPLATELOCKERS)
+        sendEmail({
+            name: name,
+            email: email,
+            phone: phone,
+            time: currentOrder !== null && currentOrder.time,
+            date: currentOrder !== null && currentOrder.date,
+            small: currentOrder !== null && currentOrder.small,
+            medium: currentOrder !== null && currentOrder.medium,
+            normal: currentOrder !== null && currentOrder.normal,
+            comment: comment === null || comment === "" ? 'No comment entered' : comment,
+            total: `${totalPay}€`,
+            discountCode: currentOrder !== null && currentOrder.discountCode ? currentOrder.discountCode : 'No code used',
+        }, process.env.NEXT_PUBLIC_EMAIL_TEMPLATELOCKERS)
     }
 
     const handleOk = () => {
@@ -330,14 +329,14 @@ export default function Lockers() {
                 }
             </Box>
 
-            {/* {paymentVisible &&
+            {paymentVisible &&
                 <Payments
                     setCurrentOrder={setCurrentOrder}
                     setPaymentVisible={setPaymentVisible}
                     totalPay={totalPay}
                     description={`Order Lockers Email: ${currentOrder.email ? currentOrder.email : ""}`}
                 />
-            } */}
+            }
         </Flex>
     );
 };

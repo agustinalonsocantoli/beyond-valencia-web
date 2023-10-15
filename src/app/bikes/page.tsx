@@ -16,7 +16,6 @@ import { Payments } from '@/shared/components/stripe/Payments';
 import { IoReturnDownBackSharp } from 'react-icons/io5';
 import { BsCheck2 } from 'react-icons/bs';
 // Emails
-// import { sendEmail } from '../shared/emails';
 import { OrdersDataInt, ProductInt } from '@/interfaces/orders.model';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -28,6 +27,7 @@ import { StatusEnumTypes } from '@/shared/utils/types/StatusEnumTypes';
 import { Box, Button, Flex, useToast } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { isMobile } from 'react-device-detect';
+import { sendEmail } from '@/shared/utils/functions/emails';
 
 export default function Bikes() {
     const toast = useToast();
@@ -100,19 +100,19 @@ export default function Bikes() {
 
         { totalPay > 0 && setPaymentVisible(true); }
 
-        // sendEmail({
-        //     name: name,
-        //     email: email,
-        //     phone: phone,
-        //     time: currentOrder !== null && currentOrder?.time,
-        //     date: currentOrder !== null && currentOrder?.date,
-        //     small: currentOrder !== null && currentOrder?.small,
-        //     medium: currentOrder !== null && currentOrder?.medium,
-        //     childrenBike: currentOrder !== null && currentOrder?.childrenBike,
-        //     comment: comment === null || comment === "" ? 'No comment entered' : comment,
-        //     total: `${totalPay}€`,
-        //     discountCode: currentOrder !== null && currentOrder?.discountCode ? currentOrder?.discountCode : 'No code used',
-        // }, import.meta.env.VITE_BASE_EMAIL_TEMPLATEBIKES)
+        sendEmail({
+            name: name,
+            email: email,
+            phone: phone,
+            time: currentOrder !== null && currentOrder?.time,
+            date: currentOrder !== null && currentOrder?.date,
+            small: currentOrder !== null && currentOrder?.small,
+            medium: currentOrder !== null && currentOrder?.medium,
+            childrenBike: currentOrder !== null && currentOrder?.childrenBike,
+            comment: comment === null || comment === "" ? 'No comment entered' : comment,
+            total: `${totalPay}€`,
+            discountCode: currentOrder !== null && currentOrder?.discountCode ? currentOrder?.discountCode : 'No code used',
+        }, process.env.NEXT_PUBLIC_EMAIL_TEMPLATEBIKES)
     }
 
     const handleOk = () => {
