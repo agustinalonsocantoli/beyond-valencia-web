@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { toastNotify } from "@/shared/utils/functions/toastNotify";
 import { StatusEnumTypes } from "@/shared/utils/types/StatusEnumTypes";
 import { Box, Button, CircularProgress, Flex, FormControl, useDisclosure, useToast } from "@chakra-ui/react";
+import { Form } from "formik";
 
 interface Props {
     setPaymentVisible: (action: boolean) => void;
@@ -96,6 +97,7 @@ export const CheckoutForm = ({ setPaymentVisible, setCurrentOrder, id }: Props) 
         <div>
             {!isOpen &&
                 <FormControl
+                    as={Form}
                     onSubmit={handleSubmit}
                     w={{base: "95%", xs: "90%", lg: "50%"}}
                     position="absolute"
