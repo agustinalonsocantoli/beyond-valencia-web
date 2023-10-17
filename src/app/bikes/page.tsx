@@ -16,6 +16,7 @@ import { Payments } from '@/shared/components/stripe/Payments';
 import { IoReturnDownBackSharp } from 'react-icons/io5';
 import { BsCheck2 } from 'react-icons/bs';
 // Emails
+// import { sendEmail } from '../shared/emails';
 import { OrdersDataInt, ProductInt } from '@/interfaces/orders.model';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -27,7 +28,7 @@ import { StatusEnumTypes } from '@/shared/utils/types/StatusEnumTypes';
 import { Box, Button, Flex, useToast } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { isMobile } from 'react-device-detect';
-import { POST } from '../api/send/route';
+import { sendEmail } from '@/shared/utils/functions/emails';
 
 export default function Bikes() {
     const toast = useToast();
@@ -77,7 +78,7 @@ export default function Bikes() {
 
     }, [time, bikesProducts])
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = (e: any) => {
         const { name, email, phone, comment } = e;
 
         if (totalPay > 0) {
@@ -101,29 +102,19 @@ export default function Bikes() {
 
         { totalPay > 0 && setPaymentVisible(true); }
 
-        const senders: string[] = []
-        senders.push(email)
-        if(emailPartner) senders.push(emailPartner)
-
-        await POST(
-            senders,
-            {
-                type: "bike",
-                name: name,
-                email: email,
-                phone: phone,
-                time: currentOrder?.time,
-                date: currentOrder?.date,
-                comment: comment,
-                total: totalPay,
-                discountCode: currentOrder?.discountCode,
-                bike: {
-                    small: currentOrder?.small,
-                    medium: currentOrder?.medium,
-                    childrenBike: currentOrder?.childrenBike,
-                }
-            }
-        )
+        sendEmail({
+            name: name,
+            email: email,
+            phone: phone,
+            time: currentOrder !== null && currentOrder?.time,
+            date: currentOrder !== null && currentOrder?.date,
+            small: currentOrder !== null && currentOrder?.small,
+            medium: currentOrder !== null && currentOrder?.medium,
+            childrenBike: currentOrder !== null && currentOrder?.childrenBike,
+            comment: comment === null || comment === "" ? 'No comment entered' : comment,
+            total: `${totalPay}€`,
+            discountCode: currentOrder !== null && currentOrder?.discountCode ? currentOrder?.discountCode : 'No code used',
+        }, process.env.NEXT_PUBLIC_EMAIL_TEMPLATEBIKES)
     }
 
     const handleOk = () => {
@@ -183,7 +174,6 @@ export default function Bikes() {
                 flex="1"
                 bg="#FFFBF6"
                 pos="relative"
-                minH={{base: "80vh", xs: "70vh", lg: "auto"}}
                 h={{base: "80vh", sm: "70vh", lg: "auto"}}
             >
                 <Box

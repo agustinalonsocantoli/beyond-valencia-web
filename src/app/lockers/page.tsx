@@ -23,8 +23,8 @@ import { getStaticData } from '@/shared/middlewares/fetcher';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
+import { sendEmail } from '@/shared/utils/functions/emails';
 import { Payments } from '@/shared/components/stripe/Payments';
-import { POST } from '../api/send/route';
 
 export default function Lockers() {
     const toast = useToast();
@@ -75,7 +75,7 @@ export default function Lockers() {
 
     }, [time, lockersProducts])
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = (e: any) => {
         const { name, email, phone, comment } = e;
 
         if (totalPay > 0) {
@@ -99,29 +99,19 @@ export default function Lockers() {
 
         { totalPay > 0 && setPaymentVisible(true); }
 
-        const senders: string[] = []
-        senders.push(email)
-        if(emailPartner) senders.push(emailPartner)
-
-        await POST(
-            senders,
-            {
-                type: "lockers",
-                name: name,
-                email: email,
-                phone: phone,
-                time: currentOrder?.time,
-                date: currentOrder?.date,
-                comment: comment,
-                total: totalPay,
-                discountCode: currentOrder?.discountCode,
-                locker: {
-                    small: currentOrder.small,
-                    medium: currentOrder.medium,
-                    normal: currentOrder.normal,
-                }
-            }
-        )
+        sendEmail({
+            name: name,
+            email: email,
+            phone: phone,
+            time: currentOrder !== null && currentOrder.time,
+            date: currentOrder !== null && currentOrder.date,
+            small: currentOrder !== null && currentOrder.small,
+            medium: currentOrder !== null && currentOrder.medium,
+            normal: currentOrder !== null && currentOrder.normal,
+            comment: comment === null || comment === "" ? 'No comment entered' : comment,
+            total: `${totalPay}€`,
+            discountCode: currentOrder !== null && currentOrder.discountCode ? currentOrder.discountCode : 'No code used',
+        }, process.env.NEXT_PUBLIC_EMAIL_TEMPLATELOCKERS)
     }
 
     const handleOk = () => {
