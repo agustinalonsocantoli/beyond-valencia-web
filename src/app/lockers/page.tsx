@@ -25,6 +25,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { sendEmail } from '@/shared/utils/functions/emails';
 import { Payments } from '@/shared/components/stripe/Payments';
+import { sendEmailPost } from '../api/send/route';
 
 export default function Lockers() {
     const toast = useToast();
@@ -42,6 +43,7 @@ export default function Lockers() {
     const [paymentVisible, setPaymentVisible] = useState<boolean>(false);
     const [lockersProducts, setLockersProducts] = useState<ProductInt[]>()
     const [selectedProduct, setSelectedProduct] = useState<ProductInt>()
+    const [emailPartner, setEmailPartnet] = useState<string>()
 
     const data: OrdersDataInt = {
         s: {
@@ -74,7 +76,7 @@ export default function Lockers() {
 
     }, [time, lockersProducts])
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         const { name, email, phone, comment } = e;
 
         if (totalPay > 0) {
@@ -98,19 +100,29 @@ export default function Lockers() {
 
         { totalPay > 0 && setPaymentVisible(true); }
 
-        sendEmail({
-            name: name,
-            email: email,
-            phone: phone,
-            time: currentOrder !== null && currentOrder.time,
-            date: currentOrder !== null && currentOrder.date,
-            small: currentOrder !== null && currentOrder.small,
-            medium: currentOrder !== null && currentOrder.medium,
-            normal: currentOrder !== null && currentOrder.normal,
-            comment: comment === null || comment === "" ? 'No comment entered' : comment,
-            total: `${totalPay}€`,
-            discountCode: currentOrder !== null && currentOrder.discountCode ? currentOrder.discountCode : 'No code used',
-        }, process.env.NEXT_PUBLIC_EMAIL_TEMPLATELOCKERS)
+        const senders: string[] = []
+        senders.push(email)
+        if(emailPartner) senders.push(emailPartner)
+
+        await sendEmailPost(
+            senders,
+            {
+                type: "lockers",
+                name: name,
+                email: email,
+                phone: phone,
+                time: currentOrder?.time,
+                date: currentOrder?.date,
+                comment: comment,
+                total: totalPay,
+                discountCode: currentOrder?.discountCode,
+                locker: {
+                    small: currentOrder.small,
+                    medium: currentOrder.medium,
+                    normal: currentOrder.normal,
+                }
+            }
+        )
     }
 
     const handleOk = () => {
@@ -260,6 +272,7 @@ export default function Lockers() {
                     medium={medium}
                     normal={normal}
                     setCurrentOrder={setCurrentOrder}
+                    setEmailPartnet={setEmailPartnet}
                 />}
 
                 {page !== 3 &&

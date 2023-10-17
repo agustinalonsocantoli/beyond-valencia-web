@@ -5,7 +5,7 @@ import { AiOutlineInstagram } from 'react-icons/ai';
 import { Whatsapp } from "@/shared/components/Custom/Whatsapp";
 import { Events } from "@/shared/components/Events/Events";
 import { Footer } from "@/shared/components/Footer/Footer";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import Image from 'next/image';
 import Link from 'next/link';
 import { getRevalidatedData } from '@/shared/middlewares/fetcher';

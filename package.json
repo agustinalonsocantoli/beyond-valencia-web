@@ -31,6 +31,7 @@
     "react-device-detect": "^2.2.3",
     "react-dom": "18.2.0",
     "react-icons": "^4.11.0",
+    "resend": "^1.1.0",
     "sass": "^1.69.3",
     "swiper": "^10.2.0",
     "typescript": "5.2.2",

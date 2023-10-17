@@ -22,6 +22,7 @@ interface Props {
     medium: number;
     normal: number;
     setCurrentOrder:(action: any) => void;
+    setEmailPartnet: (email: string) => void;
 }
 
 export const Complete = ({ 
@@ -35,7 +36,8 @@ export const Complete = ({
     small,
     medium,
     normal,
-    setCurrentOrder
+    setCurrentOrder,
+    setEmailPartnet
 }: Props) => {
     const toast = useToast();
     const [ discount, setDiscount ] = useState<number>(0);
@@ -60,10 +62,11 @@ export const Complete = ({
         if(!isDiscountAdd && codeDiscount) {
             getStaticData(`codes?code=${codeDiscount}`)
             .then((response: any) => {
-                const codes = response?.data?.data
-                
+                const codes = response?.data
+
                 if(codes?.length === 0) {
                     toastNotify(toast, StatusEnumTypes.ERROR, "The code entered is not valid")
+                    setEmailPartnet(codes[0]?.partner?.email)
                     return
                 } else {
                     codes[0]?.state

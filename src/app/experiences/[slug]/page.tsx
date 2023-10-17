@@ -18,11 +18,12 @@ import { FaUniversalAccess } from "react-icons/fa"
 import { SlLocationPin } from "react-icons/sl"
 import { MdAccessible } from "react-icons/md"
 import { BsTicket } from 'react-icons/bs';
-import { Accordion, AccordionButton, AccordionIcon, AccordionPanel, AccordionItem, Box, Flex, Text, UnorderedList, ListItem, Grid } from '@chakra-ui/react';
+import { Accordion, AccordionButton, AccordionIcon, AccordionPanel, AccordionItem, Box, Flex, Text, UnorderedList, ListItem, Grid, Button } from '@chakra-ui/react';
 import { getStaticData } from '@/shared/middlewares/fetcher';
 import { ExperiencesInt } from '@/interfaces/ExperiencesInt';
 import { Payments } from '@/shared/components/stripe/Payments';
 import { Book } from '@/shared/components/Book/Book';
+import { sendEmailPost } from '@/app/api/send/route';
 
 export default function DetailsExperiences() {
     const { slug } = useParams();

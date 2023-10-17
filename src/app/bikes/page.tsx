@@ -28,6 +28,7 @@ import { Box, Button, Flex, useToast } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { isMobile } from 'react-device-detect';
 import { sendEmail } from '@/shared/utils/functions/emails';
+import { sendEmailPost } from '../api/send/route';
 
 export default function Bikes() {
     const toast = useToast();
@@ -45,6 +46,7 @@ export default function Bikes() {
     const [paymentVisible, setPaymentVisible] = useState<boolean>(false);
     const [bikesProducts, setBikesProducts] = useState<ProductInt[]>()
     const [selectedProduct, setSelectedProduct] = useState<ProductInt>()
+    const [emailPartner, setEmailPartnet] = useState<string>()
 
     const data: OrdersDataInt = {
         s: {
@@ -76,7 +78,7 @@ export default function Bikes() {
 
     }, [time, bikesProducts])
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         const { name, email, phone, comment } = e;
 
         if (totalPay > 0) {
@@ -100,19 +102,29 @@ export default function Bikes() {
 
         { totalPay > 0 && setPaymentVisible(true); }
 
-        sendEmail({
-            name: name,
-            email: email,
-            phone: phone,
-            time: currentOrder !== null && currentOrder?.time,
-            date: currentOrder !== null && currentOrder?.date,
-            small: currentOrder !== null && currentOrder?.small,
-            medium: currentOrder !== null && currentOrder?.medium,
-            childrenBike: currentOrder !== null && currentOrder?.childrenBike,
-            comment: comment === null || comment === "" ? 'No comment entered' : comment,
-            total: `${totalPay}€`,
-            discountCode: currentOrder !== null && currentOrder?.discountCode ? currentOrder?.discountCode : 'No code used',
-        }, process.env.NEXT_PUBLIC_EMAIL_TEMPLATEBIKES)
+        const senders: string[] = []
+        senders.push(email)
+        if(emailPartner) senders.push(emailPartner)
+
+        await sendEmailPost(
+            senders,
+            {
+                type: "bike",
+                name: name,
+                email: email,
+                phone: phone,
+                time: currentOrder?.time,
+                date: currentOrder?.date,
+                comment: comment,
+                total: totalPay,
+                discountCode: currentOrder?.discountCode,
+                bike: {
+                    small: currentOrder?.small,
+                    medium: currentOrder?.medium,
+                    childrenBike: currentOrder?.childrenBike,
+                }
+            }
+        )
     }
 
     const handleOk = () => {
@@ -234,6 +246,7 @@ export default function Bikes() {
                     medium={medium}
                     normal={normal}
                     setCurrentOrder={setCurrentOrder}
+                    setEmailPartnet={setEmailPartnet}
                 />}
 
                 {page !== 3 &&
