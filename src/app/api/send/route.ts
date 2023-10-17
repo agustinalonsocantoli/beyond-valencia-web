@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.NEXT_PUBLIC_EMAILS_KEY);
 
-export async function sendEmailPost(senders: string[], dataEmails: TemplateEmailInt) {
+export async function POST(senders: string[], dataEmails: TemplateEmailInt) {
     const sendersList: string[] = [...senders, "admin@beyondvalencia.com", "develop@beyondvalencia.com"]
     
     try {

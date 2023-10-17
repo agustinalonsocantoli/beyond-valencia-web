@@ -27,8 +27,7 @@ import { StatusEnumTypes } from '@/shared/utils/types/StatusEnumTypes';
 import { Box, Button, Flex, useToast } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { isMobile } from 'react-device-detect';
-import { sendEmail } from '@/shared/utils/functions/emails';
-import { sendEmailPost } from '../api/send/route';
+import { POST } from '../api/send/route';
 
 export default function Bikes() {
     const toast = useToast();
@@ -106,7 +105,7 @@ export default function Bikes() {
         senders.push(email)
         if(emailPartner) senders.push(emailPartner)
 
-        await sendEmailPost(
+        await POST(
             senders,
             {
                 type: "bike",

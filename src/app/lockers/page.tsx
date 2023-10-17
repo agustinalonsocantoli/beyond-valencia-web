@@ -23,9 +23,8 @@ import { getStaticData } from '@/shared/middlewares/fetcher';
 import { format } from 'date-fns';
 import Image from 'next/image';
 import Link from 'next/link';
-import { sendEmail } from '@/shared/utils/functions/emails';
 import { Payments } from '@/shared/components/stripe/Payments';
-import { sendEmailPost } from '../api/send/route';
+import { POST } from '../api/send/route';
 
 export default function Lockers() {
     const toast = useToast();
@@ -104,7 +103,7 @@ export default function Lockers() {
         senders.push(email)
         if(emailPartner) senders.push(emailPartner)
 
-        await sendEmailPost(
+        await POST(
             senders,
             {
                 type: "lockers",
