@@ -23,7 +23,6 @@ import { getStaticData } from '@/shared/middlewares/fetcher';
 import { ExperiencesInt } from '@/interfaces/ExperiencesInt';
 import { Payments } from '@/shared/components/stripe/Payments';
 import { Book } from '@/shared/components/Book/Book';
-import { sendEmailPost } from '@/app/api/send/route';
 
 export default function DetailsExperiences() {
     const { slug } = useParams();
