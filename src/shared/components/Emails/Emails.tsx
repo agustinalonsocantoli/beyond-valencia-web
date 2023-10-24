@@ -178,10 +178,10 @@ const Emails = (
                             <Text className="text-sm text-white">Drop-off dates: {date}</Text>
                             {time && <Text className="text-sm text-white">Booking time: {time}</Text>}
                             {(comment && comment !== "") && 
-                                <Text className="text-sm text-white">
-                                    Comments: {comment}
-                                </Text>
-                            }
+                            <Text className="text-sm text-white">
+                                Comments: {comment}
+                            </Text>}
+                            
                             <Text className="text-sm text-white">
                                 Discount code: {discountCode ? discountCode : "No code used"}
                             </Text>

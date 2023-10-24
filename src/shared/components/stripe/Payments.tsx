@@ -37,7 +37,7 @@ export const Payments = (props: Props) => {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-                amount: totalPay && (totalPay * 100),
+                amount: totalPay && Math.floor(totalPay && (totalPay * 100)),
                 description: description,
             }),
         })

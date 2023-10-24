@@ -102,12 +102,11 @@ export default function Bikes() {
 
         { totalPay > 0 && setPaymentVisible(true); }
 
-        const sendersList = []
-        name && sendersList.push(name)
-        emailPartner && sendersList.push(emailPartner)
-
         POST(
-            sendersList, 
+            [
+                email, 
+                emailPartner
+            ], 
             {
                 type: "bike",
                 name: name,

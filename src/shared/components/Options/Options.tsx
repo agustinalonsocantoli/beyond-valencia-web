@@ -33,6 +33,8 @@ export const Options = () => {
                     padding= "10px 25px"
                     background= "rgba(0, 0, 0, .7)"
                     borderRadius= "12px"
+                    textDecoration="none"
+                    _hover={{ textDecoration: "none" }}
                     href="/lockers"
                 >
                     <Text
@@ -81,6 +83,8 @@ export const Options = () => {
                     padding= "10px 25px"
                     background= "rgba(0, 0, 0, .7)"
                     borderRadius= "12px"
+                    textDecoration="none"
+                    _hover={{ textDecoration: "none" }}
                     href="/bikes"
                 >
                     <Text

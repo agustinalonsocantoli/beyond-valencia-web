@@ -11,7 +11,6 @@ import Link from 'next/link';
 import { getRevalidatedData } from '@/shared/middlewares/fetcher';
 import { Options } from '@/shared/components/Options/Options';
 import { Cards } from '@/shared/components/Services/Cards';
-import { POST } from './api/send/route';
 
 export default async function Home() {
   const { data } = await getRevalidatedData("content?landing=home")
