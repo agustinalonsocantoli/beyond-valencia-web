@@ -42,7 +42,7 @@ export default async function Experiences() {
             </Box>
 
             <Box
-                display={{ base: "none", xs: "bloc" }}
+                display={{ base: "none", xs: "block" }}
             >
                 <GroupServices
                     sliderPage1={experiencesData}

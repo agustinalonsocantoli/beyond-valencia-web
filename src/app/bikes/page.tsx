@@ -28,7 +28,7 @@ import { StatusEnumTypes } from '@/shared/utils/types/StatusEnumTypes';
 import { Box, Button, Flex, useToast } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { isMobile } from 'react-device-detect';
-import { sendEmail } from '@/shared/utils/functions/emails';
+import { POST } from '../api/send/route';
 
 export default function Bikes() {
     const toast = useToast();
@@ -102,19 +102,29 @@ export default function Bikes() {
 
         { totalPay > 0 && setPaymentVisible(true); }
 
-        sendEmail({
-            name: name,
-            email: email,
-            phone: phone,
-            time: currentOrder !== null && currentOrder?.time,
-            date: currentOrder !== null && currentOrder?.date,
-            small: currentOrder !== null && currentOrder?.small,
-            medium: currentOrder !== null && currentOrder?.medium,
-            childrenBike: currentOrder !== null && currentOrder?.childrenBike,
-            comment: comment === null || comment === "" ? 'No comment entered' : comment,
-            total: `${totalPay}€`,
-            discountCode: currentOrder !== null && currentOrder?.discountCode ? currentOrder?.discountCode : 'No code used',
-        }, process.env.NEXT_PUBLIC_EMAIL_TEMPLATEBIKES)
+        const sendersList = []
+        name && sendersList.push(name)
+        emailPartner && sendersList.push(emailPartner)
+
+        POST(
+            sendersList, 
+            {
+                type: "bike",
+                name: name,
+                email: email,
+                phone: phone,
+                time: currentOrder?.time,
+                date: currentOrder?.date,
+                bike: {
+                    small: currentOrder?.small,
+                    medium: currentOrder?.medium,
+                    childrenBike: currentOrder?.childrenBike,
+                },
+                comment: comment,
+                total: totalPay,
+                discountCode: currentOrder?.discountCode,
+            }
+        )
     }
 
     const handleOk = () => {
@@ -161,6 +171,10 @@ export default function Bikes() {
         }
 
         return totalSmall + totalMedium;
+    }
+
+    const getEmailsSenders = () => {
+
     }
 
     return (

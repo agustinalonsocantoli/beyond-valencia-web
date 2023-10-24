@@ -1,4 +1,4 @@
-import { TemplateEmail, TemplateEmailInt } from '@/shared/components/Emails/TemplateEmail';
+import Emails, { TemplateEmailInt } from '@/shared/components/Emails/Emails';
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
@@ -11,7 +11,7 @@ export async function POST(senders: any, templateData: TemplateEmailInt) {
       from: 'BeyondValencia <admin@beyondvalencia.com>',
       to: sendersList,
       subject: 'Confirm booking www.beyondvalencia.com',
-      react: TemplateEmail(templateData),
+      react: Emails(templateData),
     });
 
     return NextResponse.json(data);

@@ -10,7 +10,6 @@ import 'swiper/css/navigation';
 import 'swiper/react';
 import Link from "next/link";
 import { Box, Flex, Text, Link as ChakraLink, Image as ChakraImage } from "@chakra-ui/react";
-import Image from "next/image";
 
 interface Props {
     sliderPage1: DataInt | undefined;
@@ -87,7 +86,6 @@ export const Services = (props: Props) => {
                                 justifyContent="center"
                             >
                                 <ChakraImage
-                                    as={Image}
                                     src={item?.img}
                                     alt={`img/${item?.h3}`}
                                     width={385}
@@ -161,7 +159,6 @@ export const Services = (props: Props) => {
                                 position="relative"
                             >
                                 <ChakraImage
-                                    as={Image}
                                     src={item?.img}
                                     alt={`img/${item?.h3}`}
                                     width={385}
@@ -235,7 +232,6 @@ export const Services = (props: Props) => {
                                 position="relative"
                             >
                                 <ChakraImage
-                                    as={Image}
                                     src={item?.img}
                                     alt={`img/${item?.h3}`}
                                     width={385}

@@ -18,7 +18,6 @@ export const ModalPaySuccess = ({ onClose, isOpen }: Props) => {
             <ModalOverlay />
 
             <ModalContent
-                color="#FFF"
             >
                 <ModalBody>
                     <Flex
@@ -29,7 +28,7 @@ export const ModalPaySuccess = ({ onClose, isOpen }: Props) => {
                         alignItems="center"
                         gap="20px"
                         rounded="12px"
-                        mt="10%"
+                        my="10%"
                     >
                         <Text 
                             as="h1"
