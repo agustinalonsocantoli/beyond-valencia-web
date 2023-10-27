@@ -77,37 +77,35 @@ const Emails = (
             <Head />
             <Preview>{previewText}</Preview>
             <Tailwind>
-                <Body className="bg-black my-auto mx-auto font-sans">
+                <Body className="my-auto mx-auto font-sans">
                     <Container className="my-10 mx-auto p-5 w-[600px]">
                         <Section className="mt-8">
                             <Img
-                                src={`https://beyondvalencia.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FlogoW.d647767c.png&w=3840&q=75`}
-                                width={300}
-                                height={120}
+                                src={`https://beyondvalencia.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FlogoB.3ee39a1b.png&w=3840&q=75`}
+                                width={250}
+                                height={85}
                                 alt="Logo example"
                                 className="my-0 mx-auto"
                             />
                         </Section>
 
-                        <Heading className="text-2xl font-normal text-center p-0 my-8 mx-0 text-white">
+                        <Heading className="text-2xl font-normal text-center p-0 my-8 mx-0 text-black">
                             Thank you for choosing our services!
                         </Heading>
 
                         <Row>
                             <Column>
-                                <Container className='w-[200px] h-[150px] rounded-md overflow-hidden'>
                                     <Img
                                         src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fc2b9920a-649c-4bc9-8393-0e7aed768e3f-vgjggn.jpg&w=3840&q=75`}
                                         alt="albufera"
-                                        width={200}
-                                        height={150}
+                                        width={100}
+                                        height={50}
                                         className='h-full w-full object-cover'
                                     />
-                                </Container>
                             </Column>
 
                             <Column>
-                                <Text className="text-sm text-white ml-4 ml-4">
+                                <Text className="text-sm text-black ml-4 ml-4">
                                     La Albufera Sunset, a captivating boat journey through the serene waterways of Albufera Park near Valencia. As the sun gracefully sets, witness the sky painted in vibrant hues, creating a breathtaking backdrop. Savor local wines, embrace the tranquility of the surroundings, and create cherished memories amidst the enchanting beauty of nature's masterpiece.
                                     <Link
                                         href={`#`}
@@ -121,18 +119,16 @@ const Emails = (
 
                         <Row>
                             <Column>
-                                <Container className='w-[200px] h-[150px] rounded-md overflow-hidden'>
                                     <Img
                                         src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fa7e13b2b-def2-4d47-b347-e5eb59e805d0-57fgy6.jpg&w=3840&q=75`}
                                         alt="bikeride"
-                                        width={200}
-                                        height={150}
+                                        width={100}
+                                        height={50}
                                         className='h-full w-full object-cover'
                                     />
-                                </Container>
                             </Column>
                             <Column>
-                                <Text className="text-sm text-white ml-4">
+                                <Text className="text-sm text-black ml-4">
                                     Come and explore the vibrant neighborhood of El Cabañal, the up-and-coming hotspot for remote workers and startups in Valencia! Our 2-hour guided bike tour will take you on a journey through the beach town of the city, departing from the Old Town and passing by the iconic City of Arts and Sciences, before arriving at El Cabañal.
 
                                     <Link
@@ -147,18 +143,16 @@ const Emails = (
 
                         <Row>
                             <Column>
-                                <Container className='w-[200px] h-[150px] rounded-md overflow-hidden'>
                                     <Img
                                         src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F855b6349-509d-4181-acc9-492e994f77fd-ip4oc.jpg&w=3840&q=75`}
                                         alt="villareal"
-                                        width={200}
-                                        height={150}
+                                        width={100}
+                                        height={50}
                                         className='h-full w-full object-cover'
                                     />
-                                </Container>
                             </Column>
                             <Column>
-                                <Text className="text-sm text-white ml-4">
+                                <Text className="text-sm text-black ml-4">
                                     Explore the brand-new Ceramic Stadium in a guided visit. Witness the inner workings of the club as you tour the changing rooms, football field, VIP boxes, and more. Delight in a traditional Valencian lunch, with meal choice at the club's exclusive restaurant, El Ceramista, where you'll experience a contemporary and football-inspired dining experience that captures the essence of Villa-real's present and future.
 
                                     <Link
@@ -174,50 +168,50 @@ const Emails = (
                         <Hr className="border border-solid border-[#eaeaea] my-6 mx-0 w-full" />
 
                         <Container>
-                            <Heading className="text-2xl font-normal text-center py-2 text-white">
+                            <Heading className="text-2xl font-normal text-center py-2 text-black">
                                 About your order
                             </Heading>
 
-                            <Text className="text-sm text-white">Name: {name}</Text>
-                            <Text className="text-sm text-white">Email 📧 address:: {email}</Text>
-                            <Text className="text-sm text-white">Phone 📱 number: {phone}</Text>
-                            <Text className="text-sm text-white">Drop-off dates: {date}</Text>
-                            {time && <Text className="text-sm text-white">Booking time: {time}</Text>}
+                            <Text className="text-sm text-black">Name: {name}</Text>
+                            <Text className="text-sm text-black">Email 📧 address:: {email}</Text>
+                            <Text className="text-sm text-black">Phone 📱 number: {phone}</Text>
+                            <Text className="text-sm text-black">Drop-off dates: {date}</Text>
+                            {time && <Text className="text-sm text-black">Booking time: {time}</Text>}
                             {(comment && comment !== "") && 
-                            <Text className="text-sm text-white">
+                            <Text className="text-sm text-black">
                                 Comments: {comment}
                             </Text>}
                             
-                            <Text className="text-sm text-white">
+                            <Text className="text-sm text-black">
                                 Discount code: {discountCode ? discountCode : "No code used"}
                             </Text>
 
                             {type === "lockers" &&
-                                <ul className='ml-[20px] text-white'>
-                                    <li><Text className="text-sm text-white">Small: {locker?.small}</Text></li>
-                                    <li><Text className="text-sm text-white">Medium: {locker?.medium}</Text></li>
-                                    <li><Text className="text-sm text-white">Normal: {locker?.normal}</Text></li>
+                                <ul className='ml-[20px] text-black'>
+                                    <li><Text className="text-sm text-black">Small: {locker?.small}</Text></li>
+                                    <li><Text className="text-sm text-black">Medium: {locker?.medium}</Text></li>
+                                    <li><Text className="text-sm text-black">Normal: {locker?.normal}</Text></li>
                                 </ul>
                             }
 
                             {type === "bike" &&
-                                <ul className='ml-[20px] text-white'>
-                                    <li><Text className="text-sm text-white">Small: {bike?.small}</Text></li>
-                                    <li><Text className="text-sm text-white">Medium: {bike?.medium}</Text></li>
-                                    <li><Text className="text-sm text-white">Children bike: {bike?.childrenBike}</Text></li>
+                                <ul className='ml-[20px] text-black'>
+                                    <li><Text className="text-sm text-black">Small: {bike?.small}</Text></li>
+                                    <li><Text className="text-sm text-black">Medium: {bike?.medium}</Text></li>
+                                    <li><Text className="text-sm text-black">Children bike: {bike?.childrenBike}</Text></li>
                                 </ul>
                             }
 
                             {type === "book" &&
-                                <ul className='ml-[20px] text-white'>
-                                    <li><Text className="text-sm text-white">Adults: {book?.adults}</Text></li>
-                                    <li><Text className="text-sm text-white">Children: {book?.children}</Text></li>
-                                    <li><Text className="text-sm text-white">Infants: {book?.infants}</Text></li>
+                                <ul className='ml-[20px] text-black'>
+                                    <li><Text className="text-sm text-black">Adults: {book?.adults}</Text></li>
+                                    <li><Text className="text-sm text-black">Children: {book?.children}</Text></li>
+                                    <li><Text className="text-sm text-black">Infants: {book?.infants}</Text></li>
                                 </ul>
                             }
 
                             <Text
-                                className="text-lg font-bold py-[5px] px-[15px] text-right text-white"
+                                className="text-lg font-bold py-[5px] px-[15px] text-right text-black"
                             >
                                 Total {total}€
                             </Text>
@@ -233,11 +227,11 @@ const Emails = (
                             </Text>
                         </Container>
 
-                        <Text className="text-sm text-white">
+                        <Text className="text-sm text-black">
                             We appreciate your trust in us and look forward to serving you again in the future.
                         </Text>
 
-                        <Text className="text-sm text-white">
+                        <Text className="text-sm text-black">
                             Best regards.
                         </Text>
                     </Container>
@@ -269,7 +263,7 @@ const informationTableRow = {
 const informationTableColumn = {
     paddingLeft: '20px',
     borderStyle: 'solid',
-    borderColor: 'white',
+    borderColor: 'black',
     borderWidth: '0px 1px 1px 0px',
     height: '44px',
 };
