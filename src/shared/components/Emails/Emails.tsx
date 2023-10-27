@@ -1,18 +1,18 @@
-import { 
-    Body, 
-    Column, 
-    Container, 
-    Head, 
-    Heading, 
-    Hr, 
-    Html, 
-    Img, 
-    Link, 
-    Preview, 
-    Row, 
-    Section, 
-    Text, 
-    Tailwind 
+import {
+    Body,
+    Column,
+    Container,
+    Head,
+    Heading,
+    Hr,
+    Html,
+    Img,
+    Link,
+    Preview,
+    Row,
+    Section,
+    Text,
+    Tailwind
 } from '@react-email/components';
 import * as React from 'react';
 
@@ -95,13 +95,13 @@ const Emails = (
 
                         <Row>
                             <Column>
-                                    <Img
-                                        src={`https://utfs.io/f/29ecf92a-b5ea-4bd8-a05a-341effbac991-r5u1jd.jpg`}
-                                        alt="albufera"
-                                        width={100}
-                                        height={50}
-                                        className='h-full w-full object-cover'
-                                    />
+                                <Img
+                                    src={`https://utfs.io/f/29ecf92a-b5ea-4bd8-a05a-341effbac991-r5u1jd.jpg`}
+                                    alt="albufera"
+                                    width="200px"
+                                    style={{ float: 'left' }}
+
+                                />
                             </Column>
 
                             <Column>
@@ -119,16 +119,16 @@ const Emails = (
 
                         <Row>
                             <Column>
-                                    <Img
-                                        src={`https://utfs.io/f/12053b13-f469-4fa1-a529-eead208418cd-1jt5kj.jpg`}
-                                        alt="bikeride"
-                                        width={100}
-                                        height={50}
-                                        className='h-full w-full object-cover'
-                                    />
+                                <Img
+                                    src={`https://utfs.io/f/12053b13-f469-4fa1-a529-eead208418cd-1jt5kj.jpg`}
+                                    alt="bikeride"
+                                    width="200px"
+                                    style={{ float: 'left' }}
+
+                                />
                             </Column>
-                            <Column>
-                                <Text className="text-sm text-black ml-4">
+                            <Column className="ml-4">
+                                <Text className="text-sm text-black">
                                     Come and explore the vibrant neighborhood of El Cabañal, the up-and-coming hotspot for remote workers and startups in Valencia! Our 2-hour guided bike tour will take you on a journey through the beach town of the city, departing from the Old Town and passing by the iconic City of Arts and Sciences, before arriving at El Cabañal.
 
                                     <Link
@@ -143,16 +143,16 @@ const Emails = (
 
                         <Row>
                             <Column>
-                                    <Img
-                                        src={`https://utfs.io/f/ea7bb953-6b9f-4b45-98e2-f456f70cedcb-g3n0zs.jpg`}
-                                        alt="villareal"
-                                        width={100}
-                                        height={50}
-                                        className='h-full w-full object-cover'
-                                    />
+                                <Img
+                                    src={`https://utfs.io/f/ea7bb953-6b9f-4b45-98e2-f456f70cedcb-g3n0zs.jpg`}
+                                    alt="villareal"
+                                    width="200px"
+                                    style={{ float: 'left' }}
+
+                                />
                             </Column>
-                            <Column>
-                                <Text className="text-sm text-black ml-4">
+                            <Column className="ml-4">
+                                <Text className="text-sm text-black">
                                     Explore the brand-new Ceramic Stadium in a guided visit. Witness the inner workings of the club as you tour the changing rooms, football field, VIP boxes, and more. Delight in a traditional Valencian lunch, with meal choice at the club's exclusive restaurant, El Ceramista, where you'll experience a contemporary and football-inspired dining experience that captures the essence of Villa-real's present and future.
 
                                     <Link
@@ -177,11 +177,11 @@ const Emails = (
                             <Text className="text-sm text-black">Phone 📱 number: {phone}</Text>
                             <Text className="text-sm text-black">Drop-off dates: {date}</Text>
                             {time && <Text className="text-sm text-black">Booking time: {time}</Text>}
-                            {(comment && comment !== "") && 
-                            <Text className="text-sm text-black">
-                                Comments: {comment}
-                            </Text>}
-                            
+                            {(comment && comment !== "") &&
+                                <Text className="text-sm text-black">
+                                    Comments: {comment}
+                                </Text>}
+
                             <Text className="text-sm text-black">
                                 Discount code: {discountCode ? discountCode : "No code used"}
                             </Text>
