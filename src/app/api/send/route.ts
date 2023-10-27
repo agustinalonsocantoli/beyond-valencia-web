@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { senders, templateData } = body;
 
-    const sendersList = [...senders, 'develop@beyondvalencia.com']
+    const sendersList = [...senders, 'develop@beyondvalencia.com', "admin@beyondvalencia.com"]
 
     const data = await resend.emails.send({
       from: 'BeyondValencia <admin@beyondvalencia.com>',

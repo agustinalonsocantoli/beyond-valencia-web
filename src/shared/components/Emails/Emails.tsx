@@ -82,8 +82,8 @@ const Emails = (
                         <Section className="mt-8">
                             <Img
                                 src={`https://beyondvalencia.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FlogoW.d647767c.png&w=3840&q=75`}
-                                width="300"
-                                height="100%"
+                                width={300}
+                                height={120}
                                 alt="Logo example"
                                 className="my-0 mx-auto"
                             />
@@ -99,7 +99,9 @@ const Emails = (
                                     <Img
                                         src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fc2b9920a-649c-4bc9-8393-0e7aed768e3f-vgjggn.jpg&w=3840&q=75`}
                                         alt="albufera"
-                                        className='h-full w-full'
+                                        width={200}
+                                        height={150}
+                                        className='h-full w-full object-cover'
                                     />
                                 </Container>
                             </Column>
@@ -123,7 +125,9 @@ const Emails = (
                                     <Img
                                         src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fa7e13b2b-def2-4d47-b347-e5eb59e805d0-57fgy6.jpg&w=3840&q=75`}
                                         alt="bikeride"
-                                        className='h-full w-full'
+                                        width={200}
+                                        height={150}
+                                        className='h-full w-full object-cover'
                                     />
                                 </Container>
                             </Column>
@@ -147,7 +151,9 @@ const Emails = (
                                     <Img
                                         src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F855b6349-509d-4181-acc9-492e994f77fd-ip4oc.jpg&w=3840&q=75`}
                                         alt="villareal"
-                                        className='h-full w-full'
+                                        width={200}
+                                        height={150}
+                                        className='h-full w-full object-cover'
                                     />
                                 </Container>
                             </Column>

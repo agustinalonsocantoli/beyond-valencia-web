@@ -60,7 +60,7 @@ export const ModalBook = ({
     date,
     setDate,
     setCurrentOrder,
-    prices
+    prices,
 }: Props) => {
 
     const handleCancel = () => {

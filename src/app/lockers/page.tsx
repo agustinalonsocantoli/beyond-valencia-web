@@ -75,7 +75,7 @@ export default function Lockers() {
 
     }, [time, lockersProducts])
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         const { name, email, phone, comment } = e;
 
         if (totalPay > 0) {
@@ -99,19 +99,36 @@ export default function Lockers() {
 
         { totalPay > 0 && setPaymentVisible(true); }
 
-        sendEmail({
-            name: name,
-            email: email,
-            phone: phone,
-            time: currentOrder !== null && currentOrder.time,
-            date: currentOrder !== null && currentOrder.date,
-            small: currentOrder !== null && currentOrder.small,
-            medium: currentOrder !== null && currentOrder.medium,
-            normal: currentOrder !== null && currentOrder.normal,
-            comment: comment === null || comment === "" ? 'No comment entered' : comment,
-            total: `${totalPay}€`,
-            discountCode: currentOrder !== null && currentOrder.discountCode ? currentOrder.discountCode : 'No code used',
-        }, process.env.NEXT_PUBLIC_EMAIL_TEMPLATELOCKERS)
+        const sendersList: string[] = [];
+
+        if(email && email !== null && email !== undefined) sendersList.push(email)
+        if(emailPartner && emailPartner !== null && emailPartner !== undefined) sendersList.push(emailPartner)
+
+        await fetch('/api/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                senders: sendersList,
+                templateData: {
+                    type: "bike",
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    time: currentOrder?.time,
+                    date: currentOrder?.date,
+                    lockers: {
+                        small: currentOrder.small,
+                        medium: currentOrder.medium,
+                        normal: currentOrder.normal,
+                    },
+                    comment: comment,
+                    total: totalPay,
+                    discountCode: currentOrder?.discountCode,
+                }
+            })
+        })
     }
 
     const handleOk = () => {

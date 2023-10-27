@@ -69,7 +69,6 @@ export const Complete = ({
 
                     return
                 } else {
-                    console.log(codes[0]?.partner);
                     setEmailPartnet(codes[0]?.partner?.email)
 
                     codes[0]?.state

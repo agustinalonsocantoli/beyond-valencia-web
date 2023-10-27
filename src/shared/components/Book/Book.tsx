@@ -40,6 +40,7 @@ export const Book = (props: Props) => {
     const [isDiscountAdd, setIsDescountAdd] = useState<boolean>(false);
     const [codeDiscount, setCodeDiscount] = useState<string | null>(null);
     const [prices, setPrices] = useState<PricesInt>()
+    const [emailPartner, setEmailPartnet] = useState<string>()
 
     // Modal Book
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -80,7 +81,7 @@ export const Book = (props: Props) => {
         onOpen();
     }
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         const { name, email, phone, comment } = e;
 
         setCurrentOrder((prev: any) => ({
@@ -95,10 +96,41 @@ export const Book = (props: Props) => {
             children: children,
             infants: infants,
         }));
+        
+        const sendersList: string[] = [];
+        const newDate = !date ? new Date() : date
+
+        if(email && email !== null && email !== undefined) sendersList.push(email)
+        if(emailPartner && emailPartner !== null && emailPartner !== undefined) sendersList.push(emailPartner)
+
+        await fetch('/api/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                senders: sendersList,
+                templateData: {
+                    type: "bike",
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    time: time,
+                    date: format(newDate, 'dd/MM/yy'),
+                    book: {
+                        adults: adults,
+                        children: children,
+                        infants: infants,
+                    },
+                    comment: comment,
+                    total: totalPay,
+                    discountCode: codeDiscount,
+                }
+            })
+        })
 
         toastNotify(toast, StatusEnumTypes.SUCCESS, 'We will proceed to the payment.');
         onClose();
-        setPaymentVisible(true);
     }
 
     const handleGetCode = ({ target }: any) => {
@@ -124,6 +156,8 @@ export const Book = (props: Props) => {
                 toastNotify(toast, StatusEnumTypes, "The code entered is not valid")
                 return
             } else {
+                setEmailPartnet(codes[0]?.partner?.email)
+
                 codes[0]?.state
                 ? addedDiscount(codes[0].discount, codes[0].code)
                 : toastNotify(toast, StatusEnumTypes, "The code entered is inactive")
