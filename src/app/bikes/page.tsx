@@ -78,7 +78,7 @@ export default function Bikes() {
 
     }, [time, bikesProducts])
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = async (e: any) => {
         const { name, email, phone, comment } = e;
 
         if (totalPay > 0) {
@@ -102,28 +102,36 @@ export default function Bikes() {
 
         { totalPay > 0 && setPaymentVisible(true); }
 
-        POST(
-            [
-                email, 
-                emailPartner
-            ], 
-            {
-                type: "bike",
-                name: name,
-                email: email,
-                phone: phone,
-                time: currentOrder?.time,
-                date: currentOrder?.date,
-                bike: {
-                    small: currentOrder?.small,
-                    medium: currentOrder?.medium,
-                    childrenBike: currentOrder?.childrenBike,
-                },
-                comment: comment,
-                total: totalPay,
-                discountCode: currentOrder?.discountCode,
-            }
-        )
+        const sendersList: string[] = [];
+
+        if(email && email !== null && email !== undefined) sendersList.push(email)
+        if(emailPartner && emailPartner !== null && emailPartner !== undefined) sendersList.push(emailPartner)
+
+        await fetch('/api/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                senders: sendersList,
+                templateData: {
+                    type: "bike",
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    time: currentOrder?.time,
+                    date: currentOrder?.date,
+                    bike: {
+                        small: currentOrder?.small,
+                        medium: currentOrder?.medium,
+                        childrenBike: currentOrder?.childrenBike,
+                    },
+                    comment: comment,
+                    total: totalPay,
+                    discountCode: currentOrder?.discountCode,
+                }
+            })
+        })
     }
 
     const handleOk = () => {

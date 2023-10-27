@@ -81,7 +81,7 @@ const Emails = (
                     <Container className="my-10 mx-auto p-5 w-[600px]">
                         <Section className="mt-8">
                             <Img
-                                src={`${baseUrl}/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FlogoW.d647767c.png&w=3840&q=75`}
+                                src={`https://beyondvalencia.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2FlogoW.d647767c.png&w=3840&q=75`}
                                 width="300"
                                 height="100%"
                                 alt="Logo example"
@@ -97,7 +97,7 @@ const Emails = (
                             <Column>
                                 <Container className='w-[200px] h-[150px] rounded-md overflow-hidden'>
                                     <Img
-                                        src={`${baseUrl}/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fc2b9920a-649c-4bc9-8393-0e7aed768e3f-vgjggn.jpg&w=3840&q=75`}
+                                        src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fc2b9920a-649c-4bc9-8393-0e7aed768e3f-vgjggn.jpg&w=3840&q=75`}
                                         alt="albufera"
                                         className='h-full w-full'
                                     />
@@ -121,7 +121,7 @@ const Emails = (
                             <Column>
                                 <Container className='w-[200px] h-[150px] rounded-md overflow-hidden'>
                                     <Img
-                                        src={`${baseUrl}/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fa7e13b2b-def2-4d47-b347-e5eb59e805d0-57fgy6.jpg&w=3840&q=75`}
+                                        src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fa7e13b2b-def2-4d47-b347-e5eb59e805d0-57fgy6.jpg&w=3840&q=75`}
                                         alt="bikeride"
                                         className='h-full w-full'
                                     />
@@ -145,7 +145,7 @@ const Emails = (
                             <Column>
                                 <Container className='w-[200px] h-[150px] rounded-md overflow-hidden'>
                                     <Img
-                                        src={`${baseUrl}/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F855b6349-509d-4181-acc9-492e994f77fd-ip4oc.jpg&w=3840&q=75`}
+                                        src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F855b6349-509d-4181-acc9-492e994f77fd-ip4oc.jpg&w=3840&q=75`}
                                         alt="villareal"
                                         className='h-full w-full'
                                     />

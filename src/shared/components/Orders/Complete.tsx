@@ -66,9 +66,12 @@ export const Complete = ({
 
                 if(codes?.length === 0) {
                     toastNotify(toast, StatusEnumTypes.ERROR, "The code entered is not valid")
-                    setEmailPartnet(codes[0]?.partner?.email)
+
                     return
                 } else {
+                    console.log(codes[0]?.partner);
+                    setEmailPartnet(codes[0]?.partner?.email)
+
                     codes[0]?.state
                     ? addedDiscount(codes[0].discount, codes[0].code)
                     : toastNotify(toast, StatusEnumTypes.ERROR, "The code entered is inactive")
