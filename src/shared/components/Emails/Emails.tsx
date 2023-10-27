@@ -117,7 +117,9 @@ const Emails = (
                             </Column>
                         </Row>
 
-                        <Row>
+                        <Row
+                            className='mt-4'
+                        >
                             <Column>
                                 <Img
                                     src={`https://utfs.io/f/12053b13-f469-4fa1-a529-eead208418cd-1jt5kj.jpg`}
@@ -141,7 +143,9 @@ const Emails = (
                             </Column>
                         </Row>
 
-                        <Row>
+                        <Row
+                            className='mt-4'
+                        >
                             <Column>
                                 <Img
                                     src={`https://utfs.io/f/ea7bb953-6b9f-4b45-98e2-f456f70cedcb-g3n0zs.jpg`}
