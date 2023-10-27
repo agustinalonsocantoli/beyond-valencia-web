@@ -96,7 +96,7 @@ const Emails = (
                         <Row>
                             <Column>
                                     <Img
-                                        src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fc2b9920a-649c-4bc9-8393-0e7aed768e3f-vgjggn.jpg&w=3840&q=75`}
+                                        src={`https://utfs.io/f/29ecf92a-b5ea-4bd8-a05a-341effbac991-r5u1jd.jpg`}
                                         alt="albufera"
                                         width={100}
                                         height={50}
@@ -120,7 +120,7 @@ const Emails = (
                         <Row>
                             <Column>
                                     <Img
-                                        src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2Fa7e13b2b-def2-4d47-b347-e5eb59e805d0-57fgy6.jpg&w=3840&q=75`}
+                                        src={`https://utfs.io/f/12053b13-f469-4fa1-a529-eead208418cd-1jt5kj.jpg`}
                                         alt="bikeride"
                                         width={100}
                                         height={50}
@@ -144,7 +144,7 @@ const Emails = (
                         <Row>
                             <Column>
                                     <Img
-                                        src={`https://beyondvalencia.com/_next/image?url=https%3A%2F%2Futfs.io%2Ff%2F855b6349-509d-4181-acc9-492e994f77fd-ip4oc.jpg&w=3840&q=75`}
+                                        src={`https://utfs.io/f/ea7bb953-6b9f-4b45-98e2-f456f70cedcb-g3n0zs.jpg`}
                                         alt="villareal"
                                         width={100}
                                         height={50}
