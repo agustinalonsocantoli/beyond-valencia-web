@@ -105,7 +105,7 @@ const Emails = (
                             </Column>
 
                             <Column>
-                                <Text className="text-sm text-black ml-4 ml-4">
+                                <Text className="text-xs text-black ml-4">
                                     La Albufera Sunset, a captivating boat journey through the serene waterways of Albufera Park near Valencia. As the sun gracefully sets, witness the sky painted in vibrant hues, creating a breathtaking backdrop. Savor local wines, embrace the tranquility of the surroundings, and create cherished memories amidst the enchanting beauty of nature's masterpiece.
                                     <Link
                                         href={`#`}
@@ -127,8 +127,8 @@ const Emails = (
 
                                 />
                             </Column>
-                            <Column className="ml-4">
-                                <Text className="text-sm text-black">
+                            <Column>
+                                <Text className="text-xs text-black ml-4">
                                     Come and explore the vibrant neighborhood of El Cabañal, the up-and-coming hotspot for remote workers and startups in Valencia! Our 2-hour guided bike tour will take you on a journey through the beach town of the city, departing from the Old Town and passing by the iconic City of Arts and Sciences, before arriving at El Cabañal.
 
                                     <Link
@@ -151,8 +151,8 @@ const Emails = (
 
                                 />
                             </Column>
-                            <Column className="ml-4">
-                                <Text className="text-sm text-black">
+                            <Column>
+                                <Text className="text-xs text-black ml-4">
                                     Explore the brand-new Ceramic Stadium in a guided visit. Witness the inner workings of the club as you tour the changing rooms, football field, VIP boxes, and more. Delight in a traditional Valencian lunch, with meal choice at the club's exclusive restaurant, El Ceramista, where you'll experience a contemporary and football-inspired dining experience that captures the essence of Villa-real's present and future.
 
                                     <Link
@@ -165,7 +165,7 @@ const Emails = (
                             </Column>
                         </Row>
 
-                        <Hr className="border border-solid border-[#eaeaea] my-6 mx-0 w-full" />
+                        <Hr className="border border-solid border-[#202020] my-6 mx-0 w-full" />
 
                         <Container>
                             <Heading className="text-2xl font-normal text-center py-2 text-black">
@@ -217,12 +217,12 @@ const Emails = (
                             </Text>
                         </Container>
 
-                        <Hr className="border border-solid border-[#eaeaea] my-6 mx-0 w-full" />
+                        <Hr className="border border-solid border-[#202020] my-6 mx-0 w-full" />
 
                         <Container
-                            className='bg-[#fffbf6] rounded'
+                            className='bg-[#202020] rounded'
                         >
-                            <Text className="text-md text-[#202020] font-bold px-5">
+                            <Text className="text-md text-[#eaeaea] font-bold px-5">
                                 Discount code "BEYONDCAR23"
                             </Text>
                         </Container>
