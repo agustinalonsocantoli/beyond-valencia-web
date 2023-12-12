@@ -8,13 +8,12 @@ import { Navbar } from "@/shared/components/Navbar/Navbar";
 import { Exposure } from "@/shared/components/Exposure/Exposure";
 // import { Services } from "../components/shared/Services";
 import { DataInt } from "../../interfaces/services.model";
-import { getRevalidatedData, getStaticData } from "@/shared/middlewares/fetcher";
-import { isMobile } from 'react-device-detect';
+import { getRevalidatedData } from "@/shared/middlewares/fetcher";
 import { Services } from "@/shared/components/Services/Services";
 import { Box } from "@chakra-ui/react";
 
 export default async function Experiences() {
-    const { data: multimediaExperiences } = await getStaticData("multimedia?landing=experiences")
+    const { data: multimediaExperiences } = await getRevalidatedData("multimedia?landing=experiences")
     const { data: contentExperiences } = await getRevalidatedData("content?landing=experiences")
     const { data: contentDaytrips } = await getRevalidatedData("content?landing=daytrips")
 

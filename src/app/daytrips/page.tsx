@@ -7,12 +7,12 @@ import { Events } from "@/shared/components/Events/Events";
 import { Whatsapp } from "@/shared/components/Custom/Whatsapp";
 import { Options } from "@/shared/components/Options/Options";
 import { DataInt } from "@/interfaces/services.model";
-import { getRevalidatedData, getStaticData } from "@/shared/middlewares/fetcher";
+import { getRevalidatedData } from "@/shared/middlewares/fetcher";
 import { Services } from "@/shared/components/Services/Services";
 import { Box } from "@chakra-ui/react";
 
 export default async function Daytrips() {
-    const { data: multimediaDaytrips } = await getStaticData("multimedia?landing=daytrips")
+    const { data: multimediaDaytrips } = await getRevalidatedData("multimedia?landing=daytrips")
     const { data: contentDaytrips } = await getRevalidatedData("content?landing=daytrips")
     const { data: contentExperiences } = await getRevalidatedData("content?landing=experiences")
 
